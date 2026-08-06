@@ -1,0 +1,431 @@
+[
+  {
+    "id": "A",
+    "character": "А",
+    "characterLower": "а",
+    "phonetic": "A",
+    "soundsLike": "a as in father",
+    "example": {
+      "native": "Аптека",
+      "translation": "Pharmacy",
+      "transliteration": "Apteka"
+    },
+    "asset": "book"
+  },
+  {
+    "id": "B",
+    "character": "Б",
+    "characterLower": "б",
+    "phonetic": "B",
+    "soundsLike": "b as in boy",
+    "example": {
+      "native": "Бабушка",
+      "translation": "Grandmother",
+      "transliteration": "Babushka"
+    },
+    "asset": "person"
+  },
+  {
+    "id": "V",
+    "character": "В",
+    "characterLower": "в",
+    "phonetic": "V",
+    "soundsLike": "v as in vet",
+    "example": {
+      "native": "Вода",
+      "translation": "Water",
+      "transliteration": "Voda"
+    },
+    "asset": "glass-water"
+  },
+  {
+    "id": "G",
+    "character": "Г",
+    "characterLower": "г",
+    "phonetic": "G",
+    "soundsLike": "g as in go",
+    "example": {
+      "native": "Город",
+      "translation": "City",
+      "transliteration": "Gorod"
+    },
+    "asset": "building"
+  },
+  {
+    "id": "D",
+    "character": "Д",
+    "characterLower": "д",
+    "phonetic": "D",
+    "soundsLike": "d as in dog",
+    "example": {
+      "native": "Дом",
+      "translation": "House",
+      "transliteration": "Dom"
+    },
+    "asset": "home"
+  },
+  {
+    "id": "YE",
+    "character": "Е",
+    "characterLower": "е",
+    "phonetic": "YE",
+    "soundsLike": "ye as in yes",
+    "example": {
+      "native": "Европа",
+      "translation": "Europe",
+      "transliteration": "Yevropa"
+    },
+    "asset": "globe"
+  },
+  {
+    "id": "YO",
+    "character": "Ё",
+    "characterLower": "ё",
+    "phonetic": "YO",
+    "soundsLike": "yo as in yolk",
+    "example": {
+      "native": "Ёжик",
+      "translation": "Hedgehog",
+      "transliteration": "Yozhik"
+    },
+    "asset": "animal"
+  },
+  {
+    "id": "ZH",
+    "character": "Ж",
+    "characterLower": "ж",
+    "phonetic": "ZH",
+    "soundsLike": "s as in measure",
+    "example": {
+      "native": "Жук",
+      "translation": "Beetle",
+      "transliteration": "Zhuk"
+    },
+    "asset": "bug"
+  },
+  {
+    "id": "Z",
+    "character": "З",
+    "characterLower": "з",
+    "phonetic": "Z",
+    "soundsLike": "z as in zoo",
+    "example": {
+      "native": "Зима",
+      "translation": "Winter",
+      "transliteration": "Zima"
+    },
+    "asset": "snowflake"
+  },
+  {
+    "id": "I",
+    "character": "И",
+    "characterLower": "и",
+    "phonetic": "I",
+    "soundsLike": "ee as in see",
+    "example": {
+      "native": "Игра",
+      "translation": "Game",
+      "transliteration": "Igra"
+    },
+    "asset": "gamepad"
+  },
+  {
+    "id": "Y",
+    "character": "Й",
+    "characterLower": "й",
+    "phonetic": "Y",
+    "soundsLike": "y as in boy",
+    "example": {
+      "native": "Йога",
+      "translation": "Yoga",
+      "transliteration": "Yoga"
+    },
+    "asset": "person-standing"
+  },
+  {
+    "id": "K",
+    "character": "К",
+    "characterLower": "к",
+    "phonetic": "K",
+    "soundsLike": "k as in kite",
+    "example": {
+      "native": "Кот",
+      "translation": "Cat",
+      "transliteration": "Kot"
+    },
+    "asset": "cat"
+  },
+  {
+    "id": "L",
+    "character": "Л",
+    "characterLower": "л",
+    "phonetic": "L",
+    "soundsLike": "l as in lamp",
+    "example": {
+      "native": "Лампа",
+      "translation": "Lamp",
+      "transliteration": "Lampa"
+    },
+    "asset": "lightbulb"
+  },
+  {
+    "id": "M",
+    "character": "М",
+    "characterLower": "м",
+    "phonetic": "M",
+    "soundsLike": "m as in man",
+    "example": {
+      "native": "Мама",
+      "translation": "Mom",
+      "transliteration": "Mama"
+    },
+    "asset": "person"
+  },
+  {
+    "id": "N",
+    "character": "Н",
+    "characterLower": "н",
+    "phonetic": "N",
+    "soundsLike": "n as in no",
+    "example": {
+      "native": "Нос",
+      "translation": "Nose",
+      "transliteration": "Nos"
+    },
+    "asset": "user"
+  },
+  {
+    "id": "O",
+    "character": "О",
+    "characterLower": "о",
+    "phonetic": "O",
+    "soundsLike": "o as in more",
+    "example": {
+      "native": "Окно",
+      "translation": "Window",
+      "transliteration": "Okno"
+    },
+    "asset": "app-window"
+  },
+  {
+    "id": "P",
+    "character": "П",
+    "characterLower": "п",
+    "phonetic": "P",
+    "soundsLike": "p as in pet",
+    "example": {
+      "native": "Папа",
+      "translation": "Dad",
+      "transliteration": "Papa"
+    },
+    "asset": "person"
+  },
+  {
+    "id": "R",
+    "character": "Р",
+    "characterLower": "р",
+    "phonetic": "R",
+    "soundsLike": "rolled r",
+    "example": {
+      "native": "Река",
+      "translation": "River",
+      "transliteration": "Reka"
+    },
+    "asset": "waves"
+  },
+  {
+    "id": "S",
+    "character": "С",
+    "characterLower": "с",
+    "phonetic": "S",
+    "soundsLike": "s as in sun",
+    "example": {
+      "native": "Солнце",
+      "translation": "Sun",
+      "transliteration": "Solntse"
+    },
+    "asset": "sun"
+  },
+  {
+    "id": "T",
+    "character": "Т",
+    "characterLower": "т",
+    "phonetic": "T",
+    "soundsLike": "t as in top",
+    "example": {
+      "native": "Торт",
+      "translation": "Cake",
+      "transliteration": "Tort"
+    },
+    "asset": "cake"
+  },
+  {
+    "id": "U",
+    "character": "У",
+    "characterLower": "у",
+    "phonetic": "U",
+    "soundsLike": "oo as in boot",
+    "example": {
+      "native": "Утро",
+      "translation": "Morning",
+      "transliteration": "Utro"
+    },
+    "asset": "sunrise"
+  },
+  {
+    "id": "F",
+    "character": "Ф",
+    "characterLower": "ф",
+    "phonetic": "F",
+    "soundsLike": "f as in face",
+    "example": {
+      "native": "Фото",
+      "translation": "Photo",
+      "transliteration": "Foto"
+    },
+    "asset": "camera"
+  },
+  {
+    "id": "KH",
+    "character": "Х",
+    "characterLower": "х",
+    "phonetic": "KH",
+    "soundsLike": "ch as in Bach",
+    "example": {
+      "native": "Хлеб",
+      "translation": "Bread",
+      "transliteration": "Khleb"
+    },
+    "asset": "croissant"
+  },
+  {
+    "id": "TS",
+    "character": "Ц",
+    "characterLower": "ц",
+    "phonetic": "TS",
+    "soundsLike": "ts as in cats",
+    "example": {
+      "native": "Цвет",
+      "translation": "Color",
+      "transliteration": "Tsvet"
+    },
+    "asset": "palette"
+  },
+  {
+    "id": "CH",
+    "character": "Ч",
+    "characterLower": "ч",
+    "phonetic": "CH",
+    "soundsLike": "ch as in chat",
+    "example": {
+      "native": "Чай",
+      "translation": "Tea",
+      "transliteration": "Chay"
+    },
+    "asset": "coffee"
+  },
+  {
+    "id": "SH",
+    "character": "Ш",
+    "characterLower": "ш",
+    "phonetic": "SH",
+    "soundsLike": "sh as in shoe",
+    "example": {
+      "native": "Школа",
+      "translation": "School",
+      "transliteration": "Shkola"
+    },
+    "asset": "school"
+  },
+  {
+    "id": "SHCH",
+    "character": "Щ",
+    "characterLower": "щ",
+    "phonetic": "SHCH",
+    "soundsLike": "shch as in fresh cheese",
+    "example": {
+      "native": "Щит",
+      "translation": "Shield",
+      "transliteration": "Shchit"
+    },
+    "asset": "shield"
+  },
+  {
+    "id": "HARD",
+    "character": "Ъ",
+    "characterLower": "ъ",
+    "phonetic": "”",
+    "soundsLike": "hard sign (silent)",
+    "example": {
+      "native": "Объект",
+      "translation": "Object",
+      "transliteration": "Ob'yekt"
+    },
+    "asset": "box"
+  },
+  {
+    "id": "Y_VOWEL",
+    "character": "Ы",
+    "characterLower": "ы",
+    "phonetic": "Y",
+    "soundsLike": "i as in ill (throat)",
+    "example": {
+      "native": "Сыр",
+      "translation": "Cheese",
+      "transliteration": "Syr"
+    },
+    "asset": "moon"
+  },
+  {
+    "id": "SOFT",
+    "character": "Ь",
+    "characterLower": "ь",
+    "phonetic": "’",
+    "soundsLike": "soft sign (silent)",
+    "example": {
+      "native": "День",
+      "translation": "Day",
+      "transliteration": "Den'"
+    },
+    "asset": "sun"
+  },
+  {
+    "id": "E",
+    "character": "Э",
+    "characterLower": "э",
+    "phonetic": "E",
+    "soundsLike": "e as in met",
+    "example": {
+      "native": "Экран",
+      "translation": "Screen",
+      "transliteration": "Ekran"
+    },
+    "asset": "monitor"
+  },
+  {
+    "id": "YU",
+    "character": "Ю",
+    "characterLower": "ю",
+    "phonetic": "YU",
+    "soundsLike": "u as in use",
+    "example": {
+      "native": "Юг",
+      "translation": "South",
+      "transliteration": "Yug"
+    },
+    "asset": "compass"
+  },
+  {
+    "id": "YA",
+    "character": "Я",
+    "characterLower": "я",
+    "phonetic": "YA",
+    "soundsLike": "ya as in yard",
+    "example": {
+      "native": "Яблоко",
+      "translation": "Apple",
+      "transliteration": "Yabloko"
+    },
+    "asset": "apple"
+  }
+]
