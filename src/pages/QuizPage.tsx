@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
+import { getQuestionDirectionHint } from '../utils/languageMap';
 import type { CharacterData } from '../types';
 
 type Question = {
@@ -13,7 +14,8 @@ type Question = {
 export function QuizPage() {
   const { lang } = useParams();
   const langId = lang || 'ru';
-  const { characters, loading } = useLanguageData(langId);
+  const { characters: allCharacters, loading } = useLanguageData(langId);
+  const characters = allCharacters.filter(c => !['Ъ', 'Ь'].includes(c.character));
   const { progress, updateQuizScore } = useProgress(langId);
   
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -92,7 +94,7 @@ export function QuizPage() {
           <h2 className="text-2xl mb-4">Are you ready for evaluation?</h2>
           <p className="font-mono mb-8 opacity-80">You will be tested on 10 random characters.</p>
           <button onClick={generateQuiz} className="vintage-button text-xl">
-            Commence Test
+            Start Test
           </button>
         </div>
       )}
@@ -115,6 +117,10 @@ export function QuizPage() {
               {questions[currentIndex].type === 'target-to-english' 
                 ? questions[currentIndex].target.character
                 : `[${questions[currentIndex].target.phonetic}]`}
+            </div>
+
+            <div className="mt-4 font-mono text-xs text-vintage-ink/70 uppercase tracking-wider">
+              {getQuestionDirectionHint(langId, questions[currentIndex].type)}
             </div>
           </div>
 

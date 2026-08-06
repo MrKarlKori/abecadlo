@@ -28,11 +28,11 @@
   }
 
   .vintage-button {
-    @apply bg-vintage-blue text-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] px-6 py-2 font-serif font-bold hover:bg-vintage-blue/90 active:translate-y-1 active:translate-x-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-vintage-blue text-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] px-6 py-2 font-serif font-bold hover:bg-vintage-blue/90 active:translate-y-1 active:translate-x-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed enabled:cursor-pointer;
   }
   
   .vintage-button-secondary {
-    @apply bg-vintage-paper text-vintage-ink border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] px-6 py-2 font-serif font-bold hover:bg-gray-100 active:translate-y-1 active:translate-x-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-vintage-paper text-vintage-ink border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] px-6 py-2 font-serif font-bold hover:bg-gray-100 active:translate-y-1 active:translate-x-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed enabled:cursor-pointer;
   }
 
   .vintage-stamp {

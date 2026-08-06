@@ -12,7 +12,9 @@ export function useLanguageData(langId: string) {
       setLoading(true);
       setError(null);
       try {
-        const registryRes = await fetch('/data/registry.json');
+        const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+        
+        const registryRes = await fetch(`${baseUrl}/data/registry.json`);
         if (!registryRes.ok) throw new Error('Failed to load registry');
         const registry: LanguageRegistryEntry[] = await registryRes.json();
         
@@ -20,7 +22,8 @@ export function useLanguageData(langId: string) {
         if (!entry) throw new Error('Language not found');
         setRegistryEntry(entry);
 
-        const dataRes = await fetch(entry.dataFile);
+        const dataPath = entry.dataFile.startsWith('/') ? entry.dataFile : `/${entry.dataFile}`;
+        const dataRes = await fetch(`${baseUrl}${dataPath}`);
         if (!dataRes.ok) throw new Error('Failed to load language data');
         const data: CharacterData[] = await dataRes.json();
         

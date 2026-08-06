@@ -20,7 +20,7 @@ export function Layout() {
     <div className="min-h-screen bg-vintage-paper flex flex-col md:flex-row">
       <nav className="md:w-64 bg-vintage-paper border-b-2 md:border-b-0 md:border-r-2 border-vintage-ink p-4 flex md:flex-col justify-between z-10 sticky top-0 md:h-screen">
         <div className="hidden md:block mb-8">
-          <h1 className="text-2xl mb-2 text-vintage-red">Vintage Explorer</h1>
+          <h1 className="text-2xl mb-2 text-vintage-red">Abecadlo</h1>
           <h2 className="text-xl font-bold">{registryEntry?.name || 'Loading...'}</h2>
         </div>
         

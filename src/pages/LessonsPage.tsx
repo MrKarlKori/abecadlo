@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
+import { UnderConstruction } from '../components/UnderConstruction';
 import clsx from 'clsx';
 
 export function LessonsPage() {
   const { lang, id } = useParams();
   const langId = lang || 'ru';
-  const { characters, loading, error } = useLanguageData(langId);
-  const { progress, markCompleted, toggleCompleted } = useProgress(langId);
+  const { characters, loading, error, registryEntry } = useLanguageData(langId);
+  const { progress, toggleCompleted } = useProgress(langId);
   const navigate = useNavigate();
 
   // State for swipe gestures
@@ -19,15 +20,9 @@ export function LessonsPage() {
   const minSwipeDistance = 50;
 
   useEffect(() => {
-    if (id && characters.length > 0) {
-      // Mark as completed merely by visiting, as per PRD "automatically marks as viewed/completed"
-      // Or we can let the toggle handle "Mastered". Let's auto-mark it as viewed if we wanted, 
-      // but PRD says "automatically marks the letter as viewed/completed in localStorage upon visiting" 
-      // AND "offer a manual 'Mastered' toggle". 
-      // Let's mark it on visit.
-      markCompleted(id);
-    }
-  }, [id, characters, markCompleted]);
+    // Intentionally left empty as per user request:
+    // "card should be marked 'mastered' not immediately after opening, but only when user clicks it manually"
+  }, [id, characters]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -72,7 +67,9 @@ export function LessonsPage() {
   if (error) return <div className="text-center font-serif text-vintage-red text-xl mt-12">{error}</div>;
 
   if (!id) {
-    return <Navigate to={`/${langId}/lesson/${characters[0]?.id}`} replace />;
+    return (
+      <UnderConstruction description="Lessons mode is being upgraded. Please select a letter directly from the Alphabet archive." />
+    );
   }
 
   const currentIndex = characters.findIndex(c => c.id === id);
@@ -93,7 +90,7 @@ export function LessonsPage() {
       <div className="flex justify-between items-center mb-6">
         <button 
           onClick={() => navigate(`/${langId}/alphabet`)}
-          className="text-vintage-ink hover:text-vintage-blue font-serif font-bold underline underline-offset-4 decoration-2"
+          className="text-vintage-ink hover:text-vintage-blue font-serif font-bold underline underline-offset-4 decoration-2 cursor-pointer"
         >
           &larr; Back to Alphabet
         </button>
@@ -102,7 +99,7 @@ export function LessonsPage() {
         </span>
       </div>
 
-      <div className="vintage-card flex-1 flex flex-col p-8 md:p-12 relative bg-[#F9F6EE] border-4">
+      <div className="bg-[#F9F6EE] border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] flex-1 flex flex-col p-8 md:p-12 relative">
         {isCompleted && (
           <div className="vintage-stamp text-xl md:text-2xl py-2 px-6 border-4 right-4 top-4 z-10 pointer-events-none shadow-sm">
             ПРОЙДЕНО
@@ -114,7 +111,7 @@ export function LessonsPage() {
             <div className="text-8xl md:text-[120px] font-serif font-bold leading-none mb-2 text-vintage-ink drop-shadow-[4px_4px_0_#D9AD5B]">
               {char.character}{char.characterLower}
             </div>
-            <div className="text-2xl font-mono border-t-2 border-vintage-ink pt-2 inline-block">
+            <div className="text-2xl font-mono border-t-2 border-vintage-ink pt-2 inline-block mt-3">
               [{char.phonetic}]
             </div>
           </div>
@@ -136,11 +133,11 @@ export function LessonsPage() {
           </div>
         </div>
 
-        <div className="mt-auto pt-8 border-t-2 border-vintage-ink border-dashed flex justify-between items-center">
-           <button
+        <div className="mt-auto pt-8 border-t-2 border-vintage-ink border-dashed flex justify-between items-center gap-6">
+          <button
             onClick={() => toggleCompleted(char.id)}
             className={clsx(
-              "flex items-center gap-2 px-4 py-2 border-2 border-vintage-ink font-bold font-serif transition-colors",
+              "flex items-center gap-2 px-4 py-2 border-2 border-vintage-ink font-bold font-serif cursor-pointer",
               isCompleted 
                 ? "bg-vintage-gold text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]" 
                 : "bg-transparent hover:bg-gray-100"
@@ -149,6 +146,14 @@ export function LessonsPage() {
             <Check size={20} />
             {isCompleted ? "Mastered" : "Mark Mastered"}
           </button>
+          <a 
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(char.characterLower)}#${registryEntry?.name || 'Russian'}`}
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-lg cursor-pointer"
+          >
+            View on Wiktionary &rarr;
+          </a>
         </div>
       </div>
 
