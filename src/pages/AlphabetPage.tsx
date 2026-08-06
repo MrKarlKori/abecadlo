@@ -26,12 +26,12 @@ export function AlphabetPage() {
             <button
               key={char.id}
               onClick={() => navigate(`/${langId}/lesson/${char.id}`)}
-              className="vintage-card relative flex flex-col items-center justify-center min-h-24 md:min-h-32 group hover:bg-[#eae6d5]"
+              className="bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] p-4 relative flex flex-col items-center justify-center min-h-24 md:min-h-32 group hover:bg-[#eae6d5] cursor-pointer"
             >
               <div className="text-3xl md:text-4xl font-serif font-bold text-vintage-ink mb-1 group-hover:scale-110 transition-transform">
                 {char.character}
               </div>
-              <div className="text-sm md:text-base font-mono text-vintage-ink/70">
+              <div className="text-sm md:text-base font-mono text-vintage-ink/70 mt-1">
                 [{char.phonetic}]
               </div>
               
