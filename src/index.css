@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vintage-paper: #F3EFE0;
+  --color-vintage-ink: #2C2A29;
+  --color-vintage-red: #C84B31;
+  --color-vintage-blue: #3A6B7E;
+  --color-vintage-gold: #D9AD5B;
+
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'Special Elite', 'Courier Prime', Courier, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-vintage-paper text-vintage-ink font-mono;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-bold text-vintage-ink;
+  }
+}
+
+@layer components {
+  .vintage-card {
+    @apply bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] p-4 transition-transform active:translate-y-1 active:translate-x-1 active:shadow-none;
+  }
+
+  .vintage-button {
+    @apply bg-vintage-blue text-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] px-6 py-2 font-serif font-bold hover:bg-vintage-blue/90 active:translate-y-1 active:translate-x-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .vintage-button-secondary {
+    @apply bg-vintage-paper text-vintage-ink border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] px-6 py-2 font-serif font-bold hover:bg-gray-100 active:translate-y-1 active:translate-x-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .vintage-stamp {
+    @apply absolute border-4 border-vintage-red text-vintage-red font-serif font-bold uppercase rounded-full px-4 py-1 -rotate-12 opacity-80 mix-blend-multiply;
+  }
+}

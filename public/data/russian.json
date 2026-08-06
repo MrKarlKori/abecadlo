@@ -1,0 +1,67 @@
+[
+  {
+    "id": "A",
+    "character": "А",
+    "characterLower": "а",
+    "phonetic": "A",
+    "soundsLike": "a as in father",
+    "example": {
+      "native": "Аптека",
+      "translation": "Pharmacy",
+      "transliteration": "Apteka"
+    },
+    "asset": "book"
+  },
+  {
+    "id": "B",
+    "character": "Б",
+    "characterLower": "б",
+    "phonetic": "B",
+    "soundsLike": "b as in boy",
+    "example": {
+      "native": "Бабушка",
+      "translation": "Grandmother",
+      "transliteration": "Babushka"
+    },
+    "asset": "person"
+  },
+  {
+    "id": "V",
+    "character": "В",
+    "characterLower": "в",
+    "phonetic": "V",
+    "soundsLike": "v as in vet",
+    "example": {
+      "native": "Вода",
+      "translation": "Water",
+      "transliteration": "Voda"
+    },
+    "asset": "glass-water"
+  },
+  {
+    "id": "G",
+    "character": "Г",
+    "characterLower": "г",
+    "phonetic": "G",
+    "soundsLike": "g as in go",
+    "example": {
+      "native": "Город",
+      "translation": "City",
+      "transliteration": "Gorod"
+    },
+    "asset": "building"
+  },
+  {
+    "id": "D",
+    "character": "Д",
+    "characterLower": "д",
+    "phonetic": "D",
+    "soundsLike": "d as in dog",
+    "example": {
+      "native": "Дом",
+      "translation": "House",
+      "transliteration": "Dom"
+    },
+    "asset": "home"
+  }
+]

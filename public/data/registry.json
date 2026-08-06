@@ -1,0 +1,8 @@
+[
+  {
+    "id": "ru",
+    "name": "Russian",
+    "theme": "soviet-vintage",
+    "dataFile": "/data/russian.json"
+  }
+]
