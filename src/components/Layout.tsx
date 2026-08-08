@@ -40,10 +40,10 @@ export function Layout() {
 
   return (
     <div className="min-h-screen bg-vintage-paper flex flex-col md:flex-row">
-      <nav className="md:w-64 bg-vintage-paper border-b-2 md:border-b-0 md:border-r-2 border-vintage-ink p-4 flex md:flex-col justify-between z-10 sticky top-0 md:h-screen">
-        <div className="mb-6">
-          <h1 className="text-2xl mb-3 text-vintage-red font-bold">Abecadlo</h1>
-          <div className="flex md:flex-col gap-2">
+      <nav className="md:w-64 bg-vintage-paper border-b-2 md:border-b-0 md:border-r-2 border-vintage-ink p-4 flex flex-col justify-between gap-4 z-50 sticky top-0 md:h-screen">
+        <div className="mb-2 md:mb-6 flex items-center justify-between md:flex-col md:items-stretch md:justify-start">
+          <h1 className="text-2xl md:mb-3 text-vintage-red font-bold m-0">Abecadlo</h1>
+          <div className="flex flex-wrap md:flex-col gap-2">
             {registry.map(r => {
               const isSelected = r.id === langId;
               return (
@@ -65,7 +65,7 @@ export function Layout() {
           </div>
         </div>
         
-        <div className="flex md:flex-col justify-around w-full gap-2">
+        <div className="flex flex-wrap md:flex-col justify-around md:justify-start w-full gap-2 md:gap-4">
           {navItems.map(item => (
             <NavLink
               key={item.to}
