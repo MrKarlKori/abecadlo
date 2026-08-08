@@ -1,79 +1,139 @@
 import { useState, useEffect } from 'react';
 
-export interface ExerciseProgress {
+export interface LessonModulesProgress {
   unlockedModules: string[];
-  moduleProgress: Record<string, number>; // moduleId -> progress percentage (0-100)
+  moduleSessions: Record<string, number>;
 }
 
 const STORAGE_KEY = 'abecadlo_exercises_progress';
+const EVENT_NAME = 'abecadlo_exercises_progress_updated';
+
+const getInitialProgress = (): LessonModulesProgress => {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (parsed.moduleProgress && !parsed.moduleSessions) {
+        const moduleSessions: Record<string, number> = {};
+        Object.keys(parsed.moduleProgress).forEach(id => {
+          const pct = parsed.moduleProgress[id];
+          moduleSessions[id] = pct >= 100 ? 10 : Math.floor((pct / 100) * 10);
+        });
+        return {
+          unlockedModules: parsed.unlockedModules || ['module-1'],
+          moduleSessions,
+        };
+      }
+      return {
+        unlockedModules: parsed.unlockedModules || ['module-1'],
+        moduleSessions: parsed.moduleSessions || { 'module-1': 0 },
+      };
+    } catch (e) {
+      console.error('Failed to parse exercises progress', e);
+    }
+  }
+  return {
+    unlockedModules: ['module-1'],
+    moduleSessions: { 'module-1': 0 },
+  };
+};
 
 export function useExercisesProgress() {
-  const [progress, setProgress] = useState<ExerciseProgress>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error('Failed to parse exercises progress', e);
-      }
-    }
-    return {
-      unlockedModules: ['module-1'], // Initially only the first module is unlocked
-      moduleProgress: {},
-    };
-  });
+  const [progress, setProgress] = useState<LessonModulesProgress>(getInitialProgress);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  }, [progress]);
+    const handleSync = () => {
+      setProgress(getInitialProgress());
+    };
 
-  const updateModuleProgress = (moduleId: string, percentage: number) => {
-    setProgress(prev => {
-      const newProgress = { ...prev };
-      newProgress.moduleProgress = {
-        ...newProgress.moduleProgress,
-        [moduleId]: percentage
-      };
+    window.addEventListener(EVENT_NAME, handleSync);
+    window.addEventListener('storage', handleSync);
+    return () => {
+      window.removeEventListener(EVENT_NAME, handleSync);
+      window.removeEventListener('storage', handleSync);
+    };
+  }, []);
 
-      // If completed, unlock the next module
-      if (percentage >= 100) {
-        // Find next module logic could be here, or we pass a separate unlock action
-        const moduleIds = ['module-1', 'module-2', 'module-3', 'module-4'];
-        const currentIndex = moduleIds.indexOf(moduleId);
-        if (currentIndex !== -1 && currentIndex < moduleIds.length - 1) {
-          const nextModule = moduleIds[currentIndex + 1];
-          if (!newProgress.unlockedModules.includes(nextModule)) {
-            newProgress.unlockedModules = [...newProgress.unlockedModules, nextModule];
-          }
+  const saveProgress = (newProgress: LessonModulesProgress) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newProgress));
+    setProgress(newProgress);
+    window.dispatchEvent(new Event(EVENT_NAME));
+  };
+
+  const recordCompletedSession = (moduleId: string) => {
+    const currentSessions = progress.moduleSessions[moduleId] || 0;
+    const newSessions = Math.min(10, currentSessions + 1);
+
+    const updatedSessions = {
+      ...progress.moduleSessions,
+      [moduleId]: newSessions
+    };
+
+    let updatedUnlocked = [...progress.unlockedModules];
+
+    if (newSessions >= 10) {
+      const allModuleIds = ['module-1', 'module-2', 'module-3', 'module-4'];
+      const currentIndex = allModuleIds.indexOf(moduleId);
+      if (currentIndex !== -1 && currentIndex < allModuleIds.length - 1) {
+        const nextModuleId = allModuleIds[currentIndex + 1];
+        if (!updatedUnlocked.includes(nextModuleId)) {
+          updatedUnlocked.push(nextModuleId);
         }
       }
+    }
 
-      return newProgress;
+    saveProgress({
+      unlockedModules: updatedUnlocked,
+      moduleSessions: updatedSessions
+    });
+  };
+
+  const setModuleSessions = (moduleId: string, sessions: number) => {
+    const validSessions = Math.max(0, Math.min(10, sessions));
+    const updatedSessions = {
+      ...progress.moduleSessions,
+      [moduleId]: validSessions
+    };
+
+    let updatedUnlocked = [...progress.unlockedModules];
+    const allModuleIds = ['module-1', 'module-2', 'module-3', 'module-4'];
+
+    allModuleIds.forEach((mId, idx) => {
+      if (idx > 0) {
+        const prevModuleId = allModuleIds[idx - 1];
+        const prevSessions = updatedSessions[prevModuleId] || 0;
+        if (prevSessions >= 10 && !updatedUnlocked.includes(mId)) {
+          updatedUnlocked.push(mId);
+        }
+      }
+    });
+
+    saveProgress({
+      unlockedModules: updatedUnlocked,
+      moduleSessions: updatedSessions
     });
   };
 
   const unlockModule = (moduleId: string) => {
-    setProgress(prev => {
-      if (!prev.unlockedModules.includes(moduleId)) {
-        return {
-          ...prev,
-          unlockedModules: [...prev.unlockedModules, moduleId]
-        };
-      }
-      return prev;
-    });
+    if (!progress.unlockedModules.includes(moduleId)) {
+      saveProgress({
+        ...progress,
+        unlockedModules: [...progress.unlockedModules, moduleId]
+      });
+    }
   };
-  
+
   const resetProgress = () => {
-    setProgress({
+    saveProgress({
       unlockedModules: ['module-1'],
-      moduleProgress: {}
+      moduleSessions: { 'module-1': 0 }
     });
   };
 
   return {
     progress,
-    updateModuleProgress,
+    recordCompletedSession,
+    setModuleSessions,
     unlockModule,
     resetProgress
   };

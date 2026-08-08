@@ -13,7 +13,7 @@ export function LessonsPage() {
   const langId = lang || 'ru';
   const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress: letterProgress, toggleCompleted } = useProgress(langId);
-  const { progress: moduleProgressData } = useExercisesProgress();
+  const { progress: moduleProgressData, recordCompletedSession } = useExercisesProgress();
   const navigate = useNavigate();
 
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
@@ -180,6 +180,10 @@ export function LessonsPage() {
         <ExerciseSession 
           module={module} 
           onClose={() => setActiveModuleId(null)} 
+          onComplete={() => {
+            recordCompletedSession(module.id);
+            setActiveModuleId(null);
+          }}
         />
       );
     }
@@ -200,8 +204,9 @@ export function LessonsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {lessonModules.map((module, index) => {
           const isUnlocked = moduleProgressData.unlockedModules.includes(module.id);
-          const currentProgress = moduleProgressData.moduleProgress[module.id] || 0;
-          const isCompleted = currentProgress >= 100;
+          const completedSessions = moduleProgressData.moduleSessions[module.id] || 0;
+          const isCompleted = completedSessions >= 10;
+          const progressPercent = Math.min(100, Math.round((completedSessions / 10) * 100));
 
           return (
             <div 
@@ -214,16 +219,19 @@ export function LessonsPage() {
               )}
             >
               {!isUnlocked && (
-                <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px] flex items-center justify-center z-10">
-                  <div className="bg-vintage-paper border-2 border-vintage-ink p-4 shadow-[4px_4px_0_0_#2C2A29]">
-                    <Lock size={32} className="text-vintage-ink" />
+                <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] flex items-center justify-center z-10 p-4 text-center">
+                  <div className="bg-vintage-paper border-2 border-vintage-ink p-4 shadow-[4px_4px_0_0_#2C2A29] max-w-xs">
+                    <Lock size={32} className="text-vintage-ink mx-auto mb-2" />
+                    <p className="font-mono text-xs font-bold text-vintage-ink">
+                      Complete 10 sessions in Module {index} to unlock
+                    </p>
                   </div>
                 </div>
               )}
 
               {isCompleted && isUnlocked && (
                 <div className="vintage-stamp text-xs py-1 px-3 border-2 right-4 top-4 z-10 pointer-events-none shadow-sm text-vintage-blue border-vintage-blue">
-                  MASTERED
+                  MASTERED (10/10)
                 </div>
               )}
 
@@ -240,29 +248,41 @@ export function LessonsPage() {
               </div>
 
               <div className="mt-auto pt-6">
-                <div className="flex justify-between items-center mb-2 font-mono text-sm">
-                  <span>Progress</span>
-                  <span>{Math.round(currentProgress)}%</span>
-                </div>
-                <div className="w-full h-2 bg-gray-200 border border-vintage-ink mb-6">
-                  <div 
-                    className="h-full bg-vintage-ink transition-all duration-500" 
-                    style={{ width: `${currentProgress}%` }}
-                  />
-                </div>
+                {isUnlocked ? (
+                  <>
+                    <div className="flex justify-between items-center mb-2 font-mono text-xs font-bold uppercase tracking-wider">
+                      <span>Sessions Completed</span>
+                      <span>{completedSessions} / 10 ({progressPercent}%)</span>
+                    </div>
+                    <div className="w-full h-3 bg-gray-200 border-2 border-vintage-ink mb-6">
+                      <div 
+                        className="h-full bg-vintage-gold transition-all duration-500" 
+                        style={{ width: `${progressPercent}%` }}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <div className="mb-6 pt-4 text-center font-mono text-xs text-gray-500 italic border-t border-dashed border-gray-300">
+                    Complete 10 sessions in Module {index} to unlock
+                  </div>
+                )}
 
                 <button
                   onClick={() => setActiveModuleId(module.id)}
                   disabled={!isUnlocked}
                   className={clsx(
                     "w-full flex items-center justify-center gap-2 py-3 font-serif font-bold text-lg border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] transition-all",
-                    isUnlocked ? "bg-vintage-gold hover:bg-[#d4a849] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none cursor-pointer" : "bg-gray-300 cursor-not-allowed"
+                    isUnlocked 
+                      ? "bg-vintage-gold hover:bg-[#d4a849] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none cursor-pointer" 
+                      : "bg-gray-300 text-gray-600 cursor-not-allowed border-gray-400 shadow-none"
                   )}
                 >
-                  {isCompleted ? (
+                  {!isUnlocked ? (
+                    <><Lock size={20} /> Module Locked</>
+                  ) : isCompleted ? (
                     <><RotateCcw size={20} /> Review Lesson</>
-                  ) : currentProgress > 0 ? (
-                    <><Play size={20} /> Continue</>
+                  ) : completedSessions > 0 ? (
+                    <><Play size={20} /> Continue ({completedSessions}/10)</>
                   ) : (
                     <><Play size={20} /> Start Lesson</>
                   )}
