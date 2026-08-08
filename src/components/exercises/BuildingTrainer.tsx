@@ -43,7 +43,7 @@ export function BuildingTrainer() {
       };
     }
 
-    const cleanCyr = readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase();
+    const cleanCyr = readingItem.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
     if (mode === 'eng-translation') {
       return {
         targetWord: cleanCyr,

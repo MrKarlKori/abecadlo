@@ -22,7 +22,7 @@ interface ExerciseSessionProps {
 }
 
 function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTask; onCorrect: () => void }) {
-  const targetWord = readingTask.cyrillic.replace(/[-'’]/g, '').toUpperCase();
+  const targetWord = readingTask.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
   const [slots, setSlots] = useState<(string | null)[]>([]);
   const [pool, setPool] = useState<{ id: string; char: string; used: boolean }[]>([]);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');

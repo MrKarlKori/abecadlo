@@ -115,10 +115,18 @@ export function QuizPage() {
       const type: 'target-to-english' | 'english-to-target' = Math.random() > 0.5 ? 'target-to-english' : 'english-to-target';
 
       const target = allPracticeItems[Math.floor(Math.random() * allPracticeItems.length)];
-      const otherItems = allPracticeItems.filter(item => item.id !== target.id);
-      const wrongOptions = [...otherItems].sort(() => 0.5 - Math.random()).slice(0, 3);
+      // Filter out items that have the exact same cyrillic or english translation as the target
+      const otherItems = allPracticeItems.filter(item => 
+        item.id !== target.id && 
+        item.translation !== target.translation && 
+        item.cyrillic.replace(/[-'’ ]/g, '') !== target.cyrillic.replace(/[-'’ ]/g, '')
+      );
+      
+      // Deduplicate the remaining items so we don't get two identical wrong options
+      const uniqueWrongItems = Array.from(new Map(otherItems.map(item => [item.translation, item])).values());
+      const wrongOptions = [...uniqueWrongItems].sort(() => 0.5 - Math.random()).slice(0, 3);
 
-      const targetCyrillic = target.cyrillic.replace(/-/g, '');
+      const targetCyrillic = target.cyrillic.replace(/[-'’ ]/g, '');
 
       if (type === 'target-to-english') {
         const promptText = targetCyrillic;
@@ -132,7 +140,7 @@ export function QuizPage() {
         const correctAnswer = targetCyrillic;
         const options = [target, ...wrongOptions]
           .sort(() => 0.5 - Math.random())
-          .map(item => item.cyrillic.replace(/-/g, ''));
+          .map(item => item.cyrillic.replace(/[-'’ ]/g, ''));
         newQuestions.push({ type, promptText, correctAnswer, options });
       }
     }
