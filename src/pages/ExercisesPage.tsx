@@ -207,8 +207,11 @@ export function ExercisesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Exercise 1: Tracing */}
-        <div className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:-translate-y-1 transition-all">
-          <div className="w-12 h-12 bg-vintage-gold border-2 border-vintage-ink flex items-center justify-center mb-4">
+        <button
+          onClick={() => startMode('drawing')}
+          className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+        >
+          <div className="w-12 h-12 bg-vintage-gold border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <PenTool size={24} className="text-vintage-ink" />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 1</span>
@@ -218,17 +221,17 @@ export function ExercisesPage() {
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
             Draw all Cyrillic letters with a faded outline guide in random order.
           </p>
-          <button
-            onClick={() => startMode('drawing')}
-            className="w-full py-3 bg-vintage-gold hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] cursor-pointer active:translate-y-[2px] active:translate-x-[2px] active:shadow-none"
-          >
+          <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Tracing
-          </button>
-        </div>
+          </div>
+        </button>
 
         {/* Exercise 2: Opposite Drawing */}
-        <div className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:-translate-y-1 transition-all">
-          <div className="w-12 h-12 bg-[#8B5CF6] text-white border-2 border-vintage-ink flex items-center justify-center mb-4">
+        <button
+          onClick={() => startMode('drawing-opposite')}
+          className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+        >
+          <div className="w-12 h-12 bg-[#8B5CF6] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <PenTool size={24} />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 2</span>
@@ -238,17 +241,17 @@ export function ExercisesPage() {
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
             Given a letter sound or Cyrillic character, draw its corresponding counterpart without a guide outline.
           </p>
-          <button
-            onClick={() => startMode('drawing-opposite')}
-            className="w-full py-3 bg-vintage-gold hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] cursor-pointer active:translate-y-[2px] active:translate-x-[2px] active:shadow-none"
-          >
+          <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Draw Opposite
-          </button>
-        </div>
+          </div>
+        </button>
 
         {/* Exercise 3: Reading Trainer */}
-        <div className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:-translate-y-1 transition-all">
-          <div className="w-12 h-12 bg-[#10B981] text-white border-2 border-vintage-ink flex items-center justify-center mb-4">
+        <button
+          onClick={() => startMode('reading')}
+          className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+        >
+          <div className="w-12 h-12 bg-[#10B981] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <BookOpen size={24} />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 3</span>
@@ -258,17 +261,17 @@ export function ExercisesPage() {
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
             Practice reading Cyrillic syllables and words across 3 levels (Easy, Medium, Hard).
           </p>
-          <button
-            onClick={() => startMode('reading')}
-            className="w-full py-3 bg-vintage-gold hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] cursor-pointer active:translate-y-[2px] active:translate-x-[2px] active:shadow-none"
-          >
+          <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Reading
-          </button>
-        </div>
+          </div>
+        </button>
 
         {/* Exercise 4: Typing */}
-        <div className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:-translate-y-1 transition-all">
-          <div className="w-12 h-12 bg-[#3A6B7E] text-white border-2 border-vintage-ink flex items-center justify-center mb-4">
+        <button
+          onClick={() => startMode('typing')}
+          className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+        >
+          <div className="w-12 h-12 bg-[#3A6B7E] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <Keyboard size={24} />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 4</span>
@@ -278,17 +281,17 @@ export function ExercisesPage() {
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
             Read Cyrillic words and type their English translation manually.
           </p>
-          <button
-            onClick={() => startMode('typing')}
-            className="w-full py-3 bg-vintage-gold hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] cursor-pointer active:translate-y-[2px] active:translate-x-[2px] active:shadow-none"
-          >
+          <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Typing
-          </button>
-        </div>
+          </div>
+        </button>
 
         {/* Exercise 5: Building */}
-        <div className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:-translate-y-1 transition-all">
-          <div className="w-12 h-12 bg-[#C84B31] text-white border-2 border-vintage-ink flex items-center justify-center mb-4">
+        <button
+          onClick={() => startMode('building')}
+          className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+        >
+          <div className="w-12 h-12 bg-[#C84B31] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <Grid size={24} />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 5</span>
@@ -298,17 +301,17 @@ export function ExercisesPage() {
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
             Construct Cyrillic words letter-by-letter using interactive Cyrillic letter tiles.
           </p>
-          <button
-            onClick={() => startMode('building')}
-            className="w-full py-3 bg-vintage-gold hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] cursor-pointer active:translate-y-[2px] active:translate-x-[2px] active:shadow-none"
-          >
+          <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Building
-          </button>
-        </div>
+          </div>
+        </button>
 
         {/* Exercise 6: Rhymes & Sentences */}
-        <div className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:-translate-y-1 transition-all">
-          <div className="w-12 h-12 bg-[#D97706] text-white border-2 border-vintage-ink flex items-center justify-center mb-4">
+        <button
+          onClick={() => startMode('poetry')}
+          className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+        >
+          <div className="w-12 h-12 bg-[#D97706] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
             <BookOpen size={24} />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 6</span>
@@ -318,13 +321,10 @@ export function ExercisesPage() {
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
             Practice reading simple sentences and classic 2–4 line children's nursery rhymes out loud.
           </p>
-          <button
-            onClick={() => startMode('poetry')}
-            className="w-full py-3 bg-vintage-gold hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] cursor-pointer active:translate-y-[2px] active:translate-x-[2px] active:shadow-none"
-          >
+          <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Rhymes
-          </button>
-        </div>
+          </div>
+        </button>
       </div>
     </div>
   );

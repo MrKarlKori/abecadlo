@@ -11,7 +11,7 @@ export function Layout() {
   const navItems = [
     { to: `/${langId}/alphabet`, icon: BookA, label: 'Alphabet' },
     { to: `/${langId}/lesson`, icon: GraduationCap, label: 'Lessons' },
-    { to: `/${langId}/quiz`, icon: PenTool, label: 'Quiz' },
+    { to: `/${langId}/quiz`, icon: PenTool, label: 'Quizzes' },
     { to: `/${langId}/exercises`, icon: PenTool, label: 'Exercises' },
     { to: `/${langId}/settings`, icon: Settings, label: 'Settings' }
   ];
