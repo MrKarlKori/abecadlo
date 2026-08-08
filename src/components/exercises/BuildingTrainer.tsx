@@ -62,7 +62,7 @@ export function BuildingTrainer() {
     };
   };
 
-  const { targetWord, alphabet, promptLabel, promptDisplay } = getTargetAndAlphabet(item, promptMode);
+  const { targetWord, promptLabel, promptDisplay } = getTargetAndAlphabet(item, promptMode);
 
   // Reset and set up letter tiles pool for the current word and alphabet
   const setupWord = (wordToBuild: string, alphabetSource: string[]) => {

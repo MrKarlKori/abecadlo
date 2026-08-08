@@ -1,44 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { PenTool, Keyboard, Grid, RotateCcw, ArrowRight, BookOpen } from 'lucide-react';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { HandWritingPad } from '../components/exercises/HandWritingPad';
-import { LoanwordDecoder } from '../components/exercises/LoanwordDecoder';
-import { TransliterationBuilder } from '../components/exercises/TransliterationBuilder';
 import { ReadingTrainer } from '../components/exercises/ReadingTrainer';
 import { TypingTrainer } from '../components/exercises/TypingTrainer';
 import { BuildingTrainer } from '../components/exercises/BuildingTrainer';
 import { PoetryTrainer } from '../components/exercises/PoetryTrainer';
-import clsx from 'clsx';
 
 type ExerciseMode = 'drawing' | 'drawing-opposite' | 'reading' | 'typing' | 'building' | 'poetry';
-
-const WORD_ITEMS = [
-  { cyrillic: 'КОТ', translation: 'cat', distractors: ['О', 'Т', 'П', 'М'] },
-  { cyrillic: 'МАК', translation: 'poppy', distractors: ['А', 'К', 'Л', 'С'] },
-  { cyrillic: 'АТОМ', translation: 'atom', distractors: ['Р', 'Н', 'Б', 'В'] },
-  { cyrillic: 'РЕСТОРАН', translation: 'restaurant', distractors: ['В', 'Н', 'Х', 'Т'] },
-  { cyrillic: 'СУП', translation: 'soup', distractors: ['В', 'Н', 'Х', 'К'] },
-  { cyrillic: 'ВАННА', translation: 'bath', distractors: ['О', 'Т', 'Р', 'С'] },
-  { cyrillic: 'ФЛАГ', translation: 'flag', distractors: ['Г', 'Д', 'Р', 'М'] },
-  { cyrillic: 'ПЛАН', translation: 'plan', distractors: ['Г', 'Д', 'Р', 'Т'] },
-  { cyrillic: 'БАНК', translation: 'bank', distractors: ['З', 'Ж', 'Ч', 'О'] },
-  { cyrillic: 'ШИП', translation: 'thorn', distractors: ['З', 'Ж', 'Ч', 'К'] },
-  { cyrillic: 'АПТЕКА', translation: 'pharmacy', distractors: ['О', 'Т', 'И', 'М'] },
-  { cyrillic: 'ДОМ', translation: 'house', distractors: ['А', 'К', 'С', 'В'] },
-  { cyrillic: 'ВОДА', translation: 'water', distractors: ['О', 'Т', 'П', 'Р'] },
-  { cyrillic: 'ГОРОД', translation: 'city', distractors: ['А', 'Б', 'В', 'С'] },
-  { cyrillic: 'ЛИМОН', translation: 'lemon', distractors: ['А', 'К', 'Т', 'Р'] },
-  { cyrillic: 'ПАРК', translation: 'park', distractors: ['О', 'С', 'М', 'Т'] },
-  { cyrillic: 'КАФЕ', translation: 'cafe', distractors: ['Р', 'Н', 'С', 'У'] },
-  { cyrillic: 'ТАКСИ', translation: 'taxi', distractors: ['О', 'П', 'М', 'Р'] }
-];
 
 export function ExercisesPage() {
   const { lang } = useParams();
   const langId = lang || 'ru';
   const { characters, loading, error } = useLanguageData(langId);
-  const navigate = useNavigate();
 
   const [activeMode, setActiveMode] = useState<ExerciseMode | null>(null);
 
@@ -47,51 +22,35 @@ export function ExercisesPage() {
   const [letterIndex, setLetterIndex] = useState(0);
   const [oppositeDirection, setOppositeDirection] = useState<'eng-to-ru' | 'ru-to-eng'>('eng-to-ru');
 
-  // Word practice state (typing and building)
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [completedStep, setCompletedStep] = useState(false);
-
   useEffect(() => {
     if (characters.length > 0) {
-      const list = characters.map(c => ({ id: c.id, char: c.character, phonetic: c.phonetic }));
-      setShuffledLetters([...list].sort(() => Math.random() - 0.5));
+      const validChars = characters.filter(c => !['Ъ', 'Ь'].includes(c.character));
+      const pool = (validChars.length > 0 ? validChars : characters).map(c => ({
+        id: c.id,
+        char: c.character,
+        phonetic: c.phonetic
+      }));
+      setShuffledLetters([...pool].sort(() => Math.random() - 0.5));
     }
   }, [characters]);
 
   const startMode = (mode: ExerciseMode) => {
     setActiveMode(mode);
-    setCompletedStep(false);
-
-    if ((mode === 'drawing' || mode === 'drawing-opposite') && characters.length > 0) {
-      const list = characters.map(c => ({ id: c.id, char: c.character, phonetic: c.phonetic }));
-      setShuffledLetters([...list].sort(() => Math.random() - 0.5));
-      setLetterIndex(0);
-      setOppositeDirection(Math.random() > 0.5 ? 'eng-to-ru' : 'ru-to-eng');
-    } else if (mode === 'typing' || mode === 'building') {
-      setCurrentWordIndex(Math.floor(Math.random() * WORD_ITEMS.length));
+    setLetterIndex(0);
+    setOppositeDirection(Math.random() > 0.5 ? 'eng-to-ru' : 'ru-to-eng');
+    if (shuffledLetters.length > 0) {
+      setShuffledLetters(prev => [...prev].sort(() => Math.random() - 0.5));
     }
   };
 
-  const nextItem = () => {
-    setCompletedStep(false);
-    if (activeMode === 'drawing' || activeMode === 'drawing-opposite') {
-      if (letterIndex < shuffledLetters.length - 1) {
-        setLetterIndex(prev => prev + 1);
-        setOppositeDirection(Math.random() > 0.5 ? 'eng-to-ru' : 'ru-to-eng');
-      } else {
-        // Reshuffle when finished
-        const list = characters.map(c => ({ id: c.id, char: c.character, phonetic: c.phonetic }));
-        setShuffledLetters([...list].sort(() => Math.random() - 0.5));
-        setLetterIndex(0);
-        setOppositeDirection(Math.random() > 0.5 ? 'eng-to-ru' : 'ru-to-eng');
-      }
+  const handleNextLetter = () => {
+    if (letterIndex < shuffledLetters.length - 1) {
+      setLetterIndex(prev => prev + 1);
     } else {
-      let nextIdx = Math.floor(Math.random() * WORD_ITEMS.length);
-      if (nextIdx === currentWordIndex) {
-        nextIdx = (currentWordIndex + 1) % WORD_ITEMS.length;
-      }
-      setCurrentWordIndex(nextIdx);
+      setShuffledLetters(prev => [...prev].sort(() => Math.random() - 0.5));
+      setLetterIndex(0);
     }
+    setOppositeDirection(Math.random() > 0.5 ? 'eng-to-ru' : 'ru-to-eng');
   };
 
   if (loading) return <div className="text-center font-serif text-2xl mt-12 animate-pulse">Loading Exercises...</div>;
@@ -99,7 +58,6 @@ export function ExercisesPage() {
 
   // Active Practice Session
   if (activeMode) {
-    const currentWord = WORD_ITEMS[currentWordIndex];
     const item = shuffledLetters[letterIndex] || { id: 'A', char: 'А', phonetic: 'A' };
 
     const isEngToRu = oppositeDirection === 'eng-to-ru';
@@ -113,87 +71,111 @@ export function ExercisesPage() {
     return (
       <div className="max-w-2xl mx-auto flex flex-col min-h-[70vh]">
         <div className="flex justify-between items-center mb-6">
-          <button
+          <button 
             onClick={() => setActiveMode(null)}
             className="text-vintage-ink hover:text-vintage-blue font-serif font-bold underline underline-offset-4 decoration-2 cursor-pointer"
           >
-            &larr; Back to Exercises Menu
+            &larr; Back to Exercises Dashboard
           </button>
-
-          <span className="font-mono text-sm font-bold text-vintage-ink/70">
-            {activeMode === 'drawing' || activeMode === 'drawing-opposite' ? (
-              `Letter ${letterIndex + 1} of ${shuffledLetters.length}`
-            ) : (
-              `Random Word Practice`
-            )}
+          <span className="font-mono text-sm font-bold uppercase tracking-wider text-vintage-ink/70">
+            {activeMode === 'drawing' && `Letter ${letterIndex + 1} of ${shuffledLetters.length}`}
+            {activeMode === 'drawing-opposite' && `Letter ${letterIndex + 1} of ${shuffledLetters.length}`}
+            {activeMode === 'reading' && 'Reading Practice'}
+            {activeMode === 'typing' && 'Typing Word'}
+            {activeMode === 'building' && 'Building Word'}
+            {activeMode === 'poetry' && 'Rhymes & Sentences'}
           </span>
         </div>
 
-        <div className="flex-1 flex flex-col justify-center">
-          {activeMode === 'drawing' && (
+        {/* Practice Mode 1: Letter Tracing */}
+        {activeMode === 'drawing' && (
+          <div className="flex-1 flex flex-col justify-center">
             <HandWritingPad
-              key={`drawing-${item.char}-${letterIndex}`}
+              key={item.id}
               target={item.char}
-              promptLabel="Trace the Cyrillic letter"
               showGuideOutline={true}
-              onSelfAssess={() => setCompletedStep(true)}
+              promptLabel="Trace the Cyrillic letter"
+              onSelfAssess={() => {}}
             />
-          )}
+            <div className="mt-8 flex justify-between">
+              <button
+                onClick={handleNextLetter}
+                className="vintage-button flex items-center gap-2"
+              >
+                <RotateCcw size={18} /> Skip Letter
+              </button>
+              <button
+                onClick={handleNextLetter}
+                className="vintage-button flex items-center gap-2 bg-vintage-gold text-vintage-ink"
+              >
+                Next Letter <ArrowRight size={20} />
+              </button>
+            </div>
+          </div>
+        )}
 
-          {activeMode === 'drawing-opposite' && (
+        {/* Practice Mode 2: Draw Opposite */}
+        {activeMode === 'drawing-opposite' && (
+          <div className="flex-1 flex flex-col justify-center">
             <HandWritingPad
-              key={`opposite-${item.id}-${letterIndex}-${oppositeDirection}`}
+              key={`${item.id}-${oppositeDirection}`}
               target={oppositeAnswer}
               answerTarget={oppositeAnswer}
               promptLabel={promptLabelText}
               promptDisplay={oppositePrompt}
               directionHint={directionHintText}
               showGuideOutline={false}
-              onSelfAssess={() => setCompletedStep(true)}
+              onSelfAssess={() => {}}
             />
-          )}
-
-          {activeMode === 'reading' && (
-            <ReadingTrainer key="reading-session" />
-          )}
-
-          {activeMode === 'typing' && (
-            <TypingTrainer key="typing-session" />
-          )}
-
-          {activeMode === 'building' && (
-            <BuildingTrainer key="building-session" />
-          )}
-
-          {activeMode === 'poetry' && (
-            <PoetryTrainer key="poetry-session" />
-          )}
-        </div>
-
-        {activeMode !== 'reading' && activeMode !== 'typing' && activeMode !== 'building' && activeMode !== 'poetry' && (
-          <div className="mt-8 flex justify-between items-center">
-            <button
-              onClick={nextItem}
-              className="flex items-center gap-2 px-6 py-3 border-2 border-vintage-ink bg-white font-serif font-bold hover:bg-gray-100 cursor-pointer"
-            >
-              <RotateCcw size={18} /> Skip / Next Random
-            </button>
-
-            {completedStep && (
+            <div className="mt-8 flex justify-between">
               <button
-                onClick={nextItem}
-                className="flex items-center gap-2 px-8 py-3 bg-vintage-ink text-white font-serif font-bold text-xl hover:bg-gray-800 transition-colors cursor-pointer shadow-[4px_4px_0_0_#D9AD5B]"
+                onClick={handleNextLetter}
+                className="vintage-button flex items-center gap-2"
               >
-                Next <ArrowRight size={24} />
+                <RotateCcw size={18} /> Skip Letter
               </button>
-            )}
+              <button
+                onClick={handleNextLetter}
+                className="vintage-button flex items-center gap-2 bg-vintage-gold text-vintage-ink"
+              >
+                Next Letter <ArrowRight size={20} />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Practice Mode 3: Reading Practice */}
+        {activeMode === 'reading' && (
+          <div className="flex-1 flex flex-col justify-center">
+            <ReadingTrainer />
+          </div>
+        )}
+
+        {/* Practice Mode 4: Typing Word */}
+        {activeMode === 'typing' && (
+          <div className="flex-1 flex flex-col justify-center">
+            <TypingTrainer />
+          </div>
+        )}
+
+        {/* Practice Mode 5: Building Word */}
+        {activeMode === 'building' && (
+          <div className="flex-1 flex flex-col justify-center">
+            <BuildingTrainer />
+          </div>
+        )}
+
+        {/* Practice Mode 6: Rhymes & Sentences */}
+        {activeMode === 'poetry' && (
+          <div className="flex-1 flex flex-col justify-center">
+            <PoetryTrainer />
           </div>
         )}
       </div>
     );
   }
 
-  // Main Exercises Selection Dashboard
+  // Dashboard View (6 Interactive Cards)
   return (
     <div className="max-w-5xl mx-auto">
       <div className="text-center mb-12">

@@ -10,7 +10,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "predeploy": "node scripts/predeploy.js",
-    "deploy": "gh-pages -d dist --clean",
+    "deploy": "gh-pages -d dist",
     "test": "vitest run"
   },
   "dependencies": {

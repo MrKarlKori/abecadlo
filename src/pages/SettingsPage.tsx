@@ -3,7 +3,7 @@ import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { lessonModules } from '../data/mockLessonsData';
-import { Lock, Unlock, Plus, Minus, RotateCcw, Check } from 'lucide-react';
+import { Lock, Unlock, Plus, Minus, Check } from 'lucide-react';
 import clsx from 'clsx';
 
 export function SettingsPage() {
