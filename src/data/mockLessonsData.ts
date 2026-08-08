@@ -1,3 +1,5 @@
+import { LESSON_MODULES_DATA } from './exercises';
+
 export type ExerciseType = 'drawing' | 'drawing-opposite' | 'reading-easy' | 'building-mirror';
 
 export interface ReadingTask {
@@ -25,61 +27,8 @@ export interface LessonModule {
 }
 
 export const getLessonModules = (langId: string): LessonModule[] => {
-  if (langId === 'be') {
-    return [
-      {
-        id: 'module-1',
-        title: 'The Identical Twins',
-        description: 'А, К, М, О, Т',
-        letters: ['А', 'К', 'М', 'О', 'Т']
-      },
-      {
-        id: 'module-2',
-        title: 'The False Friends',
-        description: 'В, Е, Н, Р, С, У, Х',
-        letters: ['В', 'Е', 'Н', 'Р', 'С', 'У', 'Х']
-      },
-      {
-        id: 'module-3',
-        title: 'The Greek Cousins',
-        description: 'Г, Д, Л, П, Ф',
-        letters: ['Г', 'Д', 'Л', 'П', 'Ф']
-      },
-      {
-        id: 'module-4',
-        title: 'The Completely New',
-        description: 'Б, Ё, Ж, З, І, Й, Ў, Ц, Ч, Ш, Ы, Ь, Э, Ю, Я, ’',
-        letters: ['Б', 'Ё', 'Ж', 'З', 'І', 'Й', 'Ў', 'Ц', 'Ч', 'Ш', 'Ы', 'Ь', 'Э', 'Ю', 'Я', '’']
-      }
-    ];
-  }
-
-  return [
-    {
-      id: 'module-1',
-      title: 'The Identical Twins',
-      description: 'А, К, М, О, Т',
-      letters: ['А', 'К', 'М', 'О', 'Т']
-    },
-    {
-      id: 'module-2',
-      title: 'The False Friends',
-      description: 'В, Е, Н, Р, С, У, Х',
-      letters: ['В', 'Е', 'Н', 'Р', 'С', 'У', 'Х']
-    },
-    {
-      id: 'module-3',
-      title: 'The Greek Cousins',
-      description: 'Г, Д, Л, П, Ф',
-      letters: ['Г', 'Д', 'Л', 'П', 'Ф']
-    },
-    {
-      id: 'module-4',
-      title: 'The Completely New',
-      description: 'Б, Ё, Ж, З, И, Й, Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Э, Ю, Я',
-      letters: ['Б', 'Ё', 'Ж', 'З', 'И', 'Й', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
-    }
-  ];
+  return LESSON_MODULES_DATA[langId] || LESSON_MODULES_DATA['ru'];
 };
 
 export const lessonModules: LessonModule[] = getLessonModules('ru');
+
