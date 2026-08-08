@@ -2,16 +2,17 @@ import { useParams } from 'react-router-dom';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { useExercisesProgress } from '../hooks/useExercisesProgress';
-import { lessonModules } from '../data/mockLessonsData';
+import { getLessonModules } from '../data/mockLessonsData';
 import { Lock, Unlock, Plus, Minus, Check } from 'lucide-react';
 import clsx from 'clsx';
 
 export function SettingsPage() {
   const { lang } = useParams();
   const langId = lang || 'ru';
+  const modules = getLessonModules(langId);
   const { characters } = useLanguageData(langId);
   const { progress, toggleCompleted, completeAll, clearAllData } = useProgress(langId);
-  const { progress: moduleProgress, setModuleSessions, unlockModule, resetProgress: resetModuleProgress } = useExercisesProgress();
+  const { progress: moduleProgress, setModuleSessions, unlockModule, resetProgress: resetModuleProgress } = useExercisesProgress(langId);
 
   const handleClear = () => {
     if (window.confirm('Are you sure you want to clear all letter & quiz progress? This cannot be undone.')) {
@@ -22,7 +23,7 @@ export function SettingsPage() {
 
   const handleCompleteAll = () => {
     completeAll(characters.map(c => c.id));
-    lessonModules.forEach(m => setModuleSessions(m.id, 10));
+    modules.forEach(m => setModuleSessions(m.id, 10));
   };
 
   return (
@@ -46,7 +47,7 @@ export function SettingsPage() {
         </p>
 
         <div className="space-y-4">
-          {lessonModules.map((module, idx) => {
+          {modules.map((module, idx) => {
             const isUnlocked = moduleProgress.unlockedModules.includes(module.id);
             const completedSessions = moduleProgress.moduleSessions[module.id] || 0;
             const isCompleted = completedSessions >= 10;

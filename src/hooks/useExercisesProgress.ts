@@ -5,10 +5,20 @@ export interface LessonModulesProgress {
   moduleSessions: Record<string, number>;
 }
 
-const STORAGE_KEY = 'abecadlo_exercises_progress';
 const EVENT_NAME = 'abecadlo_exercises_progress_updated';
 
-const getInitialProgress = (): LessonModulesProgress => {
+const getInitialProgress = (langId: string): LessonModulesProgress => {
+  const STORAGE_KEY = `abecadlo_exercises_progress_${langId}`;
+  
+  // Migration for legacy progress (which was saved globally without langId)
+  if (langId === 'ru') {
+    const legacySaved = localStorage.getItem('abecadlo_exercises_progress');
+    if (legacySaved && !localStorage.getItem(STORAGE_KEY)) {
+      localStorage.setItem(STORAGE_KEY, legacySaved);
+      localStorage.removeItem('abecadlo_exercises_progress');
+    }
+  }
+
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved) {
     try {
@@ -26,33 +36,37 @@ const getInitialProgress = (): LessonModulesProgress => {
       }
       return {
         unlockedModules: parsed.unlockedModules || ['module-1'],
-        moduleSessions: parsed.moduleSessions || { 'module-1': 0 },
+        moduleSessions: parsed.moduleSessions || {}
       };
-    } catch (e) {
-      console.error('Failed to parse exercises progress', e);
+    } catch {
+      return { unlockedModules: ['module-1'], moduleSessions: {} };
     }
   }
-  return {
-    unlockedModules: ['module-1'],
-    moduleSessions: { 'module-1': 0 },
-  };
+  return { unlockedModules: ['module-1'], moduleSessions: {} };
 };
 
-export function useExercisesProgress() {
-  const [progress, setProgress] = useState<LessonModulesProgress>(getInitialProgress);
+export function useExercisesProgress(langId: string) {
+  const STORAGE_KEY = `abecadlo_exercises_progress_${langId}`;
+  const [progress, setProgress] = useState<LessonModulesProgress>(() => getInitialProgress(langId));
 
   useEffect(() => {
-    const handleSync = () => {
-      setProgress(getInitialProgress());
+    setProgress(getInitialProgress(langId));
+  }, [langId]);
+
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent | CustomEvent) => {
+      if ((e as StorageEvent).key === STORAGE_KEY || e.type === EVENT_NAME) {
+        setProgress(getInitialProgress(langId));
+      }
     };
 
-    window.addEventListener(EVENT_NAME, handleSync);
-    window.addEventListener('storage', handleSync);
+    window.addEventListener(EVENT_NAME, handleStorageChange);
+    window.addEventListener('storage', handleStorageChange);
     return () => {
-      window.removeEventListener(EVENT_NAME, handleSync);
-      window.removeEventListener('storage', handleSync);
+      window.removeEventListener(EVENT_NAME, handleStorageChange);
+      window.removeEventListener('storage', handleStorageChange);
     };
-  }, []);
+  }, [langId, STORAGE_KEY]);
 
   const saveProgress = (newProgress: LessonModulesProgress) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newProgress));
@@ -61,7 +75,7 @@ export function useExercisesProgress() {
   };
 
   const recordCompletedSession = (moduleId: string) => {
-    const current = getInitialProgress();
+    const current = getInitialProgress(langId);
     const currentSessions = current.moduleSessions[moduleId] || 0;
     const newSessions = Math.min(10, currentSessions + 1);
 
@@ -91,7 +105,7 @@ export function useExercisesProgress() {
 
   const setModuleSessions = (moduleId: string, sessions: number) => {
     const validSessions = Math.max(0, Math.min(10, sessions));
-    const current = getInitialProgress();
+    const current = getInitialProgress(langId);
     const updatedSessions = {
       ...current.moduleSessions,
       [moduleId]: validSessions
@@ -117,7 +131,7 @@ export function useExercisesProgress() {
   };
 
   const unlockModule = (moduleId: string) => {
-    const current = getInitialProgress();
+    const current = getInitialProgress(langId);
     if (!current.unlockedModules.includes(moduleId)) {
       saveProgress({
         ...current,

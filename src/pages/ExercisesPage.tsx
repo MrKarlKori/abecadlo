@@ -147,28 +147,28 @@ export function ExercisesPage() {
         {/* Practice Mode 3: Reading Practice */}
         {activeMode === 'reading' && (
           <div className="flex-1 flex flex-col justify-center">
-            <ReadingTrainer />
+            <ReadingTrainer langId={langId} />
           </div>
         )}
 
         {/* Practice Mode 4: Typing Word */}
         {activeMode === 'typing' && (
           <div className="flex-1 flex flex-col justify-center">
-            <TypingTrainer />
+            <TypingTrainer langId={langId} />
           </div>
         )}
 
         {/* Practice Mode 5: Building Word */}
         {activeMode === 'building' && (
           <div className="flex-1 flex flex-col justify-center">
-            <BuildingTrainer />
+            <BuildingTrainer langId={langId} />
           </div>
         )}
 
         {/* Practice Mode 6: Rhymes & Sentences */}
         {activeMode === 'poetry' && (
           <div className="flex-1 flex flex-col justify-center">
-            <PoetryTrainer />
+            <PoetryTrainer langId={langId} />
           </div>
         )}
       </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Lock, Play, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
-import { lessonModules } from '../data/mockLessonsData';
+import { getLessonModules } from '../data/mockLessonsData';
 import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
@@ -11,9 +11,10 @@ import { ExerciseSession } from '../components/exercises/ExerciseSession';
 export function LessonsPage() {
   const { lang, id } = useParams();
   const langId = lang || 'ru';
+  const modules = getLessonModules(langId);
   const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress: letterProgress, toggleCompleted } = useProgress(langId);
-  const { progress: moduleProgressData, recordCompletedSession } = useExercisesProgress();
+  const { progress: moduleProgressData, recordCompletedSession } = useExercisesProgress(langId);
   const navigate = useNavigate();
 
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
@@ -174,7 +175,7 @@ export function LessonsPage() {
 
   // Active Module Session
   if (activeModuleId) {
-    const module = lessonModules.find(m => m.id === activeModuleId);
+    const module = modules.find(m => m.id === activeModuleId);
     if (module) {
       return (
         <ExerciseSession 
@@ -201,7 +202,7 @@ export function LessonsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {lessonModules.map((module, index) => {
+        {modules.map((module, index) => {
           const isUnlocked = moduleProgressData.unlockedModules.includes(module.id);
           const completedSessions = moduleProgressData.moduleSessions[module.id] || 0;
           const isCompleted = completedSessions >= 10;

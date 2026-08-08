@@ -24,29 +24,62 @@ export interface LessonModule {
   letters: string[];
 }
 
-export const lessonModules: LessonModule[] = [
-  {
-    id: 'module-1',
-    title: 'The Identical Twins',
-    description: 'А, К, М, О, Т',
-    letters: ['А', 'К', 'М', 'О', 'Т']
-  },
-  {
-    id: 'module-2',
-    title: 'The False Friends',
-    description: 'В, Н, Р, С, У, Х',
-    letters: ['В', 'Н', 'Р', 'С', 'У', 'Х']
-  },
-  {
-    id: 'module-3',
-    title: 'The Greek Cousins',
-    description: 'Г, Д, Л, П, Ф',
-    letters: ['Г', 'Д', 'Л', 'П', 'Ф']
-  },
-  {
-    id: 'module-4',
-    title: 'The Completely New',
-    description: 'Б, Ж, З, И, Ч, Ш, etc.',
-    letters: ['Б', 'Ж', 'З', 'И', 'Ч', 'Ш']
+export const getLessonModules = (langId: string): LessonModule[] => {
+  if (langId === 'be') {
+    return [
+      {
+        id: 'module-1',
+        title: 'Тоесныя літары (Identical Twins)',
+        description: 'А, К, М, О, Т',
+        letters: ['А', 'К', 'М', 'О', 'Т']
+      },
+      {
+        id: 'module-2',
+        title: 'Ілжывыя сябры (False Friends)',
+        description: 'В, Н, Р, С, У, Х',
+        letters: ['В', 'Н', 'Р', 'С', 'У', 'Х']
+      },
+      {
+        id: 'module-3',
+        title: 'Грэчаскія кузіны (Greek Cousins)',
+        description: 'Г, Д, Л, П, Ф',
+        letters: ['Г', 'Д', 'Л', 'П', 'Ф']
+      },
+      {
+        id: 'module-4',
+        title: 'Асаблівыя літары (New & Special)',
+        description: 'Б, Е, Ё, Ж, З, І, Й, Ў, Ц, Ч, Ш, Ы, Ь, Э, Ю, Я, ’',
+        letters: ['Б', 'Е', 'Ё', 'Ж', 'З', 'І', 'Й', 'Ў', 'Ц', 'Ч', 'Ш', 'Ы', 'Ь', 'Э', 'Ю', 'Я', '’']
+      }
+    ];
   }
-];
+
+  return [
+    {
+      id: 'module-1',
+      title: 'The Identical Twins',
+      description: 'А, К, М, О, Т',
+      letters: ['А', 'К', 'М', 'О', 'Т']
+    },
+    {
+      id: 'module-2',
+      title: 'The False Friends',
+      description: 'В, Н, Р, С, У, Х',
+      letters: ['В', 'Н', 'Р', 'С', 'У', 'Х']
+    },
+    {
+      id: 'module-3',
+      title: 'The Greek Cousins',
+      description: 'Г, Д, Л, П, Ф',
+      letters: ['Г', 'Д', 'Л', 'П', 'Ф']
+    },
+    {
+      id: 'module-4',
+      title: 'The Completely New',
+      description: 'Б, Ё, Ж, З, И, Й, Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Э, Ю, Я',
+      letters: ['Б', 'Ё', 'Ж', 'З', 'И', 'Й', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
+    }
+  ];
+};
+
+export const lessonModules: LessonModule[] = getLessonModules('ru');

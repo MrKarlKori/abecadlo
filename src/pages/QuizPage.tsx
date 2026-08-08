@@ -4,6 +4,7 @@ import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { getQuestionDirectionHint } from '../utils/languageMap';
 import { READING_DATA } from '../components/exercises/ReadingTrainer';
+import type { ReadingItem } from '../components/exercises/ReadingTrainer';
 import clsx from 'clsx';
 import { XCircle, Award, BookOpen, PenTool } from 'lucide-react';
 
@@ -106,7 +107,8 @@ export function QuizPage() {
 
   // Generate 10 questions for Practice Mastery Quiz (random direction)
   const generatePracticeQuiz = () => {
-    const allPracticeItems = [...READING_DATA.easy, ...READING_DATA.medium, ...READING_DATA.hard];
+    const langData = READING_DATA[langId] || READING_DATA['ru'];
+    const allPracticeItems = [...langData.easy, ...langData.medium, ...langData.hard];
     if (allPracticeItems.length < 4) return;
 
     const newQuestions: UnifiedQuestion[] = [];

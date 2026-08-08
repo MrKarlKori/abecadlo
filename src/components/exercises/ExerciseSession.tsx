@@ -6,14 +6,8 @@ import { HandWritingPad } from './HandWritingPad';
 import { READING_DATA } from './ReadingTrainer';
 import { useLanguageData } from '../../hooks/useLanguageData';
 import { useExercisesProgress } from '../../hooks/useExercisesProgress';
+import { getAlphabetForLang } from '../../utils/alphabets';
 import clsx from 'clsx';
-
-const CYRILLIC_ALPHABET = [
-  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
-  'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т',
-  'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь',
-  'Э', 'Ю', 'Я'
-];
 
 interface ExerciseSessionProps {
   module: LessonModule;
@@ -22,6 +16,8 @@ interface ExerciseSessionProps {
 }
 
 function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTask; onCorrect: () => void }) {
+  const { lang } = useParams();
+  const alphabet = getAlphabetForLang(lang || 'ru');
   const targetWord = readingTask.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
   const [slots, setSlots] = useState<(string | null)[]>([]);
   const [pool, setPool] = useState<{ id: string; char: string; used: boolean }[]>([]);
@@ -30,7 +26,8 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
   useEffect(() => {
     const chars = targetWord.split('');
     const uniqueTargetChars = new Set(chars);
-    const availableDistractors = CYRILLIC_ALPHABET.filter(c => !uniqueTargetChars.has(c));
+    // Pick 4 distractor letters not in target word
+    const availableDistractors = alphabet.filter(c => !uniqueTargetChars.has(c));
     const shuffledDistractors = [...availableDistractors].sort(() => Math.random() - 0.5).slice(0, 4);
 
     const allChars = [...chars, ...shuffledDistractors];
@@ -172,7 +169,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
   const { lang } = useParams();
   const langId = lang || 'ru';
   const { characters } = useLanguageData(langId);
-  const { recordCompletedSession } = useExercisesProgress();
+  const { recordCompletedSession } = useExercisesProgress(langId);
 
   const [steps, setSteps] = useState<ExerciseStep[]>([]);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -190,11 +187,25 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
     const charPool = moduleChars.length > 0 ? moduleChars : characters;
 
     // 2. Scoped word pool for reading & building (simple words containing at least 1 module letter)
-    const matchingReadingItems = READING_DATA.easy.filter(item => {
-      const cleanWord = item.cyrillic.replace(/[-'’]/g, '').toUpperCase();
+    const langReadingData = READING_DATA[langId] || READING_DATA['ru'];
+    const allReadingItems = [...langReadingData.easy, ...langReadingData.medium, ...langReadingData.hard];
+
+    const exampleReadingItems: ReadingTask[] = characters
+      .filter(c => module.letters.some(l => l.toUpperCase() === c.character.toUpperCase()) && c.example)
+      .map(c => ({
+        id: `example-${c.id}`,
+        cyrillic: c.example.native.toUpperCase(),
+        phonetic: c.example.transliteration.toUpperCase(),
+        translation: c.example.translation
+      }));
+
+    const combinedItems = [...allReadingItems, ...exampleReadingItems];
+
+    const matchingReadingItems = combinedItems.filter(item => {
+      const cleanWord = item.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
       return module.letters.some(l => cleanWord.includes(l.toUpperCase()));
     });
-    const readingPool = matchingReadingItems.length > 0 ? matchingReadingItems : READING_DATA.easy;
+    const readingPool = matchingReadingItems.length > 0 ? matchingReadingItems : combinedItems;
 
     const generated: ExerciseStep[] = [];
 
