@@ -4,6 +4,7 @@ import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { getQuestionDirectionHint } from '../utils/languageMap';
 import { READING_DATA } from '../components/exercises/ReadingTrainer';
+import type { ReadingItem } from '../components/exercises/ReadingTrainer';
 import clsx from 'clsx';
 import { XCircle, Award, BookOpen, PenTool } from 'lucide-react';
 
@@ -106,7 +107,8 @@ export function QuizPage() {
 
   // Generate 10 questions for Practice Mastery Quiz (random direction)
   const generatePracticeQuiz = () => {
-    const allPracticeItems = [...READING_DATA.easy, ...READING_DATA.medium, ...READING_DATA.hard];
+    const langData = READING_DATA[langId] || READING_DATA['ru'];
+    const allPracticeItems = [...langData.easy, ...langData.medium, ...langData.hard];
     if (allPracticeItems.length < 4) return;
 
     const newQuestions: UnifiedQuestion[] = [];
@@ -115,10 +117,18 @@ export function QuizPage() {
       const type: 'target-to-english' | 'english-to-target' = Math.random() > 0.5 ? 'target-to-english' : 'english-to-target';
 
       const target = allPracticeItems[Math.floor(Math.random() * allPracticeItems.length)];
-      const otherItems = allPracticeItems.filter(item => item.id !== target.id);
-      const wrongOptions = [...otherItems].sort(() => 0.5 - Math.random()).slice(0, 3);
+      // Filter out items that have the exact same cyrillic or english translation as the target
+      const otherItems = allPracticeItems.filter(item => 
+        item.id !== target.id && 
+        item.translation !== target.translation && 
+        item.cyrillic.replace(/[-'’ ]/g, '') !== target.cyrillic.replace(/[-'’ ]/g, '')
+      );
+      
+      // Deduplicate the remaining items so we don't get two identical wrong options
+      const uniqueWrongItems = Array.from(new Map(otherItems.map(item => [item.translation, item])).values());
+      const wrongOptions = [...uniqueWrongItems].sort(() => 0.5 - Math.random()).slice(0, 3);
 
-      const targetCyrillic = target.cyrillic.replace(/-/g, '');
+      const targetCyrillic = target.cyrillic.replace(/[-'’ ]/g, '');
 
       if (type === 'target-to-english') {
         const promptText = targetCyrillic;
@@ -132,7 +142,7 @@ export function QuizPage() {
         const correctAnswer = targetCyrillic;
         const options = [target, ...wrongOptions]
           .sort(() => 0.5 - Math.random())
-          .map(item => item.cyrillic.replace(/-/g, ''));
+          .map(item => item.cyrillic.replace(/[-'’ ]/g, ''));
         newQuestions.push({ type, promptText, correctAnswer, options });
       }
     }

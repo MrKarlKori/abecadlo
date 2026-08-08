@@ -3,6 +3,7 @@ import type { LanguageRegistryEntry, CharacterData } from '../types';
 
 export function useLanguageData(langId: string) {
   const [registryEntry, setRegistryEntry] = useState<LanguageRegistryEntry | null>(null);
+  const [registry, setRegistry] = useState<LanguageRegistryEntry[]>([]);
   const [characters, setCharacters] = useState<CharacterData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,9 +17,10 @@ export function useLanguageData(langId: string) {
         
         const registryRes = await fetch(`${baseUrl}/data/registry.json`);
         if (!registryRes.ok) throw new Error('Failed to load registry');
-        const registry: LanguageRegistryEntry[] = await registryRes.json();
+        const registryData: LanguageRegistryEntry[] = await registryRes.json();
+        setRegistry(registryData);
         
-        const entry = registry.find(r => r.id === langId);
+        const entry = registryData.find(r => r.id === langId);
         if (!entry) throw new Error('Language not found');
         setRegistryEntry(entry);
 
@@ -40,5 +42,5 @@ export function useLanguageData(langId: string) {
     }
   }, [langId]);
 
-  return { registryEntry, characters, loading, error };
+  return { registryEntry, registry, characters, loading, error };
 }

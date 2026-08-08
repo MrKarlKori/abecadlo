@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "command(npm test)",
+      "command(npm test -- --run)",
+      "command(npx tsc -b)",
+      "command(tsc -b)",
+      "command(npm run lint)",
+      "command(npx oxlint)",
+      "command(oxlint)",
+      "command(npm run dev)",
+      "command(npm run build)",
+      "command(npm run preview)",
+      "command(git status)",
+      "command(git log)",
+      "command(git diff)",
+      "command(git branch)",
+      "command(git show)"
+    ]
+  }
+}

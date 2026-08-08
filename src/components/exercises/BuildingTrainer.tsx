@@ -3,23 +3,15 @@ import clsx from 'clsx';
 import { ArrowRight, RotateCcw } from 'lucide-react';
 import { READING_DATA } from './ReadingTrainer';
 import type { ReadingLevel, ReadingItem } from './ReadingTrainer';
+import { getAlphabetForLang } from '../../utils/alphabets';
 
 export type PromptMode = 'mirror' | 'eng-translation' | 'ru-translation';
 
-const CYRILLIC_ALPHABET = [
-  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
-  'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т',
-  'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь',
-  'Э', 'Ю', 'Я'
-];
+interface BuildingTrainerProps {
+  langId?: string;
+}
 
-const ENGLISH_ALPHABET = [
-  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-  'U', 'V', 'W', 'X', 'Y', 'Z'
-];
-
-export function BuildingTrainer() {
+export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
   const [level, setLevel] = useState<ReadingLevel>('easy');
   const [promptMode, setPromptMode] = useState<PromptMode>('mirror');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,22 +20,24 @@ export function BuildingTrainer() {
   const [pool, setPool] = useState<{ id: string; char: string; used: boolean }[]>([]);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const currentList = READING_DATA[level];
+  const currentList = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
   const item: ReadingItem = currentList[currentIndex] || currentList[0];
 
   const getTargetAndAlphabet = (readingItem: ReadingItem, mode: PromptMode) => {
+    const CYRILLIC_ALPHABET = getAlphabetForLang(langId);
+    
     if (mode === 'ru-translation') {
       const rawEng = readingItem.translation.toUpperCase().replace(/[^A-Z]/g, '');
       const cleanEng = rawEng.length > 0 ? rawEng : 'YES';
       return {
         targetWord: cleanEng,
-        alphabet: ENGLISH_ALPHABET,
-        promptLabel: "Build English translation for Russian prompt",
+        alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+        promptLabel: `Build English translation for ${langId === 'be' ? 'Belarusian' : 'Russian'} prompt`,
         promptDisplay: readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase()
       };
     }
 
-    const cleanCyr = readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase();
+    const cleanCyr = readingItem.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
     if (mode === 'eng-translation') {
       return {
         targetWord: cleanCyr,
@@ -86,14 +80,14 @@ export function BuildingTrainer() {
 
   // Pick random word on level or prompt mode change
   useEffect(() => {
-    const list = READING_DATA[level];
+    const list = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
     const randomIdx = Math.floor(Math.random() * list.length);
     setCurrentIndex(randomIdx);
 
     const selectedItem = list[randomIdx] || list[0];
     const { targetWord: wordToBuild, alphabet: alphabetSource } = getTargetAndAlphabet(selectedItem, promptMode);
     setupWord(wordToBuild, alphabetSource);
-  }, [level, promptMode]);
+  }, [level, promptMode, langId]);
 
   const handleNext = () => {
     let nextIdx = Math.floor(Math.random() * currentList.length);
@@ -151,20 +145,23 @@ export function BuildingTrainer() {
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
       {/* Level selector tabs */}
       <div className="flex gap-2 mb-4 w-full max-w-md">
-        {(['easy', 'medium', 'hard'] as ReadingLevel[]).map((lvl) => (
-          <button
-            key={lvl}
-            onClick={() => handleLevelChange(lvl)}
-            className={clsx(
-              "flex-1 py-2 font-mono text-xs font-bold uppercase tracking-wider border-2 border-vintage-ink transition-all cursor-pointer",
-              level === lvl
-                ? "bg-vintage-gold text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]"
-                : "bg-white text-vintage-ink/70 hover:bg-gray-100"
-            )}
-          >
-            {lvl === 'easy' ? 'Easy (100)' : lvl === 'medium' ? 'Medium (100)' : 'Hard (100)'}
-          </button>
-        ))}
+        {(['easy', 'medium', 'hard'] as ReadingLevel[]).map((lvl) => {
+          const count = (READING_DATA[langId]?.[lvl] || READING_DATA['ru'][lvl]).length;
+          return (
+            <button
+              key={lvl}
+              onClick={() => handleLevelChange(lvl)}
+              className={clsx(
+                "flex-1 py-2 font-mono text-xs font-bold uppercase tracking-wider border-2 border-vintage-ink transition-all cursor-pointer",
+                level === lvl
+                  ? "bg-vintage-gold text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]"
+                  : "bg-white text-vintage-ink/70 hover:bg-gray-100"
+              )}
+            >
+              {lvl === 'easy' ? `Easy (${count})` : lvl === 'medium' ? `Medium (${count})` : `Hard (${count})`}
+            </button>
+          );
+        })}
       </div>
 
       {/* Mode setting selector (below complexity levels) */}

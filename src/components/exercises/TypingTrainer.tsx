@@ -1,35 +1,43 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { ArrowRight, RotateCcw } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 import { READING_DATA } from './ReadingTrainer';
 import type { ReadingLevel } from './ReadingTrainer';
 
-export function TypingTrainer() {
+interface TypingTrainerProps {
+  langId?: string;
+}
+
+export function TypingTrainer({ langId: langIdProp }: TypingTrainerProps = {}) {
+  const { lang } = useParams();
+  const langId = langIdProp || lang || 'ru';
+
   const [level, setLevel] = useState<ReadingLevel>('easy');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [input, setInput] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const currentList = READING_DATA[level];
+  const currentList = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
   const item = currentList[currentIndex] || currentList[0];
 
-  const displayWord = item.cyrillic.replace(/-/g, '');
+  const displayWord = item.cyrillic.replace(/[-'’ ]/g, '');
 
   // Generate acceptable answers list
   const acceptableAnswers = [
     item.translation.toLowerCase(),
     item.phonetic.toLowerCase(),
-    item.phonetic.replace(/[-']/g, '').toLowerCase()
+    item.phonetic.replace(/[-'’]/g, '').toLowerCase()
   ];
 
   // Pick random index when level changes or component mounts
   useEffect(() => {
-    const list = READING_DATA[level];
+    const list = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
     const randomIdx = Math.floor(Math.random() * list.length);
     setCurrentIndex(randomIdx);
     setInput('');
     setStatus('idle');
-  }, [level]);
+  }, [level, langId]);
 
   const handleNext = () => {
     setInput('');
@@ -148,7 +156,7 @@ export function TypingTrainer() {
             Translation: "{item.translation}" [{item.phonetic}]
           </p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#Russian`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#${langId === 'be' ? 'Belarusian' : 'Russian'}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"
@@ -163,7 +171,7 @@ export function TypingTrainer() {
           <p className="font-bold text-lg">Correct!</p>
           <p className="text-sm mt-1">{item.cyrillic} = "{item.translation}" [{item.phonetic}]</p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#Russian`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#${langId === 'be' ? 'Belarusian' : 'Russian'}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

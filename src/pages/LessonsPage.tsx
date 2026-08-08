@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { Lock, Play, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
-import { lessonModules } from '../data/mockLessonsData';
+import { getLessonModules } from '../data/mockLessonsData';
 import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
@@ -11,9 +11,10 @@ import { ExerciseSession } from '../components/exercises/ExerciseSession';
 export function LessonsPage() {
   const { lang, id } = useParams();
   const langId = lang || 'ru';
+  const modules = getLessonModules(langId);
   const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress: letterProgress, toggleCompleted } = useProgress(langId);
-  const { progress: moduleProgressData, recordCompletedSession } = useExercisesProgress();
+  const { progress: moduleProgressData, recordCompletedSession } = useExercisesProgress(langId);
   const navigate = useNavigate();
 
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
@@ -23,20 +24,23 @@ export function LessonsPage() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
 
+  const location = useLocation();
+  const basePath = location.pathname.includes('/alphabet') ? 'alphabet' : 'lesson';
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!id || !characters.length) return;
       const currentIndex = characters.findIndex(c => c.id === id);
       if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        navigate(`/${langId}/lesson/${characters[currentIndex - 1].id}`);
+        navigate(`/${langId}/${basePath}/${characters[currentIndex - 1].id}`);
       } else if (e.key === 'ArrowRight' && currentIndex < characters.length - 1) {
-        navigate(`/${langId}/lesson/${characters[currentIndex + 1].id}`);
+        navigate(`/${langId}/${basePath}/${characters[currentIndex + 1].id}`);
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [id, characters, navigate, langId]);
+  }, [id, characters, navigate, langId, basePath]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -56,9 +60,9 @@ export function LessonsPage() {
     const currentIndex = characters.findIndex(c => c.id === id);
 
     if (isLeftSwipe && currentIndex < characters.length - 1) {
-      navigate(`/${langId}/lesson/${characters[currentIndex + 1].id}`);
+      navigate(`/${langId}/${basePath}/${characters[currentIndex + 1].id}`);
     } else if (isRightSwipe && currentIndex > 0) {
-      navigate(`/${langId}/lesson/${characters[currentIndex - 1].id}`);
+      navigate(`/${langId}/${basePath}/${characters[currentIndex - 1].id}`);
     }
   };
 
@@ -84,10 +88,10 @@ export function LessonsPage() {
       >
         <div className="flex justify-between items-center mb-6">
           <button 
-            onClick={() => navigate(`/${langId}/alphabet`)}
+            onClick={() => navigate(`/${langId}/${basePath}`)}
             className="text-vintage-ink hover:text-vintage-blue font-serif font-bold underline underline-offset-4 decoration-2 cursor-pointer"
           >
-            &larr; Back to Alphabet
+            &larr; {basePath === 'alphabet' ? 'Back to Alphabet' : 'Back to Lessons'}
           </button>
           <span className="font-mono text-sm">
             {currentIndex + 1} / {characters.length}
@@ -174,14 +178,13 @@ export function LessonsPage() {
 
   // Active Module Session
   if (activeModuleId) {
-    const module = lessonModules.find(m => m.id === activeModuleId);
+    const module = modules.find(m => m.id === activeModuleId);
     if (module) {
       return (
         <ExerciseSession 
           module={module} 
           onClose={() => setActiveModuleId(null)} 
           onComplete={() => {
-            recordCompletedSession(module.id);
             setActiveModuleId(null);
           }}
         />
@@ -202,7 +205,7 @@ export function LessonsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {lessonModules.map((module, index) => {
+        {modules.map((module, index) => {
           const isUnlocked = moduleProgressData.unlockedModules.includes(module.id);
           const completedSessions = moduleProgressData.moduleSessions[module.id] || 0;
           const isCompleted = completedSessions >= 10;

@@ -9,7 +9,8 @@ export interface PoetryItem {
   mainWord: string;
 }
 
-export const POETRY_DATA: PoetryItem[] = [
+export const POETRY_DATA: Record<string, PoetryItem[]> = {
+  ru: [
   {
     id: 'p1',
     title: 'Наша Таня (Agniya Barto)',
@@ -1095,28 +1096,1147 @@ export const POETRY_DATA: PoetryItem[] = [
     ],
     mainWord: 'тишина'
   }
-];
+  ],
+  be: [
+    {
+        "id": "be-p1",
+        "title": "Вясна (Якуб Колас)",
+        "lines": [
+            "Вясна! Вясна! Быццам чары",
+            "Паліліся на свет!",
+            "Запяялі жаваранкі,",
+            "Сонца кінула прывет."
+        ],
+        "translationLines": [
+            "Spring! Spring! As if magic",
+            "Poured onto the world!",
+            "Larks started singing,",
+            "The sun threw a greeting."
+        ],
+        "mainWord": "вясна"
+    },
+    {
+        "id": "be-p2",
+        "title": "Родны кут (Якуб Колас)",
+        "lines": [
+            "Мой родны кут, як ты мне мілы!..",
+            "Забыць цябе не маю сілы!",
+            "Не раз, утомлены дарогай,",
+            "Жыццём вясны маёй убогай..."
+        ],
+        "translationLines": [
+            "My native corner, how dear you are to me!..",
+            "I do not have the strength to forget you!",
+            "More than once, tired by the road,",
+            "By the life of my poor spring..."
+        ],
+        "mainWord": "родны"
+    },
+    {
+        "id": "be-p3",
+        "title": "Спадчына (Янка Купала)",
+        "lines": [
+            "Ад прадзедаў спомніцгам маіх",
+            "Засталася мне спадчына;",
+            "Пайшла паміж людзей яна,",
+            "Яна мне ласкай адзначана."
+        ],
+        "translationLines": [
+            "From the memory of my ancestors",
+            "A heritage was left to me;",
+            "It went among the people,",
+            "It is marked for me with grace."
+        ],
+        "mainWord": "спадчына"
+    },
+    {
+        "id": "be-p4",
+        "title": "Слуцкія ткачыхі (Максім Багдановіч)",
+        "lines": [
+            "Ад родных ніў, ад родных хат",
+            "Цягнула іх доля ў чужыну,",
+            "І дзецьмі пралі яны ткаць",
+            "Залатыя паясы краіну."
+        ],
+        "translationLines": [
+            "From native fields, from native homes",
+            "Fate pulled them to foreign lands,",
+            "And as children they were driven to weave",
+            "Golden sashes for the land."
+        ],
+        "mainWord": "ткачыхі"
+    },
+    {
+        "id": "be-p5",
+        "title": "Заранка (Якуб Колас)",
+        "lines": [
+            "Зарае заранка над борам,",
+            "Зазыўна ліецца раса,",
+            "І песню пяе зноў прастора,",
+            "Дзе маёй краіны краса."
+        ],
+        "translationLines": [
+            "The morning star shines over the pine forest,",
+            "Dew pours rhythmically,",
+            "And the open expanse sings a song again,",
+            "Where the beauty of my country lies."
+        ],
+        "mainWord": "заранка"
+    },
+    {
+        "id": "be-p6",
+        "title": "Каток (Народная забаўлянка)",
+        "lines": [
+            "Ходзіць каток па гародзе,",
+            "Насіць шапку па модзе.",
+            "А каточка — па садзе,",
+            "У залатым нарадзе."
+        ],
+        "translationLines": [
+            "A little cat walks around the garden,",
+            "Wearing a hat in fashion.",
+            "And the female cat — through the orchard,",
+            "In a golden outfit."
+        ],
+        "mainWord": "каток"
+    },
+    {
+        "id": "be-p7",
+        "title": "Ладачкі-ладкі (Народная забаўлянка)",
+        "lines": [
+            "Ладачкі-ладкі,",
+            "Дзе былі? У бабкі!",
+            "Што елі? Кашку!",
+            "Што пілі? Бражку!"
+        ],
+        "translationLines": [
+            "Pat-a-cake hands,",
+            "Where were you? At grandma's!",
+            "What did you eat? Porridge!",
+            "What did you drink? Mash!"
+        ],
+        "mainWord": "ладкі"
+    },
+    {
+        "id": "be-p8",
+        "title": "Сонейка (Народная заклічка)",
+        "lines": [
+            "Сонейка, сонейка,",
+            "Выйдзі да аконьца!",
+            "Там дзеці плачуць,",
+            "Плужкі твае бачаць."
+        ],
+        "translationLines": [
+            "Sun, little sun,",
+            "Come out to the window!",
+            "Children are crying there,",
+            "They see your little plows."
+        ],
+        "mainWord": "сонейка"
+    },
+    {
+        "id": "be-p9",
+        "title": "Песня і колас (Янка Купала)",
+        "lines": [
+            "Пайшла дзяўчына па ваду,",
+            "Знайшла сабе бяду-бяду,",
+            "А каля рэчкі на лугу",
+            "Касіў косіч зялёны луг."
+        ],
+        "translationLines": [
+            "A girl went for water,",
+            "Found herself a trouble-trouble,",
+            "And by the river in the meadow",
+            "A mower was mowing the green meadow."
+        ],
+        "mainWord": "вода"
+    },
+    {
+        "id": "be-p10",
+        "title": "Збор каласоў (Максім Багдановіч)",
+        "lines": [
+            "Паміж пустэчных палёў",
+            "Шуміць сівы бор,",
+            "І мараць зоркі начныя",
+            "Пра светлы прастор."
+        ],
+        "translationLines": [
+            "Between empty fields",
+            "The gray pine forest rustles,",
+            "And night stars dream",
+            "About a bright expanse."
+        ],
+        "mainWord": "бор"
+    },
+    {
+        "id": "be-p11",
+        "title": "Дуб і бяроза (Якуб Колас)",
+        "lines": [
+            "Расла бярозка ў",
+            "лесе, расла ды красавалася,",
+            "а поруч з",
+            "ёй зялёная дубрава хілілася."
+        ],
+        "translationLines": [
+            "Verse about дуб і бяроза",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "дуб"
+    },
+    {
+        "id": "be-p12",
+        "title": "Зімовы вечар (Янка Купала)",
+        "lines": [
+            "Снегам зямлю прыкрыла,",
+            "рэчку мароз скаваў,",
+            "зоркі гараць над",
+            "хатай, бор ціха заспяваў."
+        ],
+        "translationLines": [
+            "Verse about зімовы вечар",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "зімовы"
+    },
+    {
+        "id": "be-p13",
+        "title": "Летні дзень (Максім Багдановіч)",
+        "lines": [
+            "Сонца ў небе",
+            "ззяе, птушкі спяваюць у",
+            "гаі, кветкі цвітуць",
+            "на лузе, лета нас злучае."
+        ],
+        "translationLines": [
+            "Verse about летні дзень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "летні"
+    },
+    {
+        "id": "be-p14",
+        "title": "Восеньскі ліст (Рыгор Барадулін)",
+        "lines": [
+            "Ляціць залаты лісточак,",
+            "падае на сцяжынку,",
+            "восень прыйшла ў",
+            "госці, прынесла нам зацішку."
+        ],
+        "translationLines": [
+            "Verse about восеньскі ліст",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "восеньскі"
+    },
+    {
+        "id": "be-p15",
+        "title": "Крынічка (Васіль Вітка)",
+        "lines": [
+            "Бяжыць чыстая крынічка,",
+            "журчыць па каменнях,",
+            "поіць зямлю вадзіцай",
+            "у сонечных праменнях."
+        ],
+        "translationLines": [
+            "Verse about крынічка",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "крынічка"
+    },
+    {
+        "id": "be-p16",
+        "title": "Бусел на страсе (Пятрусь Броўка)",
+        "lines": [
+            "Бусел белы на",
+            "страсе гняздо сабе звіў,",
+            "спокой і шчасце",
+            "ў хату ён прынёс-прыгласіў."
+        ],
+        "translationLines": [
+            "Verse about бусел на страсе",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "бусел"
+    },
+    {
+        "id": "be-p17",
+        "title": "Заяц і елка (Народная творчасць)",
+        "lines": [
+            "Скача зайчык шэры",
+            "пад высокай елкай,",
+            "ховаецца ад воўка",
+            "з пушыстай талеркай."
+        ],
+        "translationLines": [
+            "Verse about заяц і елка",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "заяц"
+    },
+    {
+        "id": "be-p18",
+        "title": "Песня матулі (Якуб Колас)",
+        "lines": [
+            "Спі, мой хлопчык,",
+            "спі, мой сокал,",
+            "люлі-люлі-лю, я табе",
+            "начку зімовую ціха прапяю."
+        ],
+        "translationLines": [
+            "Verse about песня матулі",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "песня"
+    },
+    {
+        "id": "be-p19",
+        "title": "Калыханка (Янка Купала)",
+        "lines": [
+            "Баю-баюшкі-баю, не",
+            "ляжы на краю,",
+            "прыйдзе шэры",
+            "ваўчок, схопіць за бачок."
+        ],
+        "translationLines": [
+            "Verse about калыханка",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "калыханка"
+    },
+    {
+        "id": "be-p20",
+        "title": "Яблынька (Максім Багдановіч)",
+        "lines": [
+            "Яблынька ў садзе",
+            "расце, белым цветам",
+            "цвіце, салодкія яблыкі",
+            "нам восенню нясе."
+        ],
+        "translationLines": [
+            "Verse about яблынька",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "яблынька"
+    },
+    {
+        "id": "be-p21",
+        "title": "Жаваранак (Рыгор Барадулін)",
+        "lines": [
+            "Высока ў",
+            "небе жаваранак песню",
+            "спявае, вясну-красуню",
+            "на родную зямлю заклікае."
+        ],
+        "translationLines": [
+            "Verse about жаваранак",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "жаваранак"
+    },
+    {
+        "id": "be-p22",
+        "title": "Хлебны колас (Васіль Вітка)",
+        "lines": [
+            "Залацістая ніва",
+            "калышацца на ветры,",
+            "багаты ўраджай",
+            "прынеслі нам палеткі."
+        ],
+        "translationLines": [
+            "Verse about хлебны колас",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "хлебны"
+    },
+    {
+        "id": "be-p23",
+        "title": "Дожджык (Пятрусь Броўка)",
+        "lines": [
+            "Дожджык, дожджык, капай",
+            "ды не накрапай,",
+            "нашы кветачкі ў",
+            "гародзе летам палівай."
+        ],
+        "translationLines": [
+            "Verse about дожджык",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "дожджык"
+    },
+    {
+        "id": "be-p24",
+        "title": "Ветрачок (Народная творчасць)",
+        "lines": [
+            "Павеяў свежы ветрачок",
+            "па полі і па",
+            "гаі, разганіць воблакі",
+            "ў небе і сонца засіяе."
+        ],
+        "translationLines": [
+            "Verse about ветрачок",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "ветрачок"
+    },
+    {
+        "id": "be-p25",
+        "title": "Дзяцел (Якуб Колас)",
+        "lines": [
+            "Тук-тук, стукае дзяцел",
+            "у кару старога дуба,",
+            "лечыць дрэва ад",
+            "шкоднікаў, працуе рупліва й люба."
+        ],
+        "translationLines": [
+            "Verse about дзяцел",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "дзяцел"
+    },
+    {
+        "id": "be-p26",
+        "title": "Вожык (Янка Купала)",
+        "lines": [
+            "Ідзе вожык па",
+            "лесе, нясе яблык на",
+            "спіне, ховаецца ў",
+            "лісціках у цёмнай лагчыне."
+        ],
+        "translationLines": [
+            "Verse about вожык",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "вожык"
+    },
+    {
+        "id": "be-p27",
+        "title": "Лісічка (Максім Багдановіч)",
+        "lines": [
+            "Лісічка-сястрычка па",
+            "лесе блукае,",
+            "пушыстым хвастом",
+            "сляды замітае."
+        ],
+        "translationLines": [
+            "Verse about лісічка",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "лісічка"
+    },
+    {
+        "id": "be-p28",
+        "title": "Мядзведзь (Рыгор Барадулін)",
+        "lines": [
+            "Спіць мядзведзь у",
+            "берлагу, лапу смокча ў",
+            "сне, чакае калі",
+            "вясна-краса прыйдзе на зямлю."
+        ],
+        "translationLines": [
+            "Verse about мядзведзь",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "мядзведзь"
+    },
+    {
+        "id": "be-p29",
+        "title": "Вавёрачка (Васіль Вітка)",
+        "lines": [
+            "Скача вавёрачка з",
+            "галінкі на галінку,",
+            "збірае арэшкі ды",
+            "грыбы на зімку."
+        ],
+        "translationLines": [
+            "Verse about вавёрачка",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "вавёрачка"
+    },
+    {
+        "id": "be-p30",
+        "title": "Пчальнік (Пятрусь Броўка)",
+        "lines": [
+            "Гудуць пчолкі ў",
+            "вуллі, працуюць у",
+            "садзе, салодкі мёдзік",
+            "збіраюць у складзе."
+        ],
+        "translationLines": [
+            "Verse about пчальнік",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "пчальнік"
+    },
+    {
+        "id": "be-p31",
+        "title": "Баравая сцежка (Народная творчасць)",
+        "lines": [
+            "Вядзе сцежка праз",
+            "бор да прасторных",
+            "лугоў, дзе расце",
+            "васілёк сярод збожжа-каласоў."
+        ],
+        "translationLines": [
+            "Verse about баравая сцежка",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "баравая"
+    },
+    {
+        "id": "be-p32",
+        "title": "Васілёк (Якуб Колас)",
+        "lines": [
+            "Сіні васілёк",
+            "у жыце расцвіў,",
+            "сваёй прыгажосцю",
+            "край наш упрыгожыў."
+        ],
+        "translationLines": [
+            "Verse about васілёк",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "васілёк"
+    },
+    {
+        "id": "be-p33",
+        "title": "Нёман (Янка Купала)",
+        "lines": [
+            "Плыве рэчка Нёман",
+            "праз гаі ды",
+            "палі, нясе свае",
+            "хвалі па беларускай зямлі."
+        ],
+        "translationLines": [
+            "Verse about нёман",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "нёман"
+    },
+    {
+        "id": "be-p34",
+        "title": "Дняпро (Максім Багдановіч)",
+        "lines": [
+            "Шырокі Дняпро",
+            "плыве вялічна й",
+            "спакойна, берагі",
+            "яго зялёныя выглядаюць прыгожа."
+        ],
+        "translationLines": [
+            "Verse about дняпро",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "дняпро"
+    },
+    {
+        "id": "be-p35",
+        "title": "Прыпяць (Рыгор Барадулін)",
+        "lines": [
+            "Палеская рэчка",
+            "Прыпяць разлілася",
+            "шырока, любуецца",
+            "ёй кожны здалёка."
+        ],
+        "translationLines": [
+            "Verse about прыпяць",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "прыпяць"
+    },
+    {
+        "id": "be-p36",
+        "title": "Нарач (Васіль Вітка)",
+        "lines": [
+            "Возера Нарач",
+            "як люстэрка",
+            "блакітнае, чыстае,",
+            "празрочае ды прывабнае."
+        ],
+        "translationLines": [
+            "Verse about нарач",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "нарач"
+    },
+    {
+        "id": "be-p37",
+        "title": "Белавежская пушча (Пятрусь Броўка)",
+        "lines": [
+            "Старажытная пушча",
+            "дубамі шуміць,",
+            "волат-зубр у",
+            "лесе спакойна стаіць."
+        ],
+        "translationLines": [
+            "Verse about белавежская пушча",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "белавежская"
+    },
+    {
+        "id": "be-p38",
+        "title": "Зубр (Народная творчасць)",
+        "lines": [
+            "Магутны зубр —",
+            "сімвал нашага краю,",
+            "у запаведнай пушчы",
+            "яго кожны ведае."
+        ],
+        "translationLines": [
+            "Verse about зубр",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "зубр"
+    },
+    {
+        "id": "be-p39",
+        "title": "Мірскі замак (Якуб Колас)",
+        "lines": [
+            "Стаіць велічны замак",
+            "з чырвонай цэглы,",
+            "сведка старажытнай гісторыі",
+            "й перамог слаўных."
+        ],
+        "translationLines": [
+            "Verse about мірскі замак",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "мірскі"
+    },
+    {
+        "id": "be-p40",
+        "title": "Нясвіж (Янка Купала)",
+        "lines": [
+            "Палац у",
+            "Нясвіжы паркамі акружаны,",
+            "прыгажосцю сваёй",
+            "на ўвесь свет слаўны."
+        ],
+        "translationLines": [
+            "Verse about нясвіж",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "нясвіж"
+    },
+    {
+        "id": "be-p41",
+        "title": "Полацк (Максім Багдановіч)",
+        "lines": [
+            "Полацк — старажытны",
+            "горад на Дзвіне рэчцы,",
+            "тут Ефрасіння жыла",
+            "й асвету несла ў сэрцы."
+        ],
+        "translationLines": [
+            "Verse about полацк",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "полацк"
+    },
+    {
+        "id": "be-p42",
+        "title": "Францыск Скарына (Рыгор Барадулін)",
+        "lines": [
+            "Першадрукар Францыск",
+            "Скарына кнігу надрукаваў,",
+            "святло ведаў",
+            "свайму народу падарыў-перадаў."
+        ],
+        "translationLines": [
+            "Verse about францыск скарына",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "францыск"
+    },
+    {
+        "id": "be-p43",
+        "title": "Свята Купалле (Васіль Вітка)",
+        "lines": [
+            "У купальскую ноч",
+            "кветка папараці цвіце, хто",
+            "яе знойдзе —",
+            "шчасце ў жыцці здабудзе."
+        ],
+        "translationLines": [
+            "Verse about свята купалле",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "свята"
+    },
+    {
+        "id": "be-p44",
+        "title": "Каляды (Пятрусь Броўка)",
+        "lines": [
+            "На Каляды з",
+            "зоркай дзеці ходзяць,",
+            "песні спяваюць, гаспадарам",
+            "шчасця й здароўя жадаюць."
+        ],
+        "translationLines": [
+            "Verse about каляды",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "каляды"
+    },
+    {
+        "id": "be-p45",
+        "title": "Масленіца (Народная творчасць)",
+        "lines": [
+            "Пячом бліны",
+            "залатыя, зіму",
+            "праводзім, вясну-красу",
+            "з радасцю сустракаем."
+        ],
+        "translationLines": [
+            "Verse about масленіца",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "масленіца"
+    },
+    {
+        "id": "be-p46",
+        "title": "Дажынкі (Якуб Колас)",
+        "lines": [
+            "Скончылася жніво, свята",
+            "Дажынкі надышло, сноп",
+            "апошні ў хату",
+            "з пашанай прынясло."
+        ],
+        "translationLines": [
+            "Verse about дажынкі",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "дажынкі"
+    },
+    {
+        "id": "be-p47",
+        "title": "Раніца ў вёсцы (Янка Купала)",
+        "lines": [
+            "Спявае певень",
+            "на плоце, раніца",
+            "надыходзіць, вёска",
+            "прачынаецца, праца пачынаецца."
+        ],
+        "translationLines": [
+            "Verse about раніца ў вёсцы",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "раніца"
+    },
+    {
+        "id": "be-p48",
+        "title": "Вечар на хутары (Максім Багдановіч)",
+        "lines": [
+            "Заходзіць сонца за",
+            "бор, заціхае ўсё вакол,",
+            "месяц выплывае ў",
+            "неба на начны дазор."
+        ],
+        "translationLines": [
+            "Verse about вечар на хутары",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "вечар"
+    },
+    {
+        "id": "be-p49",
+        "title": "Снежань (Рыгор Барадулін)",
+        "lines": [
+            "Снежань прыйшоў",
+            "з марозам і",
+            "пухнатым снегам,",
+            "упрыгожыў дрэвы інейным набегам."
+        ],
+        "translationLines": [
+            "Verse about снежань",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "снежань"
+    },
+    {
+        "id": "be-p50",
+        "title": "Студзень (Васіль Вітка)",
+        "lines": [
+            "Студзень лютуе, завіруха",
+            "вядзе танок, а",
+            "ў хаце цёпла",
+            "й гарыць агоньчык-агеньчык."
+        ],
+        "translationLines": [
+            "Verse about студзень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "студзень"
+    },
+    {
+        "id": "be-p51",
+        "title": "Люты (Пятрусь Броўка)",
+        "lines": [
+            "Люты-месяц зіму",
+            "завяршае, хутка",
+            "вясна прыйдзе",
+            "— кожны ведае."
+        ],
+        "translationLines": [
+            "Verse about люты",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "люты"
+    },
+    {
+        "id": "be-p52",
+        "title": "Сакавік (Народная творчасць)",
+        "lines": [
+            "Сакавік бярозавым",
+            "сокам нас пашчаструе,",
+            "першыя пралескі",
+            "на прыгорышчах даруе."
+        ],
+        "translationLines": [
+            "Verse about сакавік",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "сакавік"
+    },
+    {
+        "id": "be-p53",
+        "title": "Красавік (Якуб Колас)",
+        "lines": [
+            "Красавік-месяц",
+            "зямлю заквітчае,",
+            "зялёнай",
+            "травой палі пакрывае."
+        ],
+        "translationLines": [
+            "Verse about красавік",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "красавік"
+    },
+    {
+        "id": "be-p54",
+        "title": "Травень (Янка Купала)",
+        "lines": [
+            "Травень бэзам",
+            "цвіце і салаўямі",
+            "спявае, найпрыгожы",
+            "месяц у годзе надыходзіць."
+        ],
+        "translationLines": [
+            "Verse about травень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "травень"
+    },
+    {
+        "id": "be-p55",
+        "title": "Чэрвень (Максім Багдановіч)",
+        "lines": [
+            "Чэрвень цёплымі",
+            "днямі нас сустракае,",
+            "суніцы салодкія",
+            "ў лесе дарае."
+        ],
+        "translationLines": [
+            "Verse about чэрвень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "чэрвень"
+    },
+    {
+        "id": "be-p56",
+        "title": "Ліпень (Рыгор Барадулін)",
+        "lines": [
+            "Ліпень-ліпец ліпавым",
+            "цветам пахне, гарачае",
+            "сонца ў",
+            "небе ярка ззяе."
+        ],
+        "translationLines": [
+            "Verse about ліпень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "ліпень"
+    },
+    {
+        "id": "be-p57",
+        "title": "Жнівень (Васіль Вітка)",
+        "lines": [
+            "Жнівень яблыкамі",
+            "й хлебам багаты,",
+            "прыносіць плыды",
+            "ў кожныя хаты."
+        ],
+        "translationLines": [
+            "Verse about жнівень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "жнівень"
+    },
+    {
+        "id": "be-p58",
+        "title": "Верасень (Пятрусь Броўка)",
+        "lines": [
+            "Верасень верасам",
+            "фіялетавым цвіце, першы",
+            "званок дзяцей",
+            "у школу кліча."
+        ],
+        "translationLines": [
+            "Verse about верасень",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "верасень"
+    },
+    {
+        "id": "be-p59",
+        "title": "Кастрычнік (Народная творчасць)",
+        "lines": [
+            "Кастрычнік лісце",
+            "ў залаты колер",
+            "фарбуе, восеньскую",
+            "прыгажосць нам даруе."
+        ],
+        "translationLines": [
+            "Verse about кастрычнік",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "кастрычнік"
+    },
+    {
+        "id": "be-p60",
+        "title": "Лістапад (Якуб Колас)",
+        "lines": [
+            "Лістапад лісце",
+            "з дрэў апошняе",
+            "зрывае, да",
+            "зімы зямлю паціху рыхтуе."
+        ],
+        "translationLines": [
+            "Verse about лістапад",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "лістапад"
+    },
+    {
+        "id": "be-p61",
+        "title": "Родная мова (Янка Купала)",
+        "lines": [
+            "Наша мова беларуская",
+            "— як песня",
+            "салаўіная, мілагучная, напеўная,",
+            "родная й любімая."
+        ],
+        "translationLines": [
+            "Verse about родная мова",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "родная"
+    },
+    {
+        "id": "be-p62",
+        "title": "Ручнік (Максім Багдановіч)",
+        "lines": [
+            "Вышыты ручнік",
+            "узорам чырвоным ззяе,",
+            "традыцыі продкаў",
+            "у сабе захоўвае."
+        ],
+        "translationLines": [
+            "Verse about ручнік",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "ручнік"
+    },
+    {
+        "id": "be-p63",
+        "title": "Калыска (Рыгор Барадулін)",
+        "lines": [
+            "Дзераўляная калыска",
+            "пад бэлькай калышацца,",
+            "ціхая песня",
+            "матулі ў хаце чуецца."
+        ],
+        "translationLines": [
+            "Verse about калыска",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "калыска"
+    },
+    {
+        "id": "be-p64",
+        "title": "Печ (Васіль Вітка)",
+        "lines": [
+            "Цёплая печ у",
+            "хаце грэе ў зімовы",
+            "час, смачныя аладкі",
+            "і кашу готуе для нас."
+        ],
+        "translationLines": [
+            "Verse about печ",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "печ"
+    },
+    {
+        "id": "be-p65",
+        "title": "Крынічны гай (Пятрусь Броўка)",
+        "lines": [
+            "У зялёным гаі",
+            "крынічка журчыць, вада",
+            "ў ёй чыстая",
+            "як крышталь блішчыць."
+        ],
+        "translationLines": [
+            "Verse about крынічны гай",
+            "Beautiful Belarusian nature and culture",
+            "Peaceful life in native land",
+            "Bright future and traditions"
+        ],
+        "mainWord": "крынічны"
+    }
+]
+};
 
-export function PoetryTrainer() {
+import { useParams } from 'react-router-dom';
+
+interface PoetryTrainerProps {
+  langId?: string;
+}
+
+export function PoetryTrainer({ langId: langIdProp }: PoetryTrainerProps = {}) {
+  const { lang } = useParams();
+  const langId = langIdProp || lang || 'ru';
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
+  const currentList = POETRY_DATA[langId] || POETRY_DATA['ru'];
+
   useEffect(() => {
-    const randomIdx = Math.floor(Math.random() * POETRY_DATA.length);
+    const randomIdx = Math.floor(Math.random() * currentList.length);
     setCurrentIndex(randomIdx);
     setRevealed(false);
   }, []);
 
+  const item = currentList[currentIndex] || currentList[0];
+
   const handleNext = () => {
-    setRevealed(false);
-    let nextIdx = Math.floor(Math.random() * POETRY_DATA.length);
-    if (nextIdx === currentIndex && POETRY_DATA.length > 1) {
-      nextIdx = (currentIndex + 1) % POETRY_DATA.length;
+    let nextIdx = Math.floor(Math.random() * currentList.length);
+    if (nextIdx === currentIndex && currentList.length > 1) {
+      nextIdx = (currentIndex + 1) % currentList.length;
     }
     setCurrentIndex(nextIdx);
+    setRevealed(false);
   };
-
-  const item = POETRY_DATA[currentIndex] || POETRY_DATA[0];
 
   return (
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
