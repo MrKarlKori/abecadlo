@@ -10,9 +10,9 @@ describe('ReadingTrainer Component', () => {
   it('renders level tabs and reveal answer button', () => {
     render(<ReadingTrainer />);
     
-    expect(screen.getByText(/Easy \(Short\)/i)).toBeInTheDocument();
-    expect(screen.getByText(/Medium \(Words\)/i)).toBeInTheDocument();
-    expect(screen.getByText(/Hard \(Complex\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Easy/i)).toBeInTheDocument();
+    expect(screen.getByText(/Medium/i)).toBeInTheDocument();
+    expect(screen.getByText(/Hard/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Reveal/i })).toBeInTheDocument();
   });
 

@@ -162,7 +162,7 @@ export function BuildingTrainer() {
                 : "bg-white text-vintage-ink/70 hover:bg-gray-100"
             )}
           >
-            {lvl === 'easy' ? 'Easy (100)' : lvl === 'medium' ? 'Medium (100)' : 'Hard (100)'}
+            {lvl === 'easy' ? `Easy (${READING_DATA.easy.length})` : lvl === 'medium' ? `Medium (${READING_DATA.medium.length})` : `Hard (${READING_DATA.hard.length})`}
           </button>
         ))}
       </div>

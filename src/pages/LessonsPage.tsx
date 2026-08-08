@@ -181,7 +181,6 @@ export function LessonsPage() {
           module={module} 
           onClose={() => setActiveModuleId(null)} 
           onComplete={() => {
-            recordCompletedSession(module.id);
             setActiveModuleId(null);
           }}
         />
