@@ -4,6 +4,8 @@ import { ArrowRight, Eye } from 'lucide-react';
 import clsx from 'clsx';
 import { READING_DATA } from '../../data/exercises';
 import type { ReadingItem, ReadingLevel } from '../../data/exercises';
+import { getLanguageName, getScriptName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 
 export type { ReadingItem, ReadingLevel };
 export { READING_DATA };
@@ -14,18 +16,18 @@ interface ReadingTrainerProps {
 
 export function ReadingTrainer({ langId: langIdProp }: ReadingTrainerProps = {}) {
   const { lang } = useParams();
-  const langId = langIdProp || lang || 'ru';
+  const langId = langIdProp || lang || LanguageId.BELARUSIAN;
   
   const [level, setLevel] = useState<ReadingLevel>('easy');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
-  const currentList = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
+  const currentList = READING_DATA[langId]?.[level] || READING_DATA[LanguageId.BELARUSIAN][level];
   const item: ReadingItem = currentList[currentIndex] || currentList[0];
 
   // Pick a random index when level changes or component mounts
   useEffect(() => {
-    const list = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
+    const list = READING_DATA[langId]?.[level] || READING_DATA[LanguageId.BELARUSIAN][level];
     const randomIdx = Math.floor(Math.random() * list.length);
     setCurrentIndex(randomIdx);
     setRevealed(false);
@@ -44,14 +46,15 @@ export function ReadingTrainer({ langId: langIdProp }: ReadingTrainerProps = {})
     setLevel(newLevel);
   };
 
-  const wiktionaryLang = langId === 'be' ? 'Belarusian' : 'Russian';
+  const wiktionaryLang = getLanguageName(langId);
+  const scriptName = getScriptName(langId);
 
   return (
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
       {/* Level selector tabs */}
       <div className="flex gap-2 mb-8 w-full max-w-md">
         {(['easy', 'medium', 'hard'] as ReadingLevel[]).map((lvl) => {
-          const count = (READING_DATA[langId]?.[lvl] || READING_DATA['ru'][lvl]).length;
+          const count = (READING_DATA[langId]?.[lvl] || READING_DATA[LanguageId.BELARUSIAN][lvl]).length;
           return (
             <button
               key={lvl}
@@ -70,7 +73,7 @@ export function ReadingTrainer({ langId: langIdProp }: ReadingTrainerProps = {})
       </div>
 
       <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-2 text-center">
-        Read the Cyrillic out loud
+        Read the {scriptName} out loud
       </h3>
       <p className="font-serif text-sm italic text-vintage-ink/70 mb-8 text-center max-w-md">
         Sound out the syllables below, then click Reveal to check your pronunciation and translation.

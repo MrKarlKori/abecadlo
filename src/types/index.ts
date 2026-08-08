@@ -1,3 +1,9 @@
+export enum LanguageId {
+  BELARUSIAN = 'be',
+  RUSSIAN = 'ru',
+  GREEK = 'el',
+}
+
 export interface Example {
   native: string;
   translation: string;

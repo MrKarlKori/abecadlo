@@ -4,6 +4,8 @@ import { ArrowRight, RotateCcw } from 'lucide-react';
 import { READING_DATA } from './ReadingTrainer';
 import type { ReadingLevel, ReadingItem } from './ReadingTrainer';
 import { getAlphabetForLang } from '../../utils/alphabets';
+import { getLanguageName, getScriptName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 
 export type PromptMode = 'mirror' | 'eng-translation' | 'ru-translation';
 
@@ -11,7 +13,7 @@ interface BuildingTrainerProps {
   langId?: string;
 }
 
-export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
+export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrainerProps) {
   const [level, setLevel] = useState<ReadingLevel>('easy');
   const [promptMode, setPromptMode] = useState<PromptMode>('mirror');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,8 +22,11 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
   const [pool, setPool] = useState<{ id: string; char: string; used: boolean }[]>([]);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const currentList = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
+  const currentList = READING_DATA[langId]?.[level] || READING_DATA[LanguageId.BELARUSIAN][level];
   const item: ReadingItem = currentList[currentIndex] || currentList[0];
+
+  const langName = getLanguageName(langId);
+  const scriptName = getScriptName(langId);
 
   const getTargetAndAlphabet = (readingItem: ReadingItem, mode: PromptMode) => {
     const CYRILLIC_ALPHABET = getAlphabetForLang(langId);
@@ -32,7 +37,7 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
       return {
         targetWord: cleanEng,
         alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-        promptLabel: `Build English translation for ${langId === 'be' ? 'Belarusian' : 'Russian'} prompt`,
+        promptLabel: `Build English translation for ${langName} prompt`,
         promptDisplay: readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase()
       };
     }
@@ -42,16 +47,16 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
       return {
         targetWord: cleanCyr,
         alphabet: CYRILLIC_ALPHABET,
-        promptLabel: "Build Cyrillic word for English translation",
+        promptLabel: `Build ${scriptName} word for English translation`,
         promptDisplay: `"${readingItem.translation.toUpperCase()}"`
       };
     }
 
-    // default: mirror letters (phonetic sound -> Cyrillic word)
+    // default: mirror letters (phonetic sound -> target word)
     return {
       targetWord: cleanCyr,
       alphabet: CYRILLIC_ALPHABET,
-      promptLabel: "Mirror phonetic sound to Cyrillic letters",
+      promptLabel: `Mirror phonetic sound to ${scriptName} letters`,
       promptDisplay: `[${readingItem.phonetic}]`
     };
   };
@@ -80,7 +85,7 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
 
   // Pick random word on level or prompt mode change
   useEffect(() => {
-    const list = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
+    const list = READING_DATA[langId]?.[level] || READING_DATA[LanguageId.BELARUSIAN][level];
     const randomIdx = Math.floor(Math.random() * list.length);
     setCurrentIndex(randomIdx);
 
@@ -146,7 +151,7 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
       {/* Level selector tabs */}
       <div className="flex gap-2 mb-4 w-full max-w-md">
         {(['easy', 'medium', 'hard'] as ReadingLevel[]).map((lvl) => {
-          const count = (READING_DATA[langId]?.[lvl] || READING_DATA['ru'][lvl]).length;
+          const count = (READING_DATA[langId]?.[lvl] || READING_DATA[LanguageId.BELARUSIAN][lvl]).length;
           return (
             <button
               key={lvl}
@@ -200,7 +205,7 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
               : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
           )}
         >
-          Russian Trans.
+          {langName} Trans.
         </button>
       </div>
 
@@ -291,7 +296,7 @@ export function BuildingTrainer({ langId = 'ru' }: BuildingTrainerProps) {
           <p className="font-bold text-lg">Correct!</p>
           <p className="text-sm mt-1">{item.cyrillic.replace(/[-'’]/g, '').toUpperCase()} = "{item.translation}" [{item.phonetic}]</p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(item.cyrillic.replace(/[-'’]/g, '').toLowerCase())}#Russian`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(item.cyrillic.replace(/[-'’]/g, '').toLowerCase())}#${langName}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

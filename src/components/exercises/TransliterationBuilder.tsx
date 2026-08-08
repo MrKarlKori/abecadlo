@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { getScriptName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 
 interface TransliterationBuilderProps {
-  target: string; // The Cyrillic target to build
+  target: string; // The target word to build
   answer: string; // The English prompt
   distractors: string[];
+  langId?: string;
   onCorrect: () => void;
   onIncorrect: () => void;
 }
 
-export function TransliterationBuilder({ target, answer, distractors, onCorrect, onIncorrect }: TransliterationBuilderProps) {
+export function TransliterationBuilder({ target, answer, distractors, langId = LanguageId.BELARUSIAN, onCorrect, onIncorrect }: TransliterationBuilderProps) {
+  const scriptName = getScriptName(langId);
   const [slots, setSlots] = useState<(string | null)[]>([]);
   const [pool, setPool] = useState<{id: string, char: string, used: boolean}[]>([]);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -75,7 +79,7 @@ export function TransliterationBuilder({ target, answer, distractors, onCorrect,
   return (
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29]">
       <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-8">
-        Build the Cyrillic word for
+        Build the {scriptName} word for
       </h3>
       
       <div className="text-4xl md:text-5xl font-serif font-bold text-vintage-ink mb-12">

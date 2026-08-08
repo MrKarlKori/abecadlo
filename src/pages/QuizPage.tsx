@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
-import { getQuestionDirectionHint } from '../utils/languageMap';
+import { getQuestionDirectionHint, getScriptName } from '../utils/languageMap';
 import { READING_DATA } from '../components/exercises/ReadingTrainer';
 import type { ReadingItem } from '../components/exercises/ReadingTrainer';
 import clsx from 'clsx';
 import { XCircle, Award, BookOpen, PenTool } from 'lucide-react';
+import { LanguageId } from '../types';
 
 export type QuizType = 'alphabet' | 'practice';
 export type QuizDirection = 'random' | 'eng-to-target' | 'target-to-eng';
@@ -41,7 +42,7 @@ const savePracticeHighScore = (langId: string, score: number) => {
 
 export function QuizPage() {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = (lang as LanguageId) || LanguageId.BELARUSIAN;
   const { characters: allCharacters, loading } = useLanguageData(langId);
   const characters = allCharacters.filter(c => !['Ъ', 'Ь'].includes(c.character));
   const { progress, updateQuizScore } = useProgress(langId);
@@ -107,7 +108,7 @@ export function QuizPage() {
 
   // Generate 10 questions for Practice Mastery Quiz (random direction)
   const generatePracticeQuiz = () => {
-    const langData = READING_DATA[langId] || READING_DATA['ru'];
+    const langData = READING_DATA[langId] || READING_DATA[LanguageId.BELARUSIAN];
     const allPracticeItems = [...langData.easy, ...langData.medium, ...langData.hard];
     if (allPracticeItems.length < 4) return;
 
@@ -196,6 +197,8 @@ export function QuizPage() {
     return "A bear in Siberia reads better. Try again.";
   };
 
+  const scriptName = getScriptName(langId);
+
   if (loading) return <div className="text-center font-serif text-2xl mt-12 animate-pulse">Preparing Quizzes...</div>;
   if (characters.length < 4) return <div className="text-center">Not enough data to generate quiz.</div>;
 
@@ -205,7 +208,7 @@ export function QuizPage() {
         <div>
           <h1 className="text-4xl text-vintage-ink m-0">Quizzes</h1>
           <p className="font-serif italic text-sm text-vintage-ink/70 mt-1">
-            Test your Cyrillic alphabet and practice vocabulary mastery under exam evaluation.
+            Test your {scriptName} alphabet and practice vocabulary mastery under exam evaluation.
           </p>
         </div>
         <div className="flex gap-4 font-mono text-xs font-bold text-vintage-red flex-wrap">
@@ -236,7 +239,7 @@ export function QuizPage() {
                 Alphabet Test
               </h2>
               <p className="font-serif text-sm text-vintage-ink/80 mb-6">
-                Test your knowledge across 10 single Cyrillic alphabet letters and phonetic sounds.
+                Test your knowledge across 10 single {scriptName} alphabet letters and phonetic sounds.
               </p>
 
               {/* Direction Selector */}
@@ -339,7 +342,7 @@ export function QuizPage() {
             <h3 className="font-serif italic text-lg mb-4">
               {questions[currentIndex].type === 'target-to-english'
                 ? 'Select the English translation / sound for:'
-                : 'Select the Cyrillic word / letter for:'}
+                : `Select the ${scriptName} word / letter for:`}
             </h3>
 
             <div className="text-5xl md:text-7xl font-serif font-bold text-vintage-ink p-6 md:p-8 border-2 border-vintage-ink inline-block bg-[#F9F6EE] shadow-[4px_4px_0_0_#2C2A29] select-none">

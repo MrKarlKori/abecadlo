@@ -7,10 +7,11 @@ import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { ExerciseSession } from '../components/exercises/ExerciseSession';
+import { LanguageId } from '../types';
 
 export function LessonsPage() {
   const { lang, id } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
   const modules = getLessonModules(langId);
   const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress: letterProgress, toggleCompleted } = useProgress(langId);

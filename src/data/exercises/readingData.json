@@ -1,4 +1,72 @@
 {
+  "el": {
+    "easy": [
+      {
+        "id": "e_el_1",
+        "cyrillic": "ΝΕΡΟ",
+        "phonetic": "NERO",
+        "translation": "Water"
+      },
+      {
+        "id": "e_el_2",
+        "cyrillic": "ΜΗΛΟ",
+        "phonetic": "MILO",
+        "translation": "Apple"
+      },
+      {
+        "id": "e_el_3",
+        "cyrillic": "ΓΑΤΑ",
+        "phonetic": "GATA",
+        "translation": "Cat"
+      },
+      {
+        "id": "e_el_4",
+        "cyrillic": "ΣΠΙΤΙ",
+        "phonetic": "SPITI",
+        "translation": "House"
+      },
+      {
+        "id": "e_el_5",
+        "cyrillic": "ΦΩΣ",
+        "phonetic": "FOS",
+        "translation": "Light"
+      }
+    ],
+    "medium": [
+      {
+        "id": "m_el_1",
+        "cyrillic": "ΒΙΒΛΙΟ",
+        "phonetic": "VIVLIO",
+        "translation": "Book"
+      },
+      {
+        "id": "m_el_2",
+        "cyrillic": "ΔΕΝΤΡΟ",
+        "phonetic": "DENTRO",
+        "translation": "Tree"
+      },
+      {
+        "id": "m_el_3",
+        "cyrillic": "ΘΑΛΑΣΣΑ",
+        "phonetic": "THALASSA",
+        "translation": "Sea"
+      }
+    ],
+    "hard": [
+      {
+        "id": "h_el_1",
+        "cyrillic": "ΥΠΟΛΟΓΙΣΤΗΣ",
+        "phonetic": "YPOLOGISTIS",
+        "translation": "Computer"
+      },
+      {
+        "id": "h_el_2",
+        "cyrillic": "ΕΛΕΦΑΝΤΑΣ",
+        "phonetic": "ELEFANTAS",
+        "translation": "Elephant"
+      }
+    ]
+  },
   "ru": {
     "easy": [
       {

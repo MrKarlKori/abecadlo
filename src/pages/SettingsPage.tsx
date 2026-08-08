@@ -5,10 +5,11 @@ import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { getLessonModules } from '../data/mockLessonsData';
 import { Lock, Unlock, Plus, Minus, Check, Code } from 'lucide-react';
 import clsx from 'clsx';
+import { LanguageId } from '../types';
 
 export function SettingsPage() {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
   const modules = getLessonModules(langId);
   const { characters } = useLanguageData(langId);
   const { progress, toggleCompleted, completeAll, clearAllData } = useProgress(langId);

@@ -7,6 +7,8 @@ import { READING_DATA } from './ReadingTrainer';
 import { useLanguageData } from '../../hooks/useLanguageData';
 import { useExercisesProgress } from '../../hooks/useExercisesProgress';
 import { getAlphabetForLang } from '../../utils/alphabets';
+import { getLanguageName, getScriptName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 import clsx from 'clsx';
 
 interface ExerciseSessionProps {
@@ -17,7 +19,11 @@ interface ExerciseSessionProps {
 
 function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTask; onCorrect: () => void }) {
   const { lang } = useParams();
-  const alphabet = getAlphabetForLang(lang || 'ru');
+  const langId = lang || LanguageId.BELARUSIAN;
+  const alphabet = getAlphabetForLang(langId);
+  const scriptName = getScriptName(langId);
+  const langName = getLanguageName(langId);
+
   const targetWord = readingTask.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
   const [slots, setSlots] = useState<(string | null)[]>([]);
   const [pool, setPool] = useState<{ id: string; char: string; used: boolean }[]>([]);
@@ -34,7 +40,7 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
     const shuffledPool = allChars
       .map(char => ({ char, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map((itemTile, index) => ({ id: `tile-${index}`, char: itemTile.char, used: false }));
+      .map((item, index) => ({ id: `tile-${index}`, char: item.char, used: false }));
 
     setSlots(new Array(chars.length).fill(null));
     setPool(shuffledPool);
@@ -80,10 +86,10 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
   return (
     <div className="flex flex-col items-center p-6 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
       <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-2 text-center">
-        Build Cyrillic word from sound (Word Mirroring)
+        Build {scriptName} word from sound (Word Mirroring)
       </h3>
       <p className="font-serif text-sm italic text-vintage-ink/70 mb-6 text-center max-w-md">
-        Select letter tiles in order to construct the Cyrillic word matching the sound prompt below.
+        Select letter tiles in order to construct the {scriptName} word matching the sound prompt below.
       </p>
 
       <div className="text-4xl md:text-5xl font-serif font-bold text-vintage-ink mb-8 text-center drop-shadow-[2px_2px_0_#D9AD5B]">
@@ -99,7 +105,7 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
               key={`slot-${i}`}
               onClick={() => handleSlotClick(i)}
               className={clsx(
-                "w-12 h-16 border-2 border-dashed border-vintage-ink flex items-center justify-center text-2xl font-bold font-serif cursor-pointer transition-all",
+                "w-12 h-16 border-2 border-dashed border-vintage-ink flex items-center justify-center text-3xl font-bold font-serif cursor-pointer transition-all",
                 char ? "bg-white border-solid shadow-[2px_2px_0_0_#2C2A29]" : "bg-transparent",
                 status === 'error' && char ? "border-red-500 text-red-600 bg-red-50" : "",
                 status === 'success' && char ? "border-green-500 text-green-600 bg-green-50" : ""
@@ -111,20 +117,20 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
         })}
       </div>
 
-      {/* Tiles pool */}
+      {/* Tile Pool */}
       <div className="flex gap-2 mb-8 flex-wrap justify-center max-w-md">
-        {pool.map(itemTile => (
+        {pool.map(item => (
           <div
-            key={itemTile.id}
-            onClick={() => handlePoolClick(itemTile)}
+            key={item.id}
+            onClick={() => handlePoolClick(item)}
             className={clsx(
-              "w-12 h-16 border-2 border-vintage-ink flex items-center justify-center text-2xl font-bold font-serif transition-all select-none",
-              itemTile.used
+              "w-12 h-16 border-2 border-vintage-ink flex items-center justify-center text-3xl font-bold font-serif transition-all select-none",
+              item.used
                 ? "opacity-0 cursor-default"
                 : "bg-[#f5ebd6] shadow-[2px_2px_0_0_#2C2A29] cursor-pointer hover:-translate-y-1 hover:bg-white active:translate-y-0 active:shadow-none"
             )}
           >
-            {itemTile.char}
+            {item.char}
           </div>
         ))}
       </div>
@@ -135,8 +141,8 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
           onClick={checkAnswer}
           disabled={!isFull}
           className={clsx(
-            "w-full max-w-xs py-3 font-serif font-bold text-lg border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] transition-all cursor-pointer",
-            !isFull ? "opacity-50 cursor-not-allowed bg-gray-200" : "bg-vintage-gold hover:bg-[#d4a849]"
+            "w-full max-w-md py-3 font-serif font-bold text-lg border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] transition-all",
+            !isFull ? "opacity-50 cursor-not-allowed bg-gray-200" : "bg-vintage-gold hover:bg-[#d4a849] cursor-pointer"
           )}
         >
           Check Built Word
@@ -146,7 +152,7 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
           <p className="font-bold text-lg">Correct!</p>
           <p className="text-sm mt-1">{targetWord} = "{readingTask.translation}" [{readingTask.phonetic}]</p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(targetWord.toLowerCase())}#Russian`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(targetWord.toLowerCase())}#${langName}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"
@@ -167,7 +173,9 @@ function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTa
 
 export function ExerciseSession({ module, onClose, onComplete }: ExerciseSessionProps) {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
+  const scriptName = getScriptName(langId);
+  const langName = getLanguageName(langId);
   const { characters } = useLanguageData(langId);
   const { recordCompletedSession } = useExercisesProgress(langId);
 
@@ -187,7 +195,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
     const charPool = moduleChars.length > 0 ? moduleChars : characters;
 
     // 2. Scoped word pool for reading & building (simple words containing at least 1 module letter)
-    const langReadingData = READING_DATA[langId] || READING_DATA['ru'];
+    const langReadingData = READING_DATA[langId] || READING_DATA[LanguageId.BELARUSIAN];
     const allReadingItems = [...langReadingData.easy, ...langReadingData.medium, ...langReadingData.hard];
 
     const exampleReadingItems: ReadingTask[] = characters
@@ -301,7 +309,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
           key={key}
           target={currentStep.character || 'А'}
           showGuideOutline={true}
-          promptLabel="Trace the Cyrillic letter"
+          promptLabel={`Trace the ${scriptName} letter`}
           onSelfAssess={(success) => {
             if (success) handleCorrect();
             else handleCorrect();
@@ -313,11 +321,11 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
     if (currentStep.type === 'drawing-opposite') {
       const isEngToRu = currentStep.oppositeDirection === 'eng-to-ru';
       const promptLabel = isEngToRu
-        ? 'Draw the corresponding Cyrillic letter'
+        ? `Draw the corresponding ${scriptName} letter`
         : 'Draw the corresponding English sound/letter';
       const promptDisplay = isEngToRu ? currentStep.phonetic : currentStep.character;
       const answerTarget = isEngToRu ? currentStep.character : currentStep.phonetic;
-      const directionHint = isEngToRu ? 'English → Cyrillic' : 'Cyrillic → English';
+      const directionHint = isEngToRu ? `English → ${scriptName}` : `${scriptName} → English`;
 
       return (
         <HandWritingPad
@@ -341,7 +349,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
       return (
         <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
           <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-2 text-center">
-            Read the Cyrillic out loud (Easy Level)
+            Read the {scriptName} out loud (Easy Level)
           </h3>
           <p className="font-serif text-sm italic text-vintage-ink/70 mb-8 text-center max-w-md">
             Sound out the syllable or word below, then click Reveal to check your pronunciation.
@@ -361,7 +369,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
                   "{rItem.translation}"
                 </div>
                 <a 
-                  href={`https://en.wiktionary.org/wiki/${encodeURIComponent(rItem.cyrillic.replace(/[-'’]/g, '').toLowerCase())}#Russian`}
+                  href={`https://en.wiktionary.org/wiki/${encodeURIComponent(rItem.cyrillic.replace(/[-'’]/g, '').toLowerCase())}#${langName}`}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-block text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

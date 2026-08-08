@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { ArrowRight, Eye } from 'lucide-react';
 import { POETRY_DATA } from '../../data/exercises';
 import type { PoetryItem } from '../../data/exercises';
+import { getLanguageName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 
 export type { PoetryItem };
 export { POETRY_DATA };
@@ -13,12 +15,12 @@ interface PoetryTrainerProps {
 
 export function PoetryTrainer({ langId: langIdProp }: PoetryTrainerProps = {}) {
   const { lang } = useParams();
-  const langId = langIdProp || lang || 'ru';
+  const langId = langIdProp || lang || LanguageId.BELARUSIAN;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
-  const currentList = POETRY_DATA[langId] || POETRY_DATA['ru'];
+  const currentList = POETRY_DATA[langId] || POETRY_DATA[LanguageId.BELARUSIAN];
 
   useEffect(() => {
     const randomIdx = Math.floor(Math.random() * currentList.length);
@@ -36,6 +38,8 @@ export function PoetryTrainer({ langId: langIdProp }: PoetryTrainerProps = {}) {
     setCurrentIndex(nextIdx);
     setRevealed(false);
   };
+
+  const langName = getLanguageName(langId);
 
   return (
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
@@ -71,7 +75,7 @@ export function PoetryTrainer({ langId: langIdProp }: PoetryTrainerProps = {}) {
               ))}
             </div>
             <a 
-              href={`https://en.wiktionary.org/wiki/${encodeURIComponent(item.mainWord.toLowerCase())}#Russian`}
+              href={`https://en.wiktionary.org/wiki/${encodeURIComponent(item.mainWord.toLowerCase())}#${langName}`}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

@@ -3,10 +3,11 @@ import { Outlet, NavLink, useParams, useNavigate, useLocation } from 'react-rout
 import { BookA, GraduationCap, HelpCircle, PenTool, Settings } from 'lucide-react';
 import clsx from 'clsx';
 import { useLanguageData } from '../hooks/useLanguageData';
+import { LanguageId } from '../types';
 
 export function Layout() {
   const { lang } = useParams();
-  const langId = lang || 'be';
+  const langId = lang || LanguageId.BELARUSIAN;
   const { registryEntry, registry } = useLanguageData(langId);
   const navigate = useNavigate();
   const location = useLocation();

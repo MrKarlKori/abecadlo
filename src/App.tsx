@@ -5,12 +5,13 @@ import { LessonsPage } from './pages/LessonsPage';
 import { QuizPage } from './pages/QuizPage';
 import { ExercisesPage } from './pages/ExercisesPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { LanguageId } from './types';
 
 const getPreferredLang = (): string => {
   try {
-    return localStorage.getItem('abecadlo_preferred_language') || 'be';
+    return localStorage.getItem('abecadlo_preferred_language') || LanguageId.BELARUSIAN;
   } catch {
-    return 'be';
+    return LanguageId.BELARUSIAN;
   }
 };
 

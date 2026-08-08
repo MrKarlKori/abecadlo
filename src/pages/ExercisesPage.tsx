@@ -7,12 +7,14 @@ import { ReadingTrainer } from '../components/exercises/ReadingTrainer';
 import { TypingTrainer } from '../components/exercises/TypingTrainer';
 import { BuildingTrainer } from '../components/exercises/BuildingTrainer';
 import { PoetryTrainer } from '../components/exercises/PoetryTrainer';
+import { getScriptName } from '../utils/languageMap';
+import { LanguageId } from '../types';
 
 type ExerciseMode = 'drawing' | 'drawing-opposite' | 'reading' | 'typing' | 'building' | 'poetry';
 
 export function ExercisesPage() {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
   const { characters, loading, error } = useLanguageData(langId);
 
   const [activeMode, setActiveMode] = useState<ExerciseMode | null>(null);
@@ -53,6 +55,8 @@ export function ExercisesPage() {
     setOppositeDirection(Math.random() > 0.5 ? 'eng-to-ru' : 'ru-to-eng');
   };
 
+  const scriptName = getScriptName(langId);
+
   if (loading) return <div className="text-center font-serif text-2xl mt-12 animate-pulse">Loading Exercises...</div>;
   if (error) return <div className="text-center font-serif text-vintage-red text-xl mt-12">{error}</div>;
 
@@ -63,9 +67,9 @@ export function ExercisesPage() {
     const isEngToRu = oppositeDirection === 'eng-to-ru';
     const oppositePrompt = isEngToRu ? item.phonetic : item.char;
     const oppositeAnswer = isEngToRu ? item.char : item.phonetic;
-    const directionHintText = isEngToRu ? 'English → Cyrillic' : 'Cyrillic → English';
+    const directionHintText = isEngToRu ? `English → ${scriptName}` : `${scriptName} → English`;
     const promptLabelText = isEngToRu
-      ? 'Draw the corresponding Cyrillic letter'
+      ? `Draw the corresponding ${scriptName} letter`
       : 'Draw the corresponding English sound/letter';
 
     return (
@@ -94,7 +98,7 @@ export function ExercisesPage() {
               key={item.id}
               target={item.char}
               showGuideOutline={true}
-              promptLabel="Trace the Cyrillic letter"
+              promptLabel={`Trace the ${scriptName} letter`}
               onSelfAssess={() => {}}
             />
             <div className="mt-8 flex justify-between">
@@ -188,20 +192,20 @@ export function ExercisesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Exercise 1: Tracing */}
+        {/* Exercise 1: Letter Tracing */}
         <button
           onClick={() => startMode('drawing')}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
-          <div className="w-12 h-12 bg-vintage-gold border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-            <PenTool size={24} className="text-vintage-ink" />
+          <div className="w-12 h-12 bg-[#D9AD5B] text-vintage-ink border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+            <PenTool size={24} />
           </div>
           <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 1</span>
           <h2 className="text-xl font-bold uppercase tracking-wide text-vintage-ink mb-2">
             Letter Tracing
           </h2>
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
-            Draw all Cyrillic letters with a faded outline guide in random order.
+            Draw all {scriptName} letters with a faded outline guide in random order.
           </p>
           <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Tracing
@@ -221,7 +225,7 @@ export function ExercisesPage() {
             Draw Opposite
           </h2>
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
-            Given a letter sound or Cyrillic character, draw its corresponding counterpart without a guide outline.
+            Given a letter sound or {scriptName} character, draw its corresponding counterpart without a guide outline.
           </p>
           <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Draw Opposite
@@ -241,7 +245,7 @@ export function ExercisesPage() {
             Reading Practice
           </h2>
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
-            Practice reading Cyrillic syllables and words across 3 levels (Easy, Medium, Hard).
+            Practice reading {scriptName} syllables and words across 3 levels (Easy, Medium, Hard).
           </p>
           <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Reading
@@ -261,7 +265,7 @@ export function ExercisesPage() {
             Typing Word
           </h2>
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
-            Read Cyrillic words and type their English translation manually.
+            Read {scriptName} words and type their English translation manually.
           </p>
           <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Typing
@@ -281,7 +285,7 @@ export function ExercisesPage() {
             Building Word
           </h2>
           <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
-            Construct Cyrillic words letter-by-letter using interactive Cyrillic letter tiles.
+            Construct {scriptName} words letter-by-letter using interactive {scriptName} letter tiles.
           </p>
           <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
             Start Building

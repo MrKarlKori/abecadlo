@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import type { AppState, ProgressState } from '../types';
+import { LanguageId } from '../types';
 
 const STORAGE_KEY = 'alphabet-explorer-state';
 
 const DEFAULT_STATE: AppState = {
   version: 2,
-  activeLanguage: 'ru',
+  activeLanguage: LanguageId.BELARUSIAN,
   progress: {}
 };
 

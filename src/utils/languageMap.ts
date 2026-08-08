@@ -1,3 +1,5 @@
+import { LanguageId } from '../types';
+
 export interface LanguageMeta {
   id: string;
   name: string;
@@ -6,10 +8,22 @@ export interface LanguageMeta {
 }
 
 export const LANGUAGE_SCRIPT_MAP: Record<string, LanguageMeta> = {
-  ru: {
-    id: 'ru',
+  [LanguageId.RUSSIAN]: {
+    id: LanguageId.RUSSIAN,
     name: 'Russian',
     script: 'Russian Cyrillic',
+    targetScript: 'English Latin'
+  },
+  [LanguageId.BELARUSIAN]: {
+    id: LanguageId.BELARUSIAN,
+    name: 'Belarusian',
+    script: 'Belarusian Cyrillic',
+    targetScript: 'English Latin'
+  },
+  [LanguageId.GREEK]: {
+    id: LanguageId.GREEK,
+    name: 'Greek',
+    script: 'Greek',
     targetScript: 'English Latin'
   }
 };
@@ -34,5 +48,29 @@ export function getQuestionDirectionHint(
     return `${meta.script} \u2192 ${meta.targetScript}`;
   } else {
     return `${meta.targetScript} \u2192 ${meta.script}`;
+  }
+}
+
+export function getLanguageName(langId: string): string {
+  switch (langId) {
+    case LanguageId.BELARUSIAN:
+      return 'Belarusian';
+    case LanguageId.GREEK:
+      return 'Greek';
+    case LanguageId.RUSSIAN:
+      return 'Russian';
+    default:
+      return 'Belarusian';
+  }
+}
+
+export function getScriptName(langId: string): string {
+  switch (langId) {
+    case LanguageId.GREEK:
+      return 'Greek';
+    case LanguageId.BELARUSIAN:
+    case LanguageId.RUSSIAN:
+    default:
+      return 'Cyrillic';
   }
 }

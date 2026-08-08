@@ -1,4 +1,23 @@
 {
+  "el": [
+    {
+      "id": "p_el_1",
+      "title": "Καλημέρα (Good Morning)",
+      "lines": [
+        "Καλημέρα, ήλιε,",
+        "Καλημέρα, μέρα,",
+        "Όλα είναι ωραία,",
+        "Στον καθαρό αέρα."
+      ],
+      "translationLines": [
+        "Good morning, sun,",
+        "Good morning, day,",
+        "Everything is beautiful,",
+        "In the clean air."
+      ],
+      "mainWord": "ήλιε"
+    }
+  ],
   "ru": [
     {
       "id": "p1",

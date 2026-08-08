@@ -1,4 +1,5 @@
 import { LESSON_MODULES_DATA } from './exercises';
+import { LanguageId } from '../types';
 
 export type ExerciseType = 'drawing' | 'drawing-opposite' | 'reading-easy' | 'building-mirror';
 
@@ -27,8 +28,8 @@ export interface LessonModule {
 }
 
 export const getLessonModules = (langId: string): LessonModule[] => {
-  return LESSON_MODULES_DATA[langId] || LESSON_MODULES_DATA['ru'];
+  return LESSON_MODULES_DATA[langId] || LESSON_MODULES_DATA[LanguageId.BELARUSIAN];
 };
 
-export const lessonModules: LessonModule[] = getLessonModules('ru');
+export const lessonModules: LessonModule[] = getLessonModules(LanguageId.BELARUSIAN);
 
