@@ -3,11 +3,15 @@ import clsx from 'clsx';
 import { ArrowRight, RotateCcw } from 'lucide-react';
 import { READING_DATA } from './ReadingTrainer';
 import type { ReadingLevel, ReadingItem } from './ReadingTrainer';
-import { getAlphabetForLang } from '../../utils/alphabets';
+import { getAlphabetForLang, LATIN_ALPHABET } from '../../utils/alphabets';
 import { getLanguageName, getScriptName } from '../../utils/languageMap';
 import { LanguageId } from '../../types';
 
-export type PromptMode = 'mirror' | 'eng-translation' | 'ru-translation';
+export enum PromptMode {
+  MIRROR = 'mirror',
+  ENGLISH_TRANSLATION = 'eng-translation',
+  NATIVE_TRANSLATION = 'native-translation',
+}
 
 interface BuildingTrainerProps {
   langId?: string;
@@ -15,7 +19,7 @@ interface BuildingTrainerProps {
 
 export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrainerProps) {
   const [level, setLevel] = useState<ReadingLevel>('easy');
-  const [promptMode, setPromptMode] = useState<PromptMode>('mirror');
+  const [promptMode, setPromptMode] = useState<PromptMode>(PromptMode.MIRROR);
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const [slots, setSlots] = useState<(string | null)[]>([]);
@@ -29,24 +33,24 @@ export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrai
   const scriptName = getScriptName(langId);
 
   const getTargetAndAlphabet = (readingItem: ReadingItem, mode: PromptMode) => {
-    const CYRILLIC_ALPHABET = getAlphabetForLang(langId);
+    const TARGET_SCRIPT_ALPHABET = getAlphabetForLang(langId);
     
-    if (mode === 'ru-translation') {
+    if (mode === PromptMode.NATIVE_TRANSLATION) {
       const rawEng = readingItem.translation.toUpperCase().replace(/[^A-Z]/g, '');
       const cleanEng = rawEng.length > 0 ? rawEng : 'YES';
       return {
         targetWord: cleanEng,
-        alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+        alphabet: LATIN_ALPHABET,
         promptLabel: `Build English translation for ${langName} prompt`,
         promptDisplay: readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase()
       };
     }
 
     const cleanCyr = readingItem.cyrillic.replace(/[-'’ ]/g, '').toUpperCase();
-    if (mode === 'eng-translation') {
+    if (mode === PromptMode.ENGLISH_TRANSLATION) {
       return {
         targetWord: cleanCyr,
-        alphabet: CYRILLIC_ALPHABET,
+        alphabet: TARGET_SCRIPT_ALPHABET,
         promptLabel: `Build ${scriptName} word for English translation`,
         promptDisplay: `"${readingItem.translation.toUpperCase()}"`
       };
@@ -55,7 +59,7 @@ export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrai
     // default: mirror letters (phonetic sound -> target word)
     return {
       targetWord: cleanCyr,
-      alphabet: CYRILLIC_ALPHABET,
+      alphabet: TARGET_SCRIPT_ALPHABET,
       promptLabel: `Mirror phonetic sound to ${scriptName} letters`,
       promptDisplay: `[${readingItem.phonetic}]`
     };
@@ -173,10 +177,10 @@ export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrai
       <div className="flex gap-1.5 mb-8 w-full max-w-md bg-white p-2 border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29]">
         <button
           type="button"
-          onClick={() => setPromptMode('mirror')}
+          onClick={() => setPromptMode(PromptMode.MIRROR)}
           className={clsx(
             "flex-1 py-1.5 px-1 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer border border-vintage-ink text-center",
-            promptMode === 'mirror'
+            promptMode === PromptMode.MIRROR
               ? "bg-vintage-gold text-vintage-ink shadow-[1px_1px_0_0_#2C2A29]"
               : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
           )}
@@ -185,10 +189,10 @@ export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrai
         </button>
         <button
           type="button"
-          onClick={() => setPromptMode('eng-translation')}
+          onClick={() => setPromptMode(PromptMode.ENGLISH_TRANSLATION)}
           className={clsx(
             "flex-1 py-1.5 px-1 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer border border-vintage-ink text-center",
-            promptMode === 'eng-translation'
+            promptMode === PromptMode.ENGLISH_TRANSLATION
               ? "bg-vintage-gold text-vintage-ink shadow-[1px_1px_0_0_#2C2A29]"
               : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
           )}
@@ -197,10 +201,10 @@ export function BuildingTrainer({ langId = LanguageId.BELARUSIAN }: BuildingTrai
         </button>
         <button
           type="button"
-          onClick={() => setPromptMode('ru-translation')}
+          onClick={() => setPromptMode(PromptMode.NATIVE_TRANSLATION)}
           className={clsx(
             "flex-1 py-1.5 px-1 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer border border-vintage-ink text-center",
-            promptMode === 'ru-translation'
+            promptMode === PromptMode.NATIVE_TRANSLATION
               ? "bg-vintage-gold text-vintage-ink shadow-[1px_1px_0_0_#2C2A29]"
               : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
           )}

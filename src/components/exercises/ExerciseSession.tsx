@@ -194,9 +194,9 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
     );
     const charPool = moduleChars.length > 0 ? moduleChars : characters;
 
-    // 2. Scoped word pool for reading & building (simple words containing at least 1 module letter)
+    // 2. Scoped word pool for reading & building (lessons use only words from category Simple)
     const langReadingData = READING_DATA[langId] || READING_DATA[LanguageId.BELARUSIAN];
-    const allReadingItems = [...langReadingData.easy, ...langReadingData.medium, ...langReadingData.hard];
+    const allReadingItems = langReadingData.easy;
 
     const exampleReadingItems: ReadingTask[] = characters
       .filter(c => module.letters.some(l => l.toUpperCase() === c.character.toUpperCase()) && c.example)

@@ -12,6 +12,10 @@ export const GREEK_ALPHABET = [
   'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω'
 ];
 
+export const LATIN_ALPHABET = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+];
+
 export const getAlphabetForLang = (langId: string): string[] => {
   if (langId === LanguageId.BELARUSIAN) return BELARUSIAN_CYRILLIC_ALPHABET;
   if (langId === LanguageId.GREEK) return GREEK_ALPHABET;

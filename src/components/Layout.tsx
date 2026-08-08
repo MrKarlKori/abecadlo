@@ -27,8 +27,8 @@ export function Layout() {
     } catch (e) {
       console.error(e);
     }
-    const currentPath = location.pathname.split('/').slice(2).join('/');
-    navigate(`/${newLang}/${currentPath}`);
+    const mainSection = location.pathname.split('/')[2] || 'alphabet';
+    navigate(`/${newLang}/${mainSection}`);
   };
 
   const navItems = [

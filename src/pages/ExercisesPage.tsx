@@ -8,9 +8,7 @@ import { TypingTrainer } from '../components/exercises/TypingTrainer';
 import { BuildingTrainer } from '../components/exercises/BuildingTrainer';
 import { PoetryTrainer } from '../components/exercises/PoetryTrainer';
 import { getScriptName } from '../utils/languageMap';
-import { LanguageId } from '../types';
-
-type ExerciseMode = 'drawing' | 'drawing-opposite' | 'reading' | 'typing' | 'building' | 'poetry';
+import { LanguageId, ExerciseMode } from '../types';
 
 export function ExercisesPage() {
   const { lang } = useParams();
@@ -18,6 +16,11 @@ export function ExercisesPage() {
   const { characters, loading, error } = useLanguageData(langId);
 
   const [activeMode, setActiveMode] = useState<ExerciseMode | null>(null);
+
+  // Reset active exercise mode when changing active language
+  useEffect(() => {
+    setActiveMode(null);
+  }, [langId]);
 
   // Drawing practice state
   const [shuffledLetters, setShuffledLetters] = useState<{ id: string; char: string; phonetic: string }[]>([]);
@@ -79,20 +82,20 @@ export function ExercisesPage() {
             onClick={() => setActiveMode(null)}
             className="text-vintage-ink hover:text-vintage-blue font-serif font-bold underline underline-offset-4 decoration-2 cursor-pointer"
           >
-            &larr; Back to Exercises Dashboard
+            &larr; Back to Exercises
           </button>
           <span className="font-mono text-sm font-bold uppercase tracking-wider text-vintage-ink/70">
-            {activeMode === 'drawing' && `Letter ${letterIndex + 1} of ${shuffledLetters.length}`}
-            {activeMode === 'drawing-opposite' && `Letter ${letterIndex + 1} of ${shuffledLetters.length}`}
-            {activeMode === 'reading' && 'Reading Practice'}
-            {activeMode === 'typing' && 'Typing Word'}
-            {activeMode === 'building' && 'Building Word'}
-            {activeMode === 'poetry' && 'Rhymes & Sentences'}
+            {activeMode === ExerciseMode.DRAWING && `Letter ${letterIndex + 1} of ${shuffledLetters.length}`}
+            {activeMode === ExerciseMode.DRAWING_OPPOSITE && `Letter ${letterIndex + 1} of ${shuffledLetters.length}`}
+            {activeMode === ExerciseMode.READING && 'Reading Practice'}
+            {activeMode === ExerciseMode.TYPING && 'Typing Word'}
+            {activeMode === ExerciseMode.BUILDING && 'Building Word'}
+            {activeMode === ExerciseMode.POETRY && 'Rhymes & Sentences'}
           </span>
         </div>
 
         {/* Practice Mode 1: Letter Tracing */}
-        {activeMode === 'drawing' && (
+        {activeMode === ExerciseMode.DRAWING && (
           <div className="flex-1 flex flex-col justify-center">
             <HandWritingPad
               key={item.id}
@@ -119,7 +122,7 @@ export function ExercisesPage() {
         )}
 
         {/* Practice Mode 2: Draw Opposite */}
-        {activeMode === 'drawing-opposite' && (
+        {activeMode === ExerciseMode.DRAWING_OPPOSITE && (
           <div className="flex-1 flex flex-col justify-center">
             <HandWritingPad
               key={`${item.id}-${oppositeDirection}`}
@@ -149,28 +152,28 @@ export function ExercisesPage() {
         )}
 
         {/* Practice Mode 3: Reading Practice */}
-        {activeMode === 'reading' && (
+        {activeMode === ExerciseMode.READING && (
           <div className="flex-1 flex flex-col justify-center">
             <ReadingTrainer langId={langId} />
           </div>
         )}
 
         {/* Practice Mode 4: Typing Word */}
-        {activeMode === 'typing' && (
+        {activeMode === ExerciseMode.TYPING && (
           <div className="flex-1 flex flex-col justify-center">
             <TypingTrainer langId={langId} />
           </div>
         )}
 
         {/* Practice Mode 5: Building Word */}
-        {activeMode === 'building' && (
+        {activeMode === ExerciseMode.BUILDING && (
           <div className="flex-1 flex flex-col justify-center">
             <BuildingTrainer langId={langId} />
           </div>
         )}
 
         {/* Practice Mode 6: Rhymes & Sentences */}
-        {activeMode === 'poetry' && (
+        {activeMode === ExerciseMode.POETRY && (
           <div className="flex-1 flex flex-col justify-center">
             <PoetryTrainer langId={langId} />
           </div>
@@ -194,7 +197,7 @@ export function ExercisesPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Exercise 1: Letter Tracing */}
         <button
-          onClick={() => startMode('drawing')}
+          onClick={() => startMode(ExerciseMode.DRAWING)}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
           <div className="w-12 h-12 bg-[#D9AD5B] text-vintage-ink border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
@@ -214,7 +217,7 @@ export function ExercisesPage() {
 
         {/* Exercise 2: Opposite Drawing */}
         <button
-          onClick={() => startMode('drawing-opposite')}
+          onClick={() => startMode(ExerciseMode.DRAWING_OPPOSITE)}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
           <div className="w-12 h-12 bg-[#8B5CF6] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
@@ -234,7 +237,7 @@ export function ExercisesPage() {
 
         {/* Exercise 3: Reading Trainer */}
         <button
-          onClick={() => startMode('reading')}
+          onClick={() => startMode(ExerciseMode.READING)}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
           <div className="w-12 h-12 bg-[#10B981] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
@@ -254,7 +257,7 @@ export function ExercisesPage() {
 
         {/* Exercise 4: Typing */}
         <button
-          onClick={() => startMode('typing')}
+          onClick={() => startMode(ExerciseMode.TYPING)}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
           <div className="w-12 h-12 bg-[#3A6B7E] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
@@ -274,7 +277,7 @@ export function ExercisesPage() {
 
         {/* Exercise 5: Building */}
         <button
-          onClick={() => startMode('building')}
+          onClick={() => startMode(ExerciseMode.BUILDING)}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
           <div className="w-12 h-12 bg-[#C84B31] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
@@ -294,7 +297,7 @@ export function ExercisesPage() {
 
         {/* Exercise 6: Rhymes & Sentences */}
         <button
-          onClick={() => startMode('poetry')}
+          onClick={() => startMode(ExerciseMode.POETRY)}
           className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
         >
           <div className="w-12 h-12 bg-[#D97706] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">

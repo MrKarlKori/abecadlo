@@ -48,11 +48,6 @@ export function QuizPage() {
   const { progress, updateQuizScore } = useProgress(langId);
 
   const [practiceHighScore, setPracticeHighScore] = useState(0);
-
-  useEffect(() => {
-    setPracticeHighScore(getPracticeHighScore(langId));
-  }, [langId]);
-
   const [activeQuizType, setActiveQuizType] = useState<QuizType>('alphabet');
   const [direction, setDirection] = useState<QuizDirection>('random');
 
@@ -61,6 +56,15 @@ export function QuizPage() {
   const [score, setScore] = useState(0);
   const [quizState, setQuizState] = useState<'start' | 'playing' | 'finished'>('start');
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+
+  useEffect(() => {
+    setPracticeHighScore(getPracticeHighScore(langId));
+    setQuizState('start');
+    setQuestions([]);
+    setCurrentIndex(0);
+    setScore(0);
+    setSelectedAnswer(null);
+  }, [langId]);
 
   // Generate 10 questions for Alphabet Quiz
   const generateAlphabetQuiz = () => {

@@ -4,6 +4,15 @@ export enum LanguageId {
   GREEK = 'el',
 }
 
+export enum ExerciseMode {
+  DRAWING = 'drawing',
+  DRAWING_OPPOSITE = 'drawing-opposite',
+  READING = 'reading',
+  TYPING = 'typing',
+  BUILDING = 'building',
+  POETRY = 'poetry',
+}
+
 export interface Example {
   native: string;
   translation: string;
