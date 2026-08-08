@@ -61,15 +61,16 @@ export function useExercisesProgress() {
   };
 
   const recordCompletedSession = (moduleId: string) => {
-    const currentSessions = progress.moduleSessions[moduleId] || 0;
+    const current = getInitialProgress();
+    const currentSessions = current.moduleSessions[moduleId] || 0;
     const newSessions = Math.min(10, currentSessions + 1);
 
     const updatedSessions = {
-      ...progress.moduleSessions,
+      ...current.moduleSessions,
       [moduleId]: newSessions
     };
 
-    let updatedUnlocked = [...progress.unlockedModules];
+    let updatedUnlocked = [...current.unlockedModules];
 
     if (newSessions >= 10) {
       const allModuleIds = ['module-1', 'module-2', 'module-3', 'module-4'];
@@ -90,12 +91,13 @@ export function useExercisesProgress() {
 
   const setModuleSessions = (moduleId: string, sessions: number) => {
     const validSessions = Math.max(0, Math.min(10, sessions));
+    const current = getInitialProgress();
     const updatedSessions = {
-      ...progress.moduleSessions,
+      ...current.moduleSessions,
       [moduleId]: validSessions
     };
 
-    let updatedUnlocked = [...progress.unlockedModules];
+    let updatedUnlocked = [...current.unlockedModules];
     const allModuleIds = ['module-1', 'module-2', 'module-3', 'module-4'];
 
     allModuleIds.forEach((mId, idx) => {
@@ -115,10 +117,11 @@ export function useExercisesProgress() {
   };
 
   const unlockModule = (moduleId: string) => {
-    if (!progress.unlockedModules.includes(moduleId)) {
+    const current = getInitialProgress();
+    if (!current.unlockedModules.includes(moduleId)) {
       saveProgress({
-        ...progress,
-        unlockedModules: [...progress.unlockedModules, moduleId]
+        ...current,
+        unlockedModules: [...current.unlockedModules, moduleId]
       });
     }
   };
