@@ -14,6 +14,12 @@ const mockRegistry = [
     name: 'Russian',
     theme: 'soviet-vintage',
     dataFile: '/data/russian.json'
+  },
+  {
+    id: 'el',
+    name: 'Greek',
+    theme: 'soviet-vintage',
+    dataFile: '/data/greek.json'
   }
 ];
 
@@ -60,6 +66,41 @@ const mockCharacters = [
   }
 ];
 
+const mockGreekCharacters = [
+  {
+    id: 'Alpha',
+    character: 'Α',
+    characterLower: 'α',
+    phonetic: 'A',
+    soundsLike: 'a as in father',
+    example: { native: 'Αγάπη', translation: 'Love', transliteration: 'Agapi' }
+  },
+  {
+    id: 'Beta',
+    character: 'Β',
+    characterLower: 'β',
+    phonetic: 'V',
+    soundsLike: 'v as in van',
+    example: { native: 'Βιβλίο', translation: 'Book', transliteration: 'Vivlio' }
+  },
+  {
+    id: 'Gamma',
+    character: 'Γ',
+    characterLower: 'γ',
+    phonetic: 'G/Y',
+    soundsLike: 'y as in yes before e/i, soft g otherwise',
+    example: { native: 'Γάτα', translation: 'Cat', transliteration: 'Gata' }
+  },
+  {
+    id: 'Delta',
+    character: 'Δ',
+    characterLower: 'δ',
+    phonetic: 'D/TH',
+    soundsLike: 'th as in that',
+    example: { native: 'Δέντρο', translation: 'Tree', transliteration: 'Dentro' }
+  }
+];
+
 globalThis.fetch = vi.fn((url: string | URL | Request) => {
   const urlString = url.toString();
   if (urlString.includes('registry.json')) {
@@ -68,7 +109,13 @@ globalThis.fetch = vi.fn((url: string | URL | Request) => {
       json: () => Promise.resolve(mockRegistry),
     } as Response);
   }
-  if (urlString.includes('russian.json') || urlString.includes('data/')) {
+  if (urlString.includes('greek.json')) {
+    return Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockGreekCharacters),
+    } as Response);
+  }
+  if (urlString.includes('russian.json') || urlString.includes('belarusian.json') || urlString.includes('data/')) {
     return Promise.resolve({
       ok: true,
       json: () => Promise.resolve(mockCharacters),

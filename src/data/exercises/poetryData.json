@@ -2,20 +2,851 @@
   "el": [
     {
       "id": "p_el_1",
-      "title": "Καλημέρα (Good Morning)",
+      "title": "Φεγγαράκι μου λαμπρό (My Bright Little Moon)",
       "lines": [
-        "Καλημέρα, ήλιε,",
-        "Καλημέρα, μέρα,",
-        "Όλα είναι ωραία,",
-        "Στον καθαρό αέρα."
+        "Φεγγαράκι μου λαμπρό,",
+        "Φέγγε μου να περπατώ,",
+        "Να πηγαίνω στο σχολειό,",
+        "Να μαθαίνω γράμματα."
       ],
       "translationLines": [
-        "Good morning, sun,",
-        "Good morning, day,",
-        "Everything is beautiful,",
-        "In the clean air."
+        "My bright little moon,",
+        "Shine for me so I can walk,",
+        "So I can go to school,",
+        "To learn letters (to read and write)."
       ],
-      "mainWord": "ήλιε"
+      "mainWord": "φεγγάρι"
+    },
+    {
+      "id": "p_el_2",
+      "title": "Ήλιος (Sun)",
+      "lines": [
+        "Βγήκε ο ήλιος στο βουνό,",
+        "Λάμπει όλο το χωριό,",
+        "Ξύπνησαν τα πουλάκια,",
+        "Τραγουδούν τα παιδάκια."
+      ],
+      "translationLines": [
+        "The sun came out on the mountain,",
+        "The whole village is shining,",
+        "The little birds woke up,",
+        "The little children are singing."
+      ],
+      "mainWord": "ήλιος"
+    },
+    {
+      "id": "p_el_3",
+      "title": "Κούνια Μπέλα (Swing Bella)",
+      "lines": [
+        "Κούνια μπέλα,",
+        "Έπεσε η κοπέλα,",
+        "Μέσα στα λουλούδια,",
+        "Και στα τριαντάφυλλα."
+      ],
+      "translationLines": [
+        "Swing bella,",
+        "The girl fell,",
+        "Inside the flowers,",
+        "And the roses."
+      ],
+      "mainWord": "λουλούδια"
+    },
+    {
+      "id": "p_el_4",
+      "title": "Η μικρή Ελένη (Little Helen)",
+      "lines": [
+        "Η μικρή Ελένη",
+        "Κάθεται και κλαίει,",
+        "Γιατί δεν της δίνουν",
+        "Το μικρό της παπί."
+      ],
+      "translationLines": [
+        "Little Helen",
+        "Sits and cries,",
+        "Because they don't give her",
+        "Her little duck."
+      ],
+      "mainWord": "Ελένη"
+    },
+    {
+      "id": "p_el_5",
+      "title": "Βρέχει βρέχει (It's Raining)",
+      "lines": [
+        "Βρέχει βρέχει και χιονίζει,",
+        "Και ο μύλος γυρίζει,",
+        "Τα πουλάκια κρυώνουν,",
+        "Και οι κότες μερώνουν."
+      ],
+      "translationLines": [
+        "It's raining, it's raining and snowing,",
+        "And the mill is turning,",
+        "The little birds are cold,",
+        "And the hens are tame."
+      ],
+      "mainWord": "βρέχει"
+    },
+    {
+      "id": "p_el_6",
+      "title": "Παροιμία (Proverb) - Apple",
+      "lines": [
+        "Ένα μήλο την ημέρα,",
+        "Τον γιατρό",
+        "Τον κάνει",
+        "Πέρα."
+      ],
+      "translationLines": [
+        "An apple a day,",
+        "Makes the doctor",
+        "Go",
+        "Away."
+      ],
+      "mainWord": "μήλο"
+    },
+    {
+      "id": "p_el_7",
+      "title": "Παροιμία (Proverb) - Morning bird",
+      "lines": [
+        "Όποιος νωρίς",
+        "Ξυπνάει,",
+        "Πολλά",
+        "Βρίσκει."
+      ],
+      "translationLines": [
+        "Whoever wakes up",
+        "Early,",
+        "Finds",
+        "A lot."
+      ],
+      "mainWord": "νωρίς"
+    },
+    {
+      "id": "p_el_8",
+      "title": "Παροιμία (Proverb) - Silence",
+      "lines": [
+        "Η σιωπή",
+        "Είναι",
+        "Χρυσός.",
+        "(Silence is golden)"
+      ],
+      "translationLines": [
+        "Silence",
+        "Is",
+        "Gold.",
+        "(Silence is golden)"
+      ],
+      "mainWord": "σιωπή"
+    },
+    {
+      "id": "p_el_9",
+      "title": "Παροιμία (Proverb) - Haste",
+      "lines": [
+        "Όποιος βιάζεται",
+        "Σκοντάφτει.",
+        "Πρέπει να πας",
+        "Αργά."
+      ],
+      "translationLines": [
+        "Whoever hurries",
+        "Stumbles.",
+        "You must go",
+        "Slowly."
+      ],
+      "mainWord": "βιάζεται"
+    },
+    {
+      "id": "p_el_10",
+      "title": "Παροιμία (Proverb) - Water",
+      "lines": [
+        "Σταγόνα, σταγόνα",
+        "Γεμίζει",
+        "Το",
+        "Ποτήρι."
+      ],
+      "translationLines": [
+        "Drop by drop",
+        "Fills",
+        "The",
+        "Glass."
+      ],
+      "mainWord": "σταγόνα"
+    },
+    {
+      "id": "p_el_11",
+      "title": "Αρχαία Ποίηση - Σαπφώ (Sappho Fragment)",
+      "lines": [
+        "Έδυσε το φεγγάρι",
+        "Και οι Πλειάδες,",
+        "Μεσάνυχτα,",
+        "Κι εγώ κοιμάμαι μόνη."
+      ],
+      "translationLines": [
+        "The moon has set",
+        "And the Pleiades,",
+        "It is midnight,",
+        "And I sleep alone."
+      ],
+      "mainWord": "φεγγάρι"
+    },
+    {
+      "id": "p_el_12",
+      "title": "Αρχαία Ποίηση - Όμηρος (Homer's Odyssey Intro)",
+      "lines": [
+        "Τον άνδρα, Μούσα,",
+        "Τον πολύτροπο τραγούδα μου,",
+        "Που πλανήθηκε πολύ,",
+        "Όταν πήρε την Τροία."
+      ],
+      "translationLines": [
+        "Sing to me, Muse, of the man",
+        "Of many turns,",
+        "Who wandered far and wide,",
+        "After he took Troy."
+      ],
+      "mainWord": "Μούσα"
+    },
+    {
+      "id": "p_el_13",
+      "title": "Το τραγούδι της βροχής (Song of the Rain)",
+      "lines": [
+        "Πέφτει η βροχή",
+        "Ψιλή ψιλή,",
+        "Ποτίζει τη",
+        "Γη τη διψασμένη."
+      ],
+      "translationLines": [
+        "The rain falls",
+        "Fine, fine,",
+        "It waters the",
+        "Thirsty earth."
+      ],
+      "mainWord": "βροχή"
+    },
+    {
+      "id": "p_el_14",
+      "title": "Χελιδόνι (Swallow)",
+      "lines": [
+        "Χελιδόνι πέταξε",
+        "Στον ουρανό ψηλά,",
+        "Έφερε την άνοιξη",
+        "Και τη χαρά."
+      ],
+      "translationLines": [
+        "A swallow flew",
+        "High in the sky,",
+        "It brought spring",
+        "And joy."
+      ],
+      "mainWord": "Χελιδόνι"
+    },
+    {
+      "id": "p_el_15",
+      "title": "Ο Ψαράς (The Fisherman)",
+      "lines": [
+        "Ο ψαράς",
+        "Ρίχνει τα δίχτυα",
+        "Στην απέραντη",
+        "Τη θάλασσα."
+      ],
+      "translationLines": [
+        "The fisherman",
+        "Casts the nets",
+        "Into the boundless",
+        "Sea."
+      ],
+      "mainWord": "θάλασσα"
+    },
+    {
+      "id": "p_el_16",
+      "title": "Το Δέντρο (The Tree)",
+      "lines": [
+        "Στέκει το δέντρο",
+        "Μόνο του,",
+        "Με τα πράσινα",
+        "Του φύλλα."
+      ],
+      "translationLines": [
+        "The tree stands",
+        "Alone,",
+        "With its green",
+        "Leaves."
+      ],
+      "mainWord": "δέντρο"
+    },
+    {
+      "id": "p_el_17",
+      "title": "Νύχτα (Night)",
+      "lines": [
+        "Έπεσε η νύχτα",
+        "Σκοτεινή,",
+        "Άναψαν",
+        "Τα αστέρια."
+      ],
+      "translationLines": [
+        "The night fell",
+        "Dark,",
+        "The stars",
+        "Lit up."
+      ],
+      "mainWord": "νύχτα"
+    },
+    {
+      "id": "p_el_18",
+      "title": "Παροιμία (Proverb) - Words",
+      "lines": [
+        "Τα πολλά",
+        "Λόγια",
+        "Είναι",
+        "Φτώχεια."
+      ],
+      "translationLines": [
+        "Many",
+        "Words",
+        "Are",
+        "Poverty."
+      ],
+      "mainWord": "λόγια"
+    },
+    {
+      "id": "p_el_19",
+      "title": "Παροιμία (Proverb) - House",
+      "lines": [
+        "Σπίτι μου",
+        "Σπιτάκι μου",
+        "Και φτωχό",
+        "Καλυβάκι μου."
+      ],
+      "translationLines": [
+        "My home",
+        "My little home",
+        "And my poor",
+        "Little hut."
+      ],
+      "mainWord": "Σπίτι"
+    },
+    {
+      "id": "p_el_20",
+      "title": "Παροιμία (Proverb) - Eyes",
+      "lines": [
+        "Μάτια που",
+        "Δεν βλέπονται,",
+        "Γρήγορα",
+        "Λησμονιούνται."
+      ],
+      "translationLines": [
+        "Eyes that",
+        "Are not seen,",
+        "Are quickly",
+        "Forgotten."
+      ],
+      "mainWord": "Μάτια"
+    },
+    {
+      "id": "p_el_21",
+      "title": "Η Άνοιξη (Spring)",
+      "lines": [
+        "Ήρθε η άνοιξη",
+        "Με τα λουλούδια,",
+        "Γελάει η φύση",
+        "Με χίλια χρώματα."
+      ],
+      "translationLines": [
+        "Spring has come",
+        "With its flowers,",
+        "Nature is smiling",
+        "With a thousand colors."
+      ],
+      "mainWord": "άνοιξη"
+    },
+    {
+      "id": "p_el_22",
+      "title": "Το Καλοκαίρι (Summer)",
+      "lines": [
+        "Ήλιος ζεστός",
+        "Χρυσή η άμμος,",
+        "Πάμε για μπάνιο",
+        "Στη γαλάζια θάλασσα."
+      ],
+      "translationLines": [
+        "Warm sun",
+        "The sand is golden,",
+        "Let's go swimming",
+        "In the blue sea."
+      ],
+      "mainWord": "θάλασσα"
+    },
+    {
+      "id": "p_el_23",
+      "title": "Το Φθινόπωρο (Autumn)",
+      "lines": [
+        "Πέφτουν τα φύλλα",
+        "Από τα δέντρα,",
+        "Έρχεται κρύο",
+        "Και αέρας δυνατός."
+      ],
+      "translationLines": [
+        "Leaves are falling",
+        "From the trees,",
+        "Cold is coming",
+        "And a strong wind."
+      ],
+      "mainWord": "φύλλα"
+    },
+    {
+      "id": "p_el_24",
+      "title": "Ο Χειμώνας (Winter)",
+      "lines": [
+        "Άσπρο το χιόνι",
+        "Καλύπτει τα πάντα,",
+        "Ανάβει η φωτιά",
+        "Στο ζεστό τζάκι."
+      ],
+      "translationLines": [
+        "White snow",
+        "Covers everything,",
+        "The fire is lit",
+        "In the warm fireplace."
+      ],
+      "mainWord": "χιόνι"
+    },
+    {
+      "id": "p_el_25",
+      "title": "Ο Αέρας (The Wind)",
+      "lines": [
+        "Φυσάει ο αέρας",
+        "Πολύ δυνατά,",
+        "Τα δέντρα λυγίζουν",
+        "Σαν μικρά παιδιά."
+      ],
+      "translationLines": [
+        "The wind blows",
+        "Very strongly,",
+        "The trees bend",
+        "Like little children."
+      ],
+      "mainWord": "αέρας"
+    },
+    {
+      "id": "p_el_26",
+      "title": "Ο Γάτος (The Cat)",
+      "lines": [
+        "Ο γάτος μας",
+        "Κοιμάται όλη μέρα,",
+        "Αλλά το βράδυ",
+        "Κυνηγάει ποντίκια."
+      ],
+      "translationLines": [
+        "Our cat",
+        "Sleeps all day,",
+        "But at night",
+        "He chases mice."
+      ],
+      "mainWord": "γάτος"
+    },
+    {
+      "id": "p_el_27",
+      "title": "Ο Σκύλος (The Dog)",
+      "lines": [
+        "Ο φίλος μου",
+        "Ο πιστός μου σκύλος,",
+        "Με περιμένει",
+        "Πάντα στην πόρτα."
+      ],
+      "translationLines": [
+        "My friend",
+        "My loyal dog,",
+        "Waits for me",
+        "Always at the door."
+      ],
+      "mainWord": "σκύλος"
+    },
+    {
+      "id": "p_el_28",
+      "title": "Το Πουλάκι (The Little Bird)",
+      "lines": [
+        "Ένα μικρό",
+        "Όμορφο πουλάκι,",
+        "Τραγουδάει γλυκά",
+        "Πάνω στο κλαδί."
+      ],
+      "translationLines": [
+        "A small",
+        "Beautiful little bird,",
+        "Sings sweetly",
+        "On the branch."
+      ],
+      "mainWord": "πουλάκι"
+    },
+    {
+      "id": "p_el_29",
+      "title": "Παροιμία - Φίλος (Friend)",
+      "lines": [
+        "Ο καλός",
+        "Ο φίλος,",
+        "Στην ανάγκη",
+        "Φαίνεται."
+      ],
+      "translationLines": [
+        "The good",
+        "Friend,",
+        "In times of need",
+        "Is seen."
+      ],
+      "mainWord": "φίλος"
+    },
+    {
+      "id": "p_el_30",
+      "title": "Παροιμία - Βουνό (Mountain)",
+      "lines": [
+        "Βουνό",
+        "Με",
+        "Βουνό,",
+        "Δεν σμίγει."
+      ],
+      "translationLines": [
+        "Mountain",
+        "With",
+        "Mountain,",
+        "Does not meet."
+      ],
+      "mainWord": "Βουνό"
+    },
+    {
+      "id": "p_el_31",
+      "title": "Αρχαία Ποίηση - Ιλιάδα (Iliad Intro)",
+      "lines": [
+        "Μήνιν άειδε,",
+        "Θεά,",
+        "Πηληιάδεω",
+        "Αχιλλήος."
+      ],
+      "translationLines": [
+        "Sing, Goddess,",
+        "The anger,",
+        "Of Peleus' son",
+        "Achilles."
+      ],
+      "mainWord": "Θεά"
+    },
+    {
+      "id": "p_el_32",
+      "title": "Καβάφης - Ιθάκη (Cavafy - Ithaca)",
+      "lines": [
+        "Σαν βγεις",
+        "Στον πηγαιμό",
+        "Για την",
+        "Ιθάκη."
+      ],
+      "translationLines": [
+        "As you set out",
+        "On the journey",
+        "To",
+        "Ithaca."
+      ],
+      "mainWord": "Ιθάκη"
+    },
+    {
+      "id": "p_el_33",
+      "title": "Σεφέρης - Άρνηση (Seferis - Denial)",
+      "lines": [
+        "Στο περιγιάλι",
+        "Το κρυφό",
+        "Κι άσπρο",
+        "Σαν περιστέρι."
+      ],
+      "translationLines": [
+        "On the secret",
+        "Seashore",
+        "And white",
+        "Like a dove."
+      ],
+      "mainWord": "περιστέρι"
+    },
+    {
+      "id": "p_el_34",
+      "title": "Ελύτης - Ήλιος (Elytis - Sun)",
+      "lines": [
+        "Ο ήλιος",
+        "Ο ηλιάτορας,",
+        "Ο πετροπαιχνιδιάτορας."
+      ],
+      "translationLines": [
+        "The sun",
+        "The sun-ruler,",
+        "The stone-player."
+      ],
+      "mainWord": "ήλιος"
+    },
+    {
+      "id": "p_el_35",
+      "title": "Ρίτσος - Ρωμιοσύνη (Ritsos - Romiosini)",
+      "lines": [
+        "Αυτά τα δέντρα",
+        "Δεν βολεύονται",
+        "Με λιγότερο",
+        "Ουρανό."
+      ],
+      "translationLines": [
+        "These trees",
+        "Do not settle",
+        "For less",
+        "Sky."
+      ],
+      "mainWord": "δέντρα"
+    },
+    {
+      "id": "p_el_36",
+      "title": "Εθνικός Ύμνος (National Anthem)",
+      "lines": [
+        "Σε γνωρίζω",
+        "Από την κόψη",
+        "Του σπαθιού",
+        "Την τρομερή."
+      ],
+      "translationLines": [
+        "I recognize you",
+        "From the edge",
+        "Of the sword",
+        "The terrifying."
+      ],
+      "mainWord": "σπαθιού"
+    },
+    {
+      "id": "p_el_37",
+      "title": "Χελώνα (Turtle)",
+      "lines": [
+        "Σιγά σιγά",
+        "Η χελώνα",
+        "Πάει μακριά",
+        "Στο δάσος."
+      ],
+      "translationLines": [
+        "Slowly, slowly",
+        "The turtle",
+        "Goes far",
+        "Into the forest."
+      ],
+      "mainWord": "χελώνα"
+    },
+    {
+      "id": "p_el_38",
+      "title": "Γάλα (Milk)",
+      "lines": [
+        "Πίνω το γάλα",
+        "Κάθε πρωί,",
+        "Για να γίνω",
+        "Πολύ δυνατός."
+      ],
+      "translationLines": [
+        "I drink the milk",
+        "Every morning,",
+        "So I become",
+        "Very strong."
+      ],
+      "mainWord": "γάλα"
+    },
+    {
+      "id": "p_el_39",
+      "title": "Το Μήλο (The Apple)",
+      "lines": [
+        "Κόκκινο μήλο",
+        "Γλυκό και ζουμερό,",
+        "Το τρώω όλο",
+        "Και χαίρομαι πολύ."
+      ],
+      "translationLines": [
+        "Red apple",
+        "Sweet and juicy,",
+        "I eat it all",
+        "And I'm very happy."
+      ],
+      "mainWord": "μήλο"
+    },
+    {
+      "id": "p_el_40",
+      "title": "Παροιμία - Ελπίδα (Hope)",
+      "lines": [
+        "Η ελπίδα",
+        "Πεθαίνει",
+        "Πάντα",
+        "Τελευταία."
+      ],
+      "translationLines": [
+        "Hope",
+        "Dies",
+        "Always",
+        "Last."
+      ],
+      "mainWord": "ελπίδα"
+    },
+    {
+      "id": "p_el_41",
+      "title": "Παροιμία - Γλώσσα (Language/Tongue)",
+      "lines": [
+        "Η γλώσσα",
+        "Κόκαλα",
+        "Δεν",
+        "Έχει."
+      ],
+      "translationLines": [
+        "The tongue",
+        "Bones",
+        "Does not",
+        "Have."
+      ],
+      "mainWord": "γλώσσα"
+    },
+    {
+      "id": "p_el_42",
+      "title": "Παροιμία - Στάχτη (Ashes)",
+      "lines": [
+        "Όπου υπάρχει",
+        "Καπνός,",
+        "Υπάρχει και",
+        "Φωτιά."
+      ],
+      "translationLines": [
+        "Where there is",
+        "Smoke,",
+        "There is also",
+        "Fire."
+      ],
+      "mainWord": "Φωτιά"
+    },
+    {
+      "id": "p_el_43",
+      "title": "Πρωί (Morning)",
+      "lines": [
+        "Ξυπνάω νωρίς",
+        "Κοιτάζω το φως,",
+        "Μια νέα μέρα",
+        "Ξεκινάει ξανά."
+      ],
+      "translationLines": [
+        "I wake up early",
+        "I look at the light,",
+        "A new day",
+        "Starts again."
+      ],
+      "mainWord": "μέρα"
+    },
+    {
+      "id": "p_el_44",
+      "title": "Το Βιβλίο (The Book)",
+      "lines": [
+        "Διαβάζω ένα",
+        "Καλό βιβλίο,",
+        "Μαθαίνω πράγματα",
+        "Μαγικά."
+      ],
+      "translationLines": [
+        "I read a",
+        "Good book,",
+        "I learn things",
+        "Magical."
+      ],
+      "mainWord": "βιβλίο"
+    },
+    {
+      "id": "p_el_45",
+      "title": "Χαρά (Joy)",
+      "lines": [
+        "Γελάω δυνατά",
+        "Μαζί με φίλους,",
+        "Η ζωή είναι",
+        "Γεμάτη χαρά."
+      ],
+      "translationLines": [
+        "I laugh loudly",
+        "Together with friends,",
+        "Life is",
+        "Full of joy."
+      ],
+      "mainWord": "φίλους"
+    },
+    {
+      "id": "p_el_46",
+      "title": "Θάλασσα (Sea)",
+      "lines": [
+        "Ακούω το κύμα",
+        "Που σκάει απαλά,",
+        "Πάνω στην άμμο",
+        "Τη χρυσή."
+      ],
+      "translationLines": [
+        "I hear the wave",
+        "Crashing softly,",
+        "On the sand",
+        "The golden."
+      ],
+      "mainWord": "κύμα"
+    },
+    {
+      "id": "p_el_47",
+      "title": "Ουρανός (Sky)",
+      "lines": [
+        "Κοιτάζω ψηλά",
+        "Τον μπλε ουρανό,",
+        "Και τα σύννεφα",
+        "Που περνούν."
+      ],
+      "translationLines": [
+        "I look up",
+        "At the blue sky,",
+        "And the clouds",
+        "That pass by."
+      ],
+      "mainWord": "ουρανό"
+    },
+    {
+      "id": "p_el_48",
+      "title": "Ύπνος (Sleep)",
+      "lines": [
+        "Κλείνω τα μάτια",
+        "Ήρθε η ώρα,",
+        "Όνειρα γλυκά",
+        "Να δω το βράδυ."
+      ],
+      "translationLines": [
+        "I close my eyes",
+        "The time has come,",
+        "Sweet dreams",
+        "To see tonight."
+      ],
+      "mainWord": "Όνειρα"
+    },
+    {
+      "id": "p_el_49",
+      "title": "Παροιμία - Αγάπη (Love)",
+      "lines": [
+        "Η αγάπη",
+        "Όλα",
+        "Τα",
+        "Νικάει."
+      ],
+      "translationLines": [
+        "Love",
+        "All",
+        "Things",
+        "Conquers."
+      ],
+      "mainWord": "αγάπη"
+    },
+    {
+      "id": "p_el_50",
+      "title": "Μουσική (Music)",
+      "lines": [
+        "Ακούω μια",
+        "Γλυκιά μελωδία,",
+        "Η ψυχή μου",
+        "Ταξιδεύει μακριά."
+      ],
+      "translationLines": [
+        "I hear a",
+        "Sweet melody,",
+        "My soul",
+        "Travels far away."
+      ],
+      "mainWord": "ψυχή"
     }
   ],
   "ru": [

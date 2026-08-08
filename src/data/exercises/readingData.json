@@ -2,68 +2,1802 @@
   "el": {
     "easy": [
       {
-        "id": "e_el_1",
+        "id": "el-e1",
         "cyrillic": "ΝΕΡΟ",
         "phonetic": "NERO",
         "translation": "Water"
       },
       {
-        "id": "e_el_2",
+        "id": "el-e2",
         "cyrillic": "ΜΗΛΟ",
         "phonetic": "MILO",
         "translation": "Apple"
       },
       {
-        "id": "e_el_3",
+        "id": "el-e3",
         "cyrillic": "ΓΑΤΑ",
         "phonetic": "GATA",
         "translation": "Cat"
       },
       {
-        "id": "e_el_4",
+        "id": "el-e4",
         "cyrillic": "ΣΠΙΤΙ",
         "phonetic": "SPITI",
         "translation": "House"
       },
       {
-        "id": "e_el_5",
+        "id": "el-e5",
         "cyrillic": "ΦΩΣ",
         "phonetic": "FOS",
         "translation": "Light"
+      },
+      {
+        "id": "el-e6",
+        "cyrillic": "ΓΑΛΑ",
+        "phonetic": "GALA",
+        "translation": "Milk"
+      },
+      {
+        "id": "el-e7",
+        "cyrillic": "ΨΩΜΙ",
+        "phonetic": "PSOMI",
+        "translation": "Bread"
+      },
+      {
+        "id": "el-e8",
+        "cyrillic": "ΤΥΡΙ",
+        "phonetic": "TYRI",
+        "translation": "Cheese"
+      },
+      {
+        "id": "el-e9",
+        "cyrillic": "ΠΑΙΔΙ",
+        "phonetic": "PAIDI",
+        "translation": "Child"
+      },
+      {
+        "id": "el-e10",
+        "cyrillic": "ΜΑΜΑ",
+        "phonetic": "MAMA",
+        "translation": "Mom"
+      },
+      {
+        "id": "el-e11",
+        "cyrillic": "ΜΠΑΜΠΑ",
+        "phonetic": "BAMPA",
+        "translation": "Dad"
+      },
+      {
+        "id": "el-e12",
+        "cyrillic": "ΓΙΑΤΙ",
+        "phonetic": "GIATI",
+        "translation": "Why"
+      },
+      {
+        "id": "el-e13",
+        "cyrillic": "ΠΟΤΕ",
+        "phonetic": "POTE",
+        "translation": "When"
+      },
+      {
+        "id": "el-e14",
+        "cyrillic": "ΠΟΥ",
+        "phonetic": "POU",
+        "translation": "Where"
+      },
+      {
+        "id": "el-e15",
+        "cyrillic": "ΠΩΣ",
+        "phonetic": "POS",
+        "translation": "How"
+      },
+      {
+        "id": "el-e16",
+        "cyrillic": "ΕΝΑ",
+        "phonetic": "ENA",
+        "translation": "One"
+      },
+      {
+        "id": "el-e17",
+        "cyrillic": "ΔΥΟ",
+        "phonetic": "DYO",
+        "translation": "Two"
+      },
+      {
+        "id": "el-e18",
+        "cyrillic": "ΤΡΙΑ",
+        "phonetic": "TRIA",
+        "translation": "Three"
+      },
+      {
+        "id": "el-e19",
+        "cyrillic": "ΠΕΝΤΕ",
+        "phonetic": "PENTE",
+        "translation": "Five"
+      },
+      {
+        "id": "el-e20",
+        "cyrillic": "ΕΞΙ",
+        "phonetic": "EXI",
+        "translation": "Six"
+      },
+      {
+        "id": "el-e21",
+        "cyrillic": "ΕΠΤΑ",
+        "phonetic": "EPTA",
+        "translation": "Seven"
+      },
+      {
+        "id": "el-e22",
+        "cyrillic": "ΟΚΤΩ",
+        "phonetic": "OKTO",
+        "translation": "Eight"
+      },
+      {
+        "id": "el-e23",
+        "cyrillic": "ΔΕΚΑ",
+        "phonetic": "DEKA",
+        "translation": "Ten"
+      },
+      {
+        "id": "el-e24",
+        "cyrillic": "ΝΑΙ",
+        "phonetic": "NAI",
+        "translation": "Yes"
+      },
+      {
+        "id": "el-e25",
+        "cyrillic": "ΟΧΙ",
+        "phonetic": "OCHI",
+        "translation": "No"
+      },
+      {
+        "id": "el-e26",
+        "cyrillic": "ΑΥΡΙΟ",
+        "phonetic": "AVRIO",
+        "translation": "Tomorrow"
+      },
+      {
+        "id": "el-e27",
+        "cyrillic": "ΧΘΕΣ",
+        "phonetic": "CHTHES",
+        "translation": "Yesterday"
+      },
+      {
+        "id": "el-e28",
+        "cyrillic": "ΣΗΜΕΡΑ",
+        "phonetic": "SIMERA",
+        "translation": "Today"
+      },
+      {
+        "id": "el-e29",
+        "cyrillic": "ΩΡΑ",
+        "phonetic": "ORA",
+        "translation": "Hour"
+      },
+      {
+        "id": "el-e30",
+        "cyrillic": "ΜΕΡΑ",
+        "phonetic": "MERA",
+        "translation": "Day"
+      },
+      {
+        "id": "el-e31",
+        "cyrillic": "ΝΥΧΤΑ",
+        "phonetic": "NYCHTA",
+        "translation": "Night"
+      },
+      {
+        "id": "el-e32",
+        "cyrillic": "ΠΡΩΙ",
+        "phonetic": "PROI",
+        "translation": "Morning"
+      },
+      {
+        "id": "el-e33",
+        "cyrillic": "ΒΡΑΔΥ",
+        "phonetic": "VRADY",
+        "translation": "Evening"
+      },
+      {
+        "id": "el-e34",
+        "cyrillic": "ΦΙΛΟΣ",
+        "phonetic": "FILOS",
+        "translation": "Friend"
+      },
+      {
+        "id": "el-e35",
+        "cyrillic": "ΑΓΟΡΙ",
+        "phonetic": "AGORI",
+        "translation": "Boy"
+      },
+      {
+        "id": "el-e36",
+        "cyrillic": "ΑΝΤΡΑΣ",
+        "phonetic": "ANTRAS",
+        "translation": "Man"
+      },
+      {
+        "id": "el-e37",
+        "cyrillic": "ΗΛΙΟΣ",
+        "phonetic": "ILIOS",
+        "translation": "Sun"
+      },
+      {
+        "id": "el-e38",
+        "cyrillic": "ΑΕΡΑΣ",
+        "phonetic": "AERAS",
+        "translation": "Air"
+      },
+      {
+        "id": "el-e39",
+        "cyrillic": "ΓΗ",
+        "phonetic": "GI",
+        "translation": "Earth"
+      },
+      {
+        "id": "el-e40",
+        "cyrillic": "ΒΟΥΝΟ",
+        "phonetic": "VOUNO",
+        "translation": "Mountain"
+      },
+      {
+        "id": "el-e41",
+        "cyrillic": "ΚΥΜΑ",
+        "phonetic": "KYMA",
+        "translation": "Wave"
+      },
+      {
+        "id": "el-e42",
+        "cyrillic": "ΠΕΤΡΑ",
+        "phonetic": "PETRA",
+        "translation": "Stone"
+      },
+      {
+        "id": "el-e43",
+        "cyrillic": "ΞΥΛΟ",
+        "phonetic": "XYLO",
+        "translation": "Wood"
+      },
+      {
+        "id": "el-e44",
+        "cyrillic": "ΧΩΜΑ",
+        "phonetic": "CHOMA",
+        "translation": "Soil"
+      },
+      {
+        "id": "el-e45",
+        "cyrillic": "ΦΩΤΙΑ",
+        "phonetic": "FOTIA",
+        "translation": "Fire"
+      },
+      {
+        "id": "el-e46",
+        "cyrillic": "ΚΡΥΟ",
+        "phonetic": "KRYO",
+        "translation": "Cold"
+      },
+      {
+        "id": "el-e47",
+        "cyrillic": "ΖΕΣΤΗ",
+        "phonetic": "ZESTI",
+        "translation": "Heat"
+      },
+      {
+        "id": "el-e48",
+        "cyrillic": "ΣΚΥΛΟΣ",
+        "phonetic": "SKYLOS",
+        "translation": "Dog"
+      },
+      {
+        "id": "el-e49",
+        "cyrillic": "ΠΟΥΛΙ",
+        "phonetic": "POULI",
+        "translation": "Bird"
+      },
+      {
+        "id": "el-e50",
+        "cyrillic": "ΨΑΡΙ",
+        "phonetic": "PSARI",
+        "translation": "Fish"
+      },
+      {
+        "id": "el-e51",
+        "cyrillic": "ΚΡΕΑΣ",
+        "phonetic": "KREAS",
+        "translation": "Meat"
+      },
+      {
+        "id": "el-e52",
+        "cyrillic": "ΦΡΟΥΤΟ",
+        "phonetic": "FROUTO",
+        "translation": "Fruit"
+      },
+      {
+        "id": "el-e53",
+        "cyrillic": "ΑΧΛΑΔΙ",
+        "phonetic": "ACHLADI",
+        "translation": "Pear"
+      },
+      {
+        "id": "el-e54",
+        "cyrillic": "ΚΕΡΑΣΙ",
+        "phonetic": "KERASI",
+        "translation": "Cherry"
+      },
+      {
+        "id": "el-e55",
+        "cyrillic": "ΜΑΤΙ",
+        "phonetic": "MATI",
+        "translation": "Eye"
+      },
+      {
+        "id": "el-e56",
+        "cyrillic": "ΜΥΤΗ",
+        "phonetic": "MYTI",
+        "translation": "Nose"
+      },
+      {
+        "id": "el-e57",
+        "cyrillic": "ΣΤΟΜΑ",
+        "phonetic": "STOMA",
+        "translation": "Mouth"
+      },
+      {
+        "id": "el-e58",
+        "cyrillic": "ΧΕΡΙ",
+        "phonetic": "CHERI",
+        "translation": "Hand"
+      },
+      {
+        "id": "el-e59",
+        "cyrillic": "ΠΟΔΙ",
+        "phonetic": "PODI",
+        "translation": "Foot"
+      },
+      {
+        "id": "el-e60",
+        "cyrillic": "ΑΥΤΙ",
+        "phonetic": "AFTI",
+        "translation": "Ear"
+      },
+      {
+        "id": "el-e61",
+        "cyrillic": "ΚΕΦΑΛΙ",
+        "phonetic": "KEFALI",
+        "translation": "Head"
+      },
+      {
+        "id": "el-e62",
+        "cyrillic": "ΜΑΛΛΙΑ",
+        "phonetic": "MALLIA",
+        "translation": "Hair"
+      },
+      {
+        "id": "el-e63",
+        "cyrillic": "ΔΟΝΤΙ",
+        "phonetic": "DONTI",
+        "translation": "Tooth"
+      },
+      {
+        "id": "el-e64",
+        "cyrillic": "ΚΑΡΔΙΑ",
+        "phonetic": "KARDIA",
+        "translation": "Heart"
+      },
+      {
+        "id": "el-e65",
+        "cyrillic": "ΑΙΜΑ",
+        "phonetic": "AIMA",
+        "translation": "Blood"
+      },
+      {
+        "id": "el-e66",
+        "cyrillic": "ΔΕΡΜΑ",
+        "phonetic": "DERMA",
+        "translation": "Skin"
+      },
+      {
+        "id": "el-e67",
+        "cyrillic": "ΟΣΤΟ",
+        "phonetic": "OSTO",
+        "translation": "Bone"
+      },
+      {
+        "id": "el-e68",
+        "cyrillic": "ΦΩΝΗ",
+        "phonetic": "FONI",
+        "translation": "Voice"
+      },
+      {
+        "id": "el-e69",
+        "cyrillic": "ΛΕΞΗ",
+        "phonetic": "LEXI",
+        "translation": "Word"
+      },
+      {
+        "id": "el-e70",
+        "cyrillic": "ΟΝΟΜΑ",
+        "phonetic": "ONOMA",
+        "translation": "Name"
+      },
+      {
+        "id": "el-e71",
+        "cyrillic": "ΧΡΩΜΑ",
+        "phonetic": "CHROMA",
+        "translation": "Color"
+      },
+      {
+        "id": "el-e72",
+        "cyrillic": "ΜΠΛΕ",
+        "phonetic": "MPLE",
+        "translation": "Blue"
+      },
+      {
+        "id": "el-e73",
+        "cyrillic": "ΜΑΥΡΟ",
+        "phonetic": "MAVRO",
+        "translation": "Black"
+      },
+      {
+        "id": "el-e74",
+        "cyrillic": "ΑΣΠΡΟ",
+        "phonetic": "ASPRO",
+        "translation": "White"
+      },
+      {
+        "id": "el-e75",
+        "cyrillic": "ΚΑΛΑ",
+        "phonetic": "KALA",
+        "translation": "Well"
+      },
+      {
+        "id": "el-e76",
+        "cyrillic": "ΚΑΚΑ",
+        "phonetic": "KAKA",
+        "translation": "Badly"
+      },
+      {
+        "id": "el-e77",
+        "cyrillic": "ΛΙΓΟ",
+        "phonetic": "LIGO",
+        "translation": "A little"
+      },
+      {
+        "id": "el-e78",
+        "cyrillic": "ΠΟΛΥ",
+        "phonetic": "POLY",
+        "translation": "A lot"
+      },
+      {
+        "id": "el-e79",
+        "cyrillic": "ΟΛΑ",
+        "phonetic": "OLA",
+        "translation": "All"
+      },
+      {
+        "id": "el-e80",
+        "cyrillic": "ΚΑΤΙ",
+        "phonetic": "KATI",
+        "translation": "Something"
+      },
+      {
+        "id": "el-e81",
+        "cyrillic": "ΠΟΙΟΣ",
+        "phonetic": "POIOS",
+        "translation": "Who"
+      },
+      {
+        "id": "el-e82",
+        "cyrillic": "ΤΙ",
+        "phonetic": "TI",
+        "translation": "What"
+      },
+      {
+        "id": "el-e83",
+        "cyrillic": "ΛΑΘΟΣ",
+        "phonetic": "LATHOS",
+        "translation": "Mistake"
+      },
+      {
+        "id": "el-e84",
+        "cyrillic": "ΣΩΣΤΟ",
+        "phonetic": "SOSTO",
+        "translation": "Right"
+      },
+      {
+        "id": "el-e85",
+        "cyrillic": "ΒΑΡΥ",
+        "phonetic": "VARY",
+        "translation": "Heavy"
+      },
+      {
+        "id": "el-e86",
+        "cyrillic": "ΕΛΑΦΡΥ",
+        "phonetic": "ELAFRY",
+        "translation": "Light (weight)"
+      },
+      {
+        "id": "el-e87",
+        "cyrillic": "ΠΑΝΩ",
+        "phonetic": "PANO",
+        "translation": "Up"
+      },
+      {
+        "id": "el-e88",
+        "cyrillic": "ΚΑΤΩ",
+        "phonetic": "KATO",
+        "translation": "Down"
+      },
+      {
+        "id": "el-e89",
+        "cyrillic": "ΜΕΣΑ",
+        "phonetic": "MESA",
+        "translation": "Inside"
+      },
+      {
+        "id": "el-e90",
+        "cyrillic": "ΕΞΩ",
+        "phonetic": "EXO",
+        "translation": "Outside"
+      },
+      {
+        "id": "el-e91",
+        "cyrillic": "ΜΠΡΟΣΤΑ",
+        "phonetic": "MPROSTA",
+        "translation": "Front"
+      },
+      {
+        "id": "el-e92",
+        "cyrillic": "ΠΙΣΩ",
+        "phonetic": "PISO",
+        "translation": "Back"
+      },
+      {
+        "id": "el-e93",
+        "cyrillic": "ΔΕΞΙΑ",
+        "phonetic": "DEXIA",
+        "translation": "Right"
+      },
+      {
+        "id": "el-e94",
+        "cyrillic": "ΑΡΙΣΤΕΡΑ",
+        "phonetic": "ARISTERA",
+        "translation": "Left"
+      },
+      {
+        "id": "el-e95",
+        "cyrillic": "ΜΑΚΡΙΑ",
+        "phonetic": "MAKRIA",
+        "translation": "Far"
+      },
+      {
+        "id": "el-e96",
+        "cyrillic": "ΚΟΝΤΑ",
+        "phonetic": "KONTA",
+        "translation": "Near"
+      },
+      {
+        "id": "el-e97",
+        "cyrillic": "ΓΡΗΓΟΡΑ",
+        "phonetic": "GRIGORA",
+        "translation": "Fast"
+      },
+      {
+        "id": "el-e98",
+        "cyrillic": "ΑΡΓΑ",
+        "phonetic": "ARGA",
+        "translation": "Slow"
+      },
+      {
+        "id": "el-e99",
+        "cyrillic": "ΤΩΡΑ",
+        "phonetic": "TORA",
+        "translation": "Now"
+      },
+      {
+        "id": "el-e100",
+        "cyrillic": "ΜΕΤΑ",
+        "phonetic": "META",
+        "translation": "After"
       }
     ],
     "medium": [
       {
-        "id": "m_el_1",
+        "id": "el-m1",
         "cyrillic": "ΒΙΒΛΙΟ",
         "phonetic": "VIVLIO",
         "translation": "Book"
       },
       {
-        "id": "m_el_2",
+        "id": "el-m2",
         "cyrillic": "ΔΕΝΤΡΟ",
         "phonetic": "DENTRO",
         "translation": "Tree"
       },
       {
-        "id": "m_el_3",
+        "id": "el-m3",
         "cyrillic": "ΘΑΛΑΣΣΑ",
         "phonetic": "THALASSA",
         "translation": "Sea"
+      },
+      {
+        "id": "el-m4",
+        "cyrillic": "ΚΟΡΙΤΣΙ",
+        "phonetic": "KORITSI",
+        "translation": "Girl"
+      },
+      {
+        "id": "el-m5",
+        "cyrillic": "ΓΥΝΑΙΚΑ",
+        "phonetic": "GYNAIKA",
+        "translation": "Woman"
+      },
+      {
+        "id": "el-m6",
+        "cyrillic": "ΠΑΠΠΟΥΣ",
+        "phonetic": "PAPPOUS",
+        "translation": "Grandfather"
+      },
+      {
+        "id": "el-m7",
+        "cyrillic": "ΑΣΤΕΡΙ",
+        "phonetic": "ASTERI",
+        "translation": "Star"
+      },
+      {
+        "id": "el-m8",
+        "cyrillic": "ΦΕΓΓΑΡΙ",
+        "phonetic": "FEGGARI",
+        "translation": "Moon"
+      },
+      {
+        "id": "el-m9",
+        "cyrillic": "ΛΟΥΛΟΥΔΙ",
+        "phonetic": "LOULOUDI",
+        "translation": "Flower"
+      },
+      {
+        "id": "el-m10",
+        "cyrillic": "ΤΕΣΣΕΡΑ",
+        "phonetic": "TESSERA",
+        "translation": "Four"
+      },
+      {
+        "id": "el-m11",
+        "cyrillic": "ΕΝΝΕΑ",
+        "phonetic": "ENNEA",
+        "translation": "Nine"
+      },
+      {
+        "id": "el-m12",
+        "cyrillic": "ΤΙΠΟΤΑ",
+        "phonetic": "TIPOTA",
+        "translation": "Nothing"
+      },
+      {
+        "id": "el-m13",
+        "cyrillic": "ΝΟΥΜΕΡΟ",
+        "phonetic": "NOUMERO",
+        "translation": "Number"
+      },
+      {
+        "id": "el-m14",
+        "cyrillic": "ΠΟΡΤΟΚΑΛΙ",
+        "phonetic": "PORTOKALI",
+        "translation": "Orange"
+      },
+      {
+        "id": "el-m15",
+        "cyrillic": "ΡΟΔΑΚΙΝΟ",
+        "phonetic": "RODAKINO",
+        "translation": "Peach"
+      },
+      {
+        "id": "el-m16",
+        "cyrillic": "ΚΟΚΚΙΝΟ",
+        "phonetic": "KOKKINO",
+        "translation": "Red"
+      },
+      {
+        "id": "el-m17",
+        "cyrillic": "ΚΙΤΡΙΝΟ",
+        "phonetic": "KITRINO",
+        "translation": "Yellow"
+      },
+      {
+        "id": "el-m18",
+        "cyrillic": "ΠΡΑΣΙΝΟ",
+        "phonetic": "PRASINO",
+        "translation": "Green"
+      },
+      {
+        "id": "el-m19",
+        "cyrillic": "ΣΧΟΛΕΙΟ",
+        "phonetic": "SCHOLEIO",
+        "translation": "School"
+      },
+      {
+        "id": "el-m20",
+        "cyrillic": "ΜΑΘΗΤΗΣ",
+        "phonetic": "MATHITIS",
+        "translation": "Student"
+      },
+      {
+        "id": "el-m21",
+        "cyrillic": "ΔΑΣΚΑΛΟΣ",
+        "phonetic": "DASKALOS",
+        "translation": "Teacher"
+      },
+      {
+        "id": "el-m22",
+        "cyrillic": "ΤΡΑΠΕΖΙ",
+        "phonetic": "TRAPEZI",
+        "translation": "Table"
+      },
+      {
+        "id": "el-m23",
+        "cyrillic": "ΚΑΡΕΚΛΑ",
+        "phonetic": "KAREKLA",
+        "translation": "Chair"
+      },
+      {
+        "id": "el-m24",
+        "cyrillic": "ΚΡΕΒΑΤΙ",
+        "phonetic": "KREVATI",
+        "translation": "Bed"
+      },
+      {
+        "id": "el-m25",
+        "cyrillic": "ΠΑΡΑΘΥΡΟ",
+        "phonetic": "PARATHYRO",
+        "translation": "Window"
+      },
+      {
+        "id": "el-m26",
+        "cyrillic": "ΠΟΡΤΑ",
+        "phonetic": "PORTA",
+        "translation": "Door"
+      },
+      {
+        "id": "el-m27",
+        "cyrillic": "ΔΩΜΑΤΙΟ",
+        "phonetic": "DOMATIO",
+        "translation": "Room"
+      },
+      {
+        "id": "el-m28",
+        "cyrillic": "ΣΑΛΟΝΙ",
+        "phonetic": "SALONI",
+        "translation": "Living room"
+      },
+      {
+        "id": "el-m29",
+        "cyrillic": "ΚΟΥΖΙΝΑ",
+        "phonetic": "KOUZINA",
+        "translation": "Kitchen"
+      },
+      {
+        "id": "el-m30",
+        "cyrillic": "ΜΠΑΝΙΟ",
+        "phonetic": "MPANIO",
+        "translation": "Bathroom"
+      },
+      {
+        "id": "el-m31",
+        "cyrillic": "ΚΗΠΟΣ",
+        "phonetic": "KIPOS",
+        "translation": "Garden"
+      },
+      {
+        "id": "el-m32",
+        "cyrillic": "ΔΡΟΜΟΣ",
+        "phonetic": "DROMOS",
+        "translation": "Street"
+      },
+      {
+        "id": "el-m33",
+        "cyrillic": "ΑΥΤΟΚΙΝΗΤΟ",
+        "phonetic": "AYTOKINHTO",
+        "translation": "Car"
+      },
+      {
+        "id": "el-m34",
+        "cyrillic": "ΛΕΩΦΟΡΕΙΟ",
+        "phonetic": "LEOFOREIO",
+        "translation": "Bus"
+      },
+      {
+        "id": "el-m35",
+        "cyrillic": "ΤΡΕΝΟ",
+        "phonetic": "TRENO",
+        "translation": "Train"
+      },
+      {
+        "id": "el-m36",
+        "cyrillic": "ΑΕΡΟΠΛΑΝΟ",
+        "phonetic": "AEROPLANO",
+        "translation": "Airplane"
+      },
+      {
+        "id": "el-m37",
+        "cyrillic": "ΠΛΟΙΟ",
+        "phonetic": "PLOIO",
+        "translation": "Ship"
+      },
+      {
+        "id": "el-m38",
+        "cyrillic": "ΜΗΧΑΝΗ",
+        "phonetic": "MICHANI",
+        "translation": "Machine"
+      },
+      {
+        "id": "el-m39",
+        "cyrillic": "ΤΗΛΕΦΩΝΟ",
+        "phonetic": "TILEFONO",
+        "translation": "Telephone"
+      },
+      {
+        "id": "el-m40",
+        "cyrillic": "ΟΘΟΝΗ",
+        "phonetic": "OTHONI",
+        "translation": "Screen"
+      },
+      {
+        "id": "el-m41",
+        "cyrillic": "ΠΛΗΚΤΡΟΛΟΓΙΟ",
+        "phonetic": "PLIKTROLOGIO",
+        "translation": "Keyboard"
+      },
+      {
+        "id": "el-m42",
+        "cyrillic": "ΚΑΜΕΡΑ",
+        "phonetic": "KAMERA",
+        "translation": "Camera"
+      },
+      {
+        "id": "el-m43",
+        "cyrillic": "ΜΟΥΣΙΚΗ",
+        "phonetic": "MOUSIKI",
+        "translation": "Music"
+      },
+      {
+        "id": "el-m44",
+        "cyrillic": "ΤΡΑΓΟΥΔΙ",
+        "phonetic": "TRAGOUDI",
+        "translation": "Song"
+      },
+      {
+        "id": "el-m45",
+        "cyrillic": "ΧΟΡΟΣ",
+        "phonetic": "CHOROS",
+        "translation": "Dance"
+      },
+      {
+        "id": "el-m46",
+        "cyrillic": "ΘΕΑΤΡΟ",
+        "phonetic": "THEATRO",
+        "translation": "Theater"
+      },
+      {
+        "id": "el-m47",
+        "cyrillic": "ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ",
+        "phonetic": "KINIMATOGRAFOS",
+        "translation": "Cinema"
+      },
+      {
+        "id": "el-m48",
+        "cyrillic": "ΖΩΓΡΑΦΙΚΗ",
+        "phonetic": "ZOGRAFIKI",
+        "translation": "Painting"
+      },
+      {
+        "id": "el-m49",
+        "cyrillic": "ΤΕΧΝΗ",
+        "phonetic": "TECHNI",
+        "translation": "Art"
+      },
+      {
+        "id": "el-m50",
+        "cyrillic": "ΕΠΙΣΤΗΜΗ",
+        "phonetic": "EPISTIMI",
+        "translation": "Science"
+      },
+      {
+        "id": "el-m51",
+        "cyrillic": "ΙΣΤΟΡΙΑ",
+        "phonetic": "ISTORIA",
+        "translation": "History"
+      },
+      {
+        "id": "el-m52",
+        "cyrillic": "ΜΑΘΗΜΑΤΙΚΑ",
+        "phonetic": "MATHIMATIKA",
+        "translation": "Mathematics"
+      },
+      {
+        "id": "el-m53",
+        "cyrillic": "ΓΛΩΣΣΑ",
+        "phonetic": "GLOSSA",
+        "translation": "Language"
+      },
+      {
+        "id": "el-m54",
+        "cyrillic": "ΚΑΛΗΜΕΡΑ",
+        "phonetic": "KALIMERA",
+        "translation": "Good morning"
+      },
+      {
+        "id": "el-m55",
+        "cyrillic": "ΚΑΛΗΣΠΕΡΑ",
+        "phonetic": "KALISPERA",
+        "translation": "Good evening"
+      },
+      {
+        "id": "el-m56",
+        "cyrillic": "ΚΑΛΗΝΥΧΤΑ",
+        "phonetic": "KALINYCHTA",
+        "translation": "Good night"
+      },
+      {
+        "id": "el-m57",
+        "cyrillic": "ΕΥΧΑΡΙΣΤΩ",
+        "phonetic": "EYCHARISTO",
+        "translation": "Thank you"
+      },
+      {
+        "id": "el-m58",
+        "cyrillic": "ΠΑΡΑΚΑΛΩ",
+        "phonetic": "PARAKALO",
+        "translation": "Please"
+      },
+      {
+        "id": "el-m59",
+        "cyrillic": "ΣΥΓΓΝΩΜΗ",
+        "phonetic": "SYGGNOMI",
+        "translation": "Sorry"
+      },
+      {
+        "id": "el-m60",
+        "cyrillic": "ΑΝΤΙΟ",
+        "phonetic": "ANTIO",
+        "translation": "Goodbye"
+      },
+      {
+        "id": "el-m61",
+        "cyrillic": "ΓΕΙΑ",
+        "phonetic": "GEIA",
+        "translation": "Hello"
+      },
+      {
+        "id": "el-m62",
+        "cyrillic": "ΟΙΚΟΓΕΝΕΙΑ",
+        "phonetic": "OIKOGENEIA",
+        "translation": "Family"
+      },
+      {
+        "id": "el-m63",
+        "cyrillic": "ΑΔΕΡΦΟΣ",
+        "phonetic": "ADERFOS",
+        "translation": "Brother"
+      },
+      {
+        "id": "el-m64",
+        "cyrillic": "ΑΔΕΡΦΗ",
+        "phonetic": "ADERFI",
+        "translation": "Sister"
+      },
+      {
+        "id": "el-m65",
+        "cyrillic": "ΘΕΙΟΣ",
+        "phonetic": "THEIOS",
+        "translation": "Uncle"
+      },
+      {
+        "id": "el-m66",
+        "cyrillic": "ΘΕΙΑ",
+        "phonetic": "THEIA",
+        "translation": "Aunt"
+      },
+      {
+        "id": "el-m67",
+        "cyrillic": "ΞΑΔΕΡΦΟΣ",
+        "phonetic": "XADERFOS",
+        "translation": "Cousin"
+      },
+      {
+        "id": "el-m68",
+        "cyrillic": "ΦΑΓΗΤΟ",
+        "phonetic": "FAGITO",
+        "translation": "Food"
+      },
+      {
+        "id": "el-m69",
+        "cyrillic": "ΠΡΩΙΝΟ",
+        "phonetic": "PROINO",
+        "translation": "Breakfast"
+      },
+      {
+        "id": "el-m70",
+        "cyrillic": "ΜΕΣΗΜΕΡΙΑΝΟ",
+        "phonetic": "MESIMERIANO",
+        "translation": "Lunch"
+      },
+      {
+        "id": "el-m71",
+        "cyrillic": "ΒΡΑΔΙΝΟ",
+        "phonetic": "VRADINO",
+        "translation": "Dinner"
+      },
+      {
+        "id": "el-m72",
+        "cyrillic": "ΓΛΥΚΟ",
+        "phonetic": "GLYKO",
+        "translation": "Sweet"
+      },
+      {
+        "id": "el-m73",
+        "cyrillic": "ΑΛΜΥΡΟ",
+        "phonetic": "ALMYRO",
+        "translation": "Salty"
+      },
+      {
+        "id": "el-m74",
+        "cyrillic": "ΠΙΚΡΟ",
+        "phonetic": "PIKRO",
+        "translation": "Bitter"
+      },
+      {
+        "id": "el-m75",
+        "cyrillic": "ΞΙΝΟ",
+        "phonetic": "XINO",
+        "translation": "Sour"
+      },
+      {
+        "id": "el-m76",
+        "cyrillic": "ΚΡΕΜΜΥΔΙ",
+        "phonetic": "KREMMYDI",
+        "translation": "Onion"
+      },
+      {
+        "id": "el-m77",
+        "cyrillic": "ΣΚΟΡΔΟ",
+        "phonetic": "SKORDO",
+        "translation": "Garlic"
+      },
+      {
+        "id": "el-m78",
+        "cyrillic": "ΝΤΟΜΑΤΑ",
+        "phonetic": "NTOMATA",
+        "translation": "Tomato"
+      },
+      {
+        "id": "el-m79",
+        "cyrillic": "ΠΑΤΑΤΑ",
+        "phonetic": "PATATA",
+        "translation": "Potato"
+      },
+      {
+        "id": "el-m80",
+        "cyrillic": "ΚΑΡΟΤΟ",
+        "phonetic": "KAROTO",
+        "translation": "Carrot"
+      },
+      {
+        "id": "el-m81",
+        "cyrillic": "ΛΑΧΑΝΟ",
+        "phonetic": "LACHANO",
+        "translation": "Cabbage"
+      },
+      {
+        "id": "el-m82",
+        "cyrillic": "ΜΑΡΟΥΛΙ",
+        "phonetic": "MAROULI",
+        "translation": "Lettuce"
+      },
+      {
+        "id": "el-m83",
+        "cyrillic": "ΑΓΓΟΥΡΙ",
+        "phonetic": "AGGOURI",
+        "translation": "Cucumber"
+      },
+      {
+        "id": "el-m84",
+        "cyrillic": "ΚΟΤΟΠΟΥΛΟ",
+        "phonetic": "KOTOPOULO",
+        "translation": "Chicken"
+      },
+      {
+        "id": "el-m85",
+        "cyrillic": "ΧΟΙΡΙΝΟ",
+        "phonetic": "CHOIRINO",
+        "translation": "Pork"
+      },
+      {
+        "id": "el-m86",
+        "cyrillic": "ΜΟΣΧΑΡΙ",
+        "phonetic": "MOSCHARI",
+        "translation": "Beef"
+      },
+      {
+        "id": "el-m87",
+        "cyrillic": "ΑΡΝΙ",
+        "phonetic": "ARNI",
+        "translation": "Lamb"
+      },
+      {
+        "id": "el-m88",
+        "cyrillic": "ΣΟΥΠΑ",
+        "phonetic": "SOUPA",
+        "translation": "Soup"
+      },
+      {
+        "id": "el-m89",
+        "cyrillic": "ΣΑΛΑΤΑ",
+        "phonetic": "SALATA",
+        "translation": "Salad"
+      },
+      {
+        "id": "el-m90",
+        "cyrillic": "ΚΡΑΣΙ",
+        "phonetic": "KRASI",
+        "translation": "Wine"
+      },
+      {
+        "id": "el-m91",
+        "cyrillic": "ΜΠΥΡΑ",
+        "phonetic": "MPYRA",
+        "translation": "Beer"
+      },
+      {
+        "id": "el-m92",
+        "cyrillic": "ΧΥΜΟΣ",
+        "phonetic": "CHYMOS",
+        "translation": "Juice"
+      },
+      {
+        "id": "el-m93",
+        "cyrillic": "ΤΣΑΙ",
+        "phonetic": "TSAI",
+        "translation": "Tea"
+      },
+      {
+        "id": "el-m94",
+        "cyrillic": "ΚΑΦΕΣ",
+        "phonetic": "KAFES",
+        "translation": "Coffee"
+      },
+      {
+        "id": "el-m95",
+        "cyrillic": "ΠΑΓΩΤΟ",
+        "phonetic": "PAGOTO",
+        "translation": "Ice cream"
+      },
+      {
+        "id": "el-m96",
+        "cyrillic": "ΣΟΚΟΛΑΤΑ",
+        "phonetic": "SOKOLATA",
+        "translation": "Chocolate"
+      },
+      {
+        "id": "el-m97",
+        "cyrillic": "ΜΠΙΣΚΟΤΟ",
+        "phonetic": "MPISKOTO",
+        "translation": "Cookie"
+      },
+      {
+        "id": "el-m98",
+        "cyrillic": "ΚΕΙΚ",
+        "phonetic": "KEIK",
+        "translation": "Cake"
+      },
+      {
+        "id": "el-m99",
+        "cyrillic": "ΠΙΤΑ",
+        "phonetic": "PITA",
+        "translation": "Pie"
+      },
+      {
+        "id": "el-m100",
+        "cyrillic": "ΤΥΡΟΠΙΤΑ",
+        "phonetic": "TYROPITA",
+        "translation": "Cheese pie"
       }
     ],
     "hard": [
       {
-        "id": "h_el_1",
+        "id": "el-h1",
+        "cyrillic": "ΑΕΡΟΔΡΟΜΙΟ",
+        "phonetic": "AERODROMIO",
+        "translation": "Airport"
+      },
+      {
+        "id": "el-h2",
+        "cyrillic": "ΝΟΣΟΚΟΜΕΙΟ",
+        "phonetic": "NOSOKOMEIO",
+        "translation": "Hospital"
+      },
+      {
+        "id": "el-h3",
+        "cyrillic": "ΦΑΡΜΑΚΕΙΟ",
+        "phonetic": "FARMAKEIO",
+        "translation": "Pharmacy"
+      },
+      {
+        "id": "el-h4",
+        "cyrillic": "ΠΑΝΕΠΙΣΤΗΜΙΟ",
+        "phonetic": "PANEPISTIMIO",
+        "translation": "University"
+      },
+      {
+        "id": "el-h5",
+        "cyrillic": "ΒΙΒΛΙΟΘΗΚΗ",
+        "phonetic": "VIVLIOTHIKI",
+        "translation": "Library"
+      },
+      {
+        "id": "el-h6",
+        "cyrillic": "ΜΟΥΣΕΙΟ",
+        "phonetic": "MOUSEIO",
+        "translation": "Museum"
+      },
+      {
+        "id": "el-h7",
+        "cyrillic": "ΕΣΤΙΑΤΟΡΙΟ",
+        "phonetic": "ESTIATORIO",
+        "translation": "Restaurant"
+      },
+      {
+        "id": "el-h8",
+        "cyrillic": "ΞΕΝΟΔΟΧΕΙΟ",
+        "phonetic": "XENODOCHEIO",
+        "translation": "Hotel"
+      },
+      {
+        "id": "el-h9",
+        "cyrillic": "ΚΑΤΑΣΤΗΜΑ",
+        "phonetic": "KATASTIMA",
+        "translation": "Store"
+      },
+      {
+        "id": "el-h10",
+        "cyrillic": "ΣΟΥΠΕΡΜΑΡΚΕΤ",
+        "phonetic": "SOUPERMARKET",
+        "translation": "Supermarket"
+      },
+      {
+        "id": "el-h11",
+        "cyrillic": "ΤΑΧΥΔΡΟΜΕΙΟ",
+        "phonetic": "TACHYDROMEIO",
+        "translation": "Post office"
+      },
+      {
+        "id": "el-h12",
+        "cyrillic": "ΤΡΑΠΕΖΑ",
+        "phonetic": "TRAPEZA",
+        "translation": "Bank"
+      },
+      {
+        "id": "el-h13",
+        "cyrillic": "ΕΚΚΛΗΣΙΑ",
+        "phonetic": "EKKLISIA",
+        "translation": "Church"
+      },
+      {
+        "id": "el-h14",
+        "cyrillic": "ΠΛΑΤΕΙΑ",
+        "phonetic": "PLATEIA",
+        "translation": "Square"
+      },
+      {
+        "id": "el-h15",
+        "cyrillic": "ΠΑΡΚΟ",
+        "phonetic": "PARKO",
+        "translation": "Park"
+      },
+      {
+        "id": "el-h16",
+        "cyrillic": "ΓΕΦΥΡΑ",
+        "phonetic": "GEFYRA",
+        "translation": "Bridge"
+      },
+      {
+        "id": "el-h17",
+        "cyrillic": "ΚΑΣΤΡΟ",
+        "phonetic": "KASTRO",
+        "translation": "Castle"
+      },
+      {
+        "id": "el-h18",
+        "cyrillic": "ΠΑΛΑΤΙ",
+        "phonetic": "PALATI",
+        "translation": "Palace"
+      },
+      {
+        "id": "el-h19",
+        "cyrillic": "ΕΡΓΟΣΤΑΣΙΟ",
+        "phonetic": "ERGOSTASIO",
+        "translation": "Factory"
+      },
+      {
+        "id": "el-h20",
+        "cyrillic": "ΓΡΑΦΕΙΟ",
+        "phonetic": "GRAFEIO",
+        "translation": "Office"
+      },
+      {
+        "id": "el-h21",
         "cyrillic": "ΥΠΟΛΟΓΙΣΤΗΣ",
         "phonetic": "YPOLOGISTIS",
         "translation": "Computer"
       },
       {
-        "id": "h_el_2",
-        "cyrillic": "ΕΛΕΦΑΝΤΑΣ",
-        "phonetic": "ELEFANTAS",
-        "translation": "Elephant"
+        "id": "el-h22",
+        "cyrillic": "ΔΙΑΔΙΚΤΥΟ",
+        "phonetic": "DIADIKTYO",
+        "translation": "Internet"
+      },
+      {
+        "id": "el-h23",
+        "cyrillic": "ΤΗΛΕΟΡΑΣΗ",
+        "phonetic": "TILEORASI",
+        "translation": "Television"
+      },
+      {
+        "id": "el-h24",
+        "cyrillic": "ΡΑΔΙΟΦΩΝΟ",
+        "phonetic": "RADIOFONO",
+        "translation": "Radio"
+      },
+      {
+        "id": "el-h25",
+        "cyrillic": "ΕΦΗΜΕΡΙΔΑ",
+        "phonetic": "EFIMERIDA",
+        "translation": "Newspaper"
+      },
+      {
+        "id": "el-h26",
+        "cyrillic": "ΠΕΡΙΟΔΙΚΟ",
+        "phonetic": "PERIODIKO",
+        "translation": "Magazine"
+      },
+      {
+        "id": "el-h27",
+        "cyrillic": "ΔΗΜΟΣΙΟΓΡΑΦΟΣ",
+        "phonetic": "DIMOSIOGRAFOS",
+        "translation": "Journalist"
+      },
+      {
+        "id": "el-h28",
+        "cyrillic": "ΣΥΓΓΡΑΦΕΑΣ",
+        "phonetic": "SYGGRAFEAS",
+        "translation": "Writer"
+      },
+      {
+        "id": "el-h29",
+        "cyrillic": "ΗΘΟΠΟΙΟΣ",
+        "phonetic": "ITHOPOIOS",
+        "translation": "Actor"
+      },
+      {
+        "id": "el-h30",
+        "cyrillic": "ΤΡΑΓΟΥΔΙΣΤΗΣ",
+        "phonetic": "TRAGOUDISTIS",
+        "translation": "Singer"
+      },
+      {
+        "id": "el-h31",
+        "cyrillic": "ΖΩΓΡΑΦΟΣ",
+        "phonetic": "ZOGRAFOS",
+        "translation": "Painter"
+      },
+      {
+        "id": "el-h32",
+        "cyrillic": "ΜΟΥΣΙΚΟΣ",
+        "phonetic": "MOUSIKOS",
+        "translation": "Musician"
+      },
+      {
+        "id": "el-h33",
+        "cyrillic": "ΓΙΑΤΡΟΣ",
+        "phonetic": "GIATROS",
+        "translation": "Doctor"
+      },
+      {
+        "id": "el-h34",
+        "cyrillic": "ΝΟΣΗΛΕΥΤΗΣ",
+        "phonetic": "NOSILEYTIS",
+        "translation": "Nurse"
+      },
+      {
+        "id": "el-h35",
+        "cyrillic": "ΔΙΚΗΓΟΡΟΣ",
+        "phonetic": "DIKIGOROS",
+        "translation": "Lawyer"
+      },
+      {
+        "id": "el-h36",
+        "cyrillic": "ΑΣΤΥΝΟΜΙΚΟΣ",
+        "phonetic": "ASTYNOMIKOS",
+        "translation": "Police officer"
+      },
+      {
+        "id": "el-h37",
+        "cyrillic": "ΠΥΡΟΣΒΕΣΤΗΣ",
+        "phonetic": "PYROSVESTIS",
+        "translation": "Firefighter"
+      },
+      {
+        "id": "el-h38",
+        "cyrillic": "ΜΗΧΑΝΙΚΟΣ",
+        "phonetic": "MICHANIKOS",
+        "translation": "Engineer"
+      },
+      {
+        "id": "el-h39",
+        "cyrillic": "ΑΡΧΙΤΕΚΤΟΝΑΣ",
+        "phonetic": "ARCHITEKTONAS",
+        "translation": "Architect"
+      },
+      {
+        "id": "el-h40",
+        "cyrillic": "ΥΔΡΑΥΛΙΚΟΣ",
+        "phonetic": "YDRAYLIKOS",
+        "translation": "Plumber"
+      },
+      {
+        "id": "el-h41",
+        "cyrillic": "ΗΛΕΚΤΡΟΛΟΓΟΣ",
+        "phonetic": "ILEKTROLOGOS",
+        "translation": "Electrician"
+      },
+      {
+        "id": "el-h42",
+        "cyrillic": "ΞΥΛΟΥΡΓΟΣ",
+        "phonetic": "XYLOURGOS",
+        "translation": "Carpenter"
+      },
+      {
+        "id": "el-h43",
+        "cyrillic": "ΜΑΓΕΙΡΑΣ",
+        "phonetic": "MAGEIRAS",
+        "translation": "Cook"
+      },
+      {
+        "id": "el-h44",
+        "cyrillic": "ΣΕΡΒΙΤΟΡΟΣ",
+        "phonetic": "SERVITOROS",
+        "translation": "Waiter"
+      },
+      {
+        "id": "el-h45",
+        "cyrillic": "ΟΔΗΓΟΣ",
+        "phonetic": "ODIGOS",
+        "translation": "Driver"
+      },
+      {
+        "id": "el-h46",
+        "cyrillic": "ΠΙΛΟΤΟΣ",
+        "phonetic": "PILOTOS",
+        "translation": "Pilot"
+      },
+      {
+        "id": "el-h47",
+        "cyrillic": "ΑΓΡΟΤΗΣ",
+        "phonetic": "AGROTIS",
+        "translation": "Farmer"
+      },
+      {
+        "id": "el-h48",
+        "cyrillic": "ΨΑΡΑΣ",
+        "phonetic": "PSARAS",
+        "translation": "Fisherman"
+      },
+      {
+        "id": "el-h49",
+        "cyrillic": "ΕΜΠΟΡΟΣ",
+        "phonetic": "EMPOROS",
+        "translation": "Merchant"
+      },
+      {
+        "id": "el-h50",
+        "cyrillic": "ΠΩΛΗΤΗΣ",
+        "phonetic": "POLITIS",
+        "translation": "Salesman"
+      },
+      {
+        "id": "el-h51",
+        "cyrillic": "ΥΠΑΛΛΗΛΟΣ",
+        "phonetic": "YPALLILOS",
+        "translation": "Employee"
+      },
+      {
+        "id": "el-h52",
+        "cyrillic": "ΕΡΓΑΤΗΣ",
+        "phonetic": "ERGATIS",
+        "translation": "Worker"
+      },
+      {
+        "id": "el-h53",
+        "cyrillic": "ΑΦΕΝΤΙΚΟ",
+        "phonetic": "AFENTIKO",
+        "translation": "Boss"
+      },
+      {
+        "id": "el-h54",
+        "cyrillic": "ΕΤΑΙΡΕΙΑ",
+        "phonetic": "ETAIREIA",
+        "translation": "Company"
+      },
+      {
+        "id": "el-h55",
+        "cyrillic": "ΕΡΓΑΣΙΑ",
+        "phonetic": "ERGASIA",
+        "translation": "Work"
+      },
+      {
+        "id": "el-h56",
+        "cyrillic": "ΜΙΣΘΟΣ",
+        "phonetic": "MISTHOS",
+        "translation": "Salary"
+      },
+      {
+        "id": "el-h57",
+        "cyrillic": "ΧΡΗΜΑΤΑ",
+        "phonetic": "CHRIMATA",
+        "translation": "Money"
+      },
+      {
+        "id": "el-h58",
+        "cyrillic": "ΝΟΜΙΣΜΑ",
+        "phonetic": "NOMISMA",
+        "translation": "Coin"
+      },
+      {
+        "id": "el-h59",
+        "cyrillic": "ΧΑΡΤΟΝΟΜΙΣΜΑ",
+        "phonetic": "CHARTONOMISMA",
+        "translation": "Banknote"
+      },
+      {
+        "id": "el-h60",
+        "cyrillic": "ΠΙΣΤΩΤΙΚΗ",
+        "phonetic": "PISTOTIKI",
+        "translation": "Credit card"
+      },
+      {
+        "id": "el-h61",
+        "cyrillic": "ΛΟΓΑΡΙΑΣΜΟΣ",
+        "phonetic": "LOGARIASMOS",
+        "translation": "Account"
+      },
+      {
+        "id": "el-h62",
+        "cyrillic": "ΑΠΟΔΕΙΞΗ",
+        "phonetic": "APODEIXI",
+        "translation": "Receipt"
+      },
+      {
+        "id": "el-h63",
+        "cyrillic": "ΕΚΠΤΩΣΗ",
+        "phonetic": "EKPTOSI",
+        "translation": "Discount"
+      },
+      {
+        "id": "el-h64",
+        "cyrillic": "ΠΡΟΣΦΟΡΑ",
+        "phonetic": "PROSFORA",
+        "translation": "Offer"
+      },
+      {
+        "id": "el-h65",
+        "cyrillic": "ΤΙΜΗ",
+        "phonetic": "TIMI",
+        "translation": "Price"
+      },
+      {
+        "id": "el-h66",
+        "cyrillic": "ΑΞΙΑ",
+        "phonetic": "AXIA",
+        "translation": "Value"
+      },
+      {
+        "id": "el-h67",
+        "cyrillic": "ΠΟΙΟΤΗΤΑ",
+        "phonetic": "POIOTITA",
+        "translation": "Quality"
+      },
+      {
+        "id": "el-h68",
+        "cyrillic": "ΠΟΣΟΤΗΤΑ",
+        "phonetic": "POSOTITA",
+        "translation": "Quantity"
+      },
+      {
+        "id": "el-h69",
+        "cyrillic": "ΜΕΓΕΘΟΣ",
+        "phonetic": "MEGETHOS",
+        "translation": "Size"
+      },
+      {
+        "id": "el-h70",
+        "cyrillic": "ΒΑΡΟΣ",
+        "phonetic": "VAROS",
+        "translation": "Weight"
+      },
+      {
+        "id": "el-h71",
+        "cyrillic": "ΥΨΟΣ",
+        "phonetic": "YPSOS",
+        "translation": "Height"
+      },
+      {
+        "id": "el-h72",
+        "cyrillic": "ΜΗΚΟΣ",
+        "phonetic": "MIKOS",
+        "translation": "Length"
+      },
+      {
+        "id": "el-h73",
+        "cyrillic": "ΠΛΑΤΟΣ",
+        "phonetic": "PLATOS",
+        "translation": "Width"
+      },
+      {
+        "id": "el-h74",
+        "cyrillic": "ΒΑΘΟΣ",
+        "phonetic": "VATHOS",
+        "translation": "Depth"
+      },
+      {
+        "id": "el-h75",
+        "cyrillic": "ΑΠΟΣΤΑΣΗ",
+        "phonetic": "APOSTASI",
+        "translation": "Distance"
+      },
+      {
+        "id": "el-h76",
+        "cyrillic": "ΤΑΧΥΤΗΤΑ",
+        "phonetic": "TACHYTITA",
+        "translation": "Speed"
+      },
+      {
+        "id": "el-h77",
+        "cyrillic": "ΘΕΡΜΟΚΡΑΣΙΑ",
+        "phonetic": "THERMOKRASIA",
+        "translation": "Temperature"
+      },
+      {
+        "id": "el-h78",
+        "cyrillic": "ΚΑΙΡΟΣ",
+        "phonetic": "KAIROS",
+        "translation": "Weather"
+      },
+      {
+        "id": "el-h79",
+        "cyrillic": "ΣΥΝΝΕΦΟ",
+        "phonetic": "SYNNΕΦΟ",
+        "translation": "Cloud"
+      },
+      {
+        "id": "el-h80",
+        "cyrillic": "ΒΡΟΧΗ",
+        "phonetic": "VROCHI",
+        "translation": "Rain"
+      },
+      {
+        "id": "el-h81",
+        "cyrillic": "ΧΙΟΝΙ",
+        "phonetic": "CHIONI",
+        "translation": "Snow"
+      },
+      {
+        "id": "el-h82",
+        "cyrillic": "ΑΝΕΜΟΣ",
+        "phonetic": "ANEMOS",
+        "translation": "Wind"
+      },
+      {
+        "id": "el-h83",
+        "cyrillic": "ΚΑΤΑΙΓΙΔΑ",
+        "phonetic": "KATAIGIDA",
+        "translation": "Storm"
+      },
+      {
+        "id": "el-h84",
+        "cyrillic": "ΑΣΤΡΑΠΗ",
+        "phonetic": "ASTRAPI",
+        "translation": "Lightning"
+      },
+      {
+        "id": "el-h85",
+        "cyrillic": "ΒΡΟΝΤΗ",
+        "phonetic": "VRONTI",
+        "translation": "Thunder"
+      },
+      {
+        "id": "el-h86",
+        "cyrillic": "ΣΕΙΣΜΟΣ",
+        "phonetic": "SEISMOS",
+        "translation": "Earthquake"
+      },
+      {
+        "id": "el-h87",
+        "cyrillic": "ΗΦΑΙΣΤΕΙΟ",
+        "phonetic": "IFAISTEIO",
+        "translation": "Volcano"
+      },
+      {
+        "id": "el-h88",
+        "cyrillic": "ΦΥΣΗ",
+        "phonetic": "FYSI",
+        "translation": "Nature"
+      },
+      {
+        "id": "el-h89",
+        "cyrillic": "ΠΕΡΙΒΑΛΛΟΝ",
+        "phonetic": "PERIVALLON",
+        "translation": "Environment"
+      },
+      {
+        "id": "el-h90",
+        "cyrillic": "ΚΑΤΑΣΤΡΟΦΗ",
+        "phonetic": "KATASTROFI",
+        "translation": "Disaster"
+      },
+      {
+        "id": "el-h91",
+        "cyrillic": "ΠΡΟΣΤΑΣΙΑ",
+        "phonetic": "PROSTASIA",
+        "translation": "Protection"
+      },
+      {
+        "id": "el-h92",
+        "cyrillic": "ΑΣΦΑΛΕΙΑ",
+        "phonetic": "ASFALEIA",
+        "translation": "Safety"
+      },
+      {
+        "id": "el-h93",
+        "cyrillic": "ΚΙΝΔΥΝΟΣ",
+        "phonetic": "KINDYNOS",
+        "translation": "Danger"
+      },
+      {
+        "id": "el-h94",
+        "cyrillic": "ΒΟΗΘΕΙΑ",
+        "phonetic": "VOITHEIA",
+        "translation": "Help"
+      },
+      {
+        "id": "el-h95",
+        "cyrillic": "ΔΙΑΣΩΣΗ",
+        "phonetic": "DIASOSI",
+        "translation": "Rescue"
+      },
+      {
+        "id": "el-h96",
+        "cyrillic": "ΑΤΥΧΗΜΑ",
+        "phonetic": "ATYCHIMA",
+        "translation": "Accident"
+      },
+      {
+        "id": "el-h97",
+        "cyrillic": "ΝΟΣΟΚΟΜΕΙΑΚΟ",
+        "phonetic": "NOSOKOMEIAKO",
+        "translation": "Ambulance"
+      },
+      {
+        "id": "el-h98",
+        "cyrillic": "ΑΣΤΥΝΟΜΙΑ",
+        "phonetic": "ASTYNOMIA",
+        "translation": "Police"
+      },
+      {
+        "id": "el-h99",
+        "cyrillic": "ΠΥΡΟΣΒΕΣΤΙΚΗ",
+        "phonetic": "PYROSVESTIKI",
+        "translation": "Fire department"
       }
     ]
   },

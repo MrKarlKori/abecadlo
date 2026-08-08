@@ -195,6 +195,21 @@ export function QuizPage() {
   };
 
   const getFeedbackMessage = (finalScore: number) => {
+    if (langId === 'be') {
+      if (finalScore === 10) return "Flawless! You carry the torch of our awakening. The Belarusian word shines brightly!";
+      if (finalScore >= 8) return "Splendid! Our heritage lives on through your dedication to the native tongue.";
+      if (finalScore >= 5) return "Fair, but our young nation needs you to master the language of our ancestors.";
+      return "Do not let the Belarusian word perish! Study harder for the sake of our motherland.";
+    }
+    
+    if (langId === 'el') {
+      if (finalScore === 10) return "By Zeus! You possess the wisdom of Athena and the brilliance of Apollo!";
+      if (finalScore >= 8) return "Excellent! The Muses sing praises of your knowledge on Mount Olympus.";
+      if (finalScore >= 5) return "Acceptable, mortal, but you must train harder to impress the gods.";
+      return "By Hades! A cyclops could read better. Consult the Oracle and try again.";
+    }
+
+    // Default (Russian)
     if (finalScore === 10) return "Comrade! KGB level perfection!";
     if (finalScore >= 8) return "Excellent! The Party is pleased.";
     if (finalScore >= 5) return "Acceptable, but you must study harder for the motherland.";
