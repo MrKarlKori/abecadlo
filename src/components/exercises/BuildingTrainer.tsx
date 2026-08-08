@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { ArrowRight, RotateCcw } from 'lucide-react';
 import { READING_DATA } from './ReadingTrainer';
-import type { ReadingLevel } from './ReadingTrainer';
+import type { ReadingLevel, ReadingItem } from './ReadingTrainer';
+
+export type PromptMode = 'mirror' | 'eng-translation' | 'ru-translation';
 
 const CYRILLIC_ALPHABET = [
   'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
@@ -11,8 +13,15 @@ const CYRILLIC_ALPHABET = [
   'Э', 'Ю', 'Я'
 ];
 
+const ENGLISH_ALPHABET = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+  'U', 'V', 'W', 'X', 'Y', 'Z'
+];
+
 export function BuildingTrainer() {
   const [level, setLevel] = useState<ReadingLevel>('easy');
+  const [promptMode, setPromptMode] = useState<PromptMode>('mirror');
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const [slots, setSlots] = useState<(string | null)[]>([]);
@@ -20,18 +29,48 @@ export function BuildingTrainer() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const currentList = READING_DATA[level];
-  const item = currentList[currentIndex] || currentList[0];
+  const item: ReadingItem = currentList[currentIndex] || currentList[0];
 
-  const targetWord = item.cyrillic.replace(/[-'’]/g, '').toUpperCase();
-  const promptText = item.translation.toUpperCase();
+  const getTargetAndAlphabet = (readingItem: ReadingItem, mode: PromptMode) => {
+    if (mode === 'ru-translation') {
+      const rawEng = readingItem.translation.toUpperCase().replace(/[^A-Z]/g, '');
+      const cleanEng = rawEng.length > 0 ? rawEng : 'YES';
+      return {
+        targetWord: cleanEng,
+        alphabet: ENGLISH_ALPHABET,
+        promptLabel: "Build English translation for Russian prompt",
+        promptDisplay: readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase()
+      };
+    }
 
-  // Reset and set up letter tiles pool for the current word
-  const setupWord = (word: string) => {
-    const chars = word.split('');
+    const cleanCyr = readingItem.cyrillic.replace(/[-'’]/g, '').toUpperCase();
+    if (mode === 'eng-translation') {
+      return {
+        targetWord: cleanCyr,
+        alphabet: CYRILLIC_ALPHABET,
+        promptLabel: "Build Cyrillic word for English translation",
+        promptDisplay: `"${readingItem.translation.toUpperCase()}"`
+      };
+    }
+
+    // default: mirror letters (phonetic sound -> Cyrillic word)
+    return {
+      targetWord: cleanCyr,
+      alphabet: CYRILLIC_ALPHABET,
+      promptLabel: "Mirror phonetic sound to Cyrillic letters",
+      promptDisplay: `[${readingItem.phonetic}]`
+    };
+  };
+
+  const { targetWord, alphabet, promptLabel, promptDisplay } = getTargetAndAlphabet(item, promptMode);
+
+  // Reset and set up letter tiles pool for the current word and alphabet
+  const setupWord = (wordToBuild: string, alphabetSource: string[]) => {
+    const chars = wordToBuild.split('');
     const uniqueTargetChars = new Set(chars);
 
-    // Pick 3-4 distractor letters not in target word
-    const availableDistractors = CYRILLIC_ALPHABET.filter(c => !uniqueTargetChars.has(c));
+    // Pick 4 distractor letters not in target word
+    const availableDistractors = alphabetSource.filter(c => !uniqueTargetChars.has(c));
     const shuffledDistractors = [...availableDistractors].sort(() => Math.random() - 0.5).slice(0, 4);
 
     const allChars = [...chars, ...shuffledDistractors];
@@ -45,13 +84,16 @@ export function BuildingTrainer() {
     setStatus('idle');
   };
 
-  // Pick random word on level change or mount
+  // Pick random word on level or prompt mode change
   useEffect(() => {
     const list = READING_DATA[level];
     const randomIdx = Math.floor(Math.random() * list.length);
     setCurrentIndex(randomIdx);
-    setupWord((list[randomIdx] || list[0]).cyrillic.replace(/[-'’]/g, '').toUpperCase());
-  }, [level]);
+
+    const selectedItem = list[randomIdx] || list[0];
+    const { targetWord: wordToBuild, alphabet: alphabetSource } = getTargetAndAlphabet(selectedItem, promptMode);
+    setupWord(wordToBuild, alphabetSource);
+  }, [level, promptMode]);
 
   const handleNext = () => {
     let nextIdx = Math.floor(Math.random() * currentList.length);
@@ -59,7 +101,10 @@ export function BuildingTrainer() {
       nextIdx = (currentIndex + 1) % currentList.length;
     }
     setCurrentIndex(nextIdx);
-    setupWord((currentList[nextIdx] || currentList[0]).cyrillic.replace(/[-'’]/g, '').toUpperCase());
+
+    const selectedItem = currentList[nextIdx] || currentList[0];
+    const { targetWord: wordToBuild, alphabet: alphabetSource } = getTargetAndAlphabet(selectedItem, promptMode);
+    setupWord(wordToBuild, alphabetSource);
   };
 
   const handleLevelChange = (newLevel: ReadingLevel) => {
@@ -105,7 +150,7 @@ export function BuildingTrainer() {
   return (
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
       {/* Level selector tabs */}
-      <div className="flex gap-2 mb-8 w-full max-w-md">
+      <div className="flex gap-2 mb-4 w-full max-w-md">
         {(['easy', 'medium', 'hard'] as ReadingLevel[]).map((lvl) => (
           <button
             key={lvl}
@@ -117,17 +162,57 @@ export function BuildingTrainer() {
                 : "bg-white text-vintage-ink/70 hover:bg-gray-100"
             )}
           >
-            {lvl === 'easy' ? 'Easy (Short)' : lvl === 'medium' ? 'Medium (Words)' : 'Hard (Complex)'}
+            {lvl === 'easy' ? 'Easy (100)' : lvl === 'medium' ? 'Medium (100)' : 'Hard (100)'}
           </button>
         ))}
       </div>
 
-      <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-4 text-center">
-        Build the Cyrillic word for
+      {/* Mode setting selector (below complexity levels) */}
+      <div className="flex gap-1.5 mb-8 w-full max-w-md bg-white p-2 border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29]">
+        <button
+          type="button"
+          onClick={() => setPromptMode('mirror')}
+          className={clsx(
+            "flex-1 py-1.5 px-1 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer border border-vintage-ink text-center",
+            promptMode === 'mirror'
+              ? "bg-vintage-gold text-vintage-ink shadow-[1px_1px_0_0_#2C2A29]"
+              : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
+          )}
+        >
+          Mirror Letters
+        </button>
+        <button
+          type="button"
+          onClick={() => setPromptMode('eng-translation')}
+          className={clsx(
+            "flex-1 py-1.5 px-1 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer border border-vintage-ink text-center",
+            promptMode === 'eng-translation'
+              ? "bg-vintage-gold text-vintage-ink shadow-[1px_1px_0_0_#2C2A29]"
+              : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
+          )}
+        >
+          English Trans.
+        </button>
+        <button
+          type="button"
+          onClick={() => setPromptMode('ru-translation')}
+          className={clsx(
+            "flex-1 py-1.5 px-1 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer border border-vintage-ink text-center",
+            promptMode === 'ru-translation'
+              ? "bg-vintage-gold text-vintage-ink shadow-[1px_1px_0_0_#2C2A29]"
+              : "bg-vintage-paper text-vintage-ink/70 hover:bg-gray-100"
+          )}
+        >
+          Russian Trans.
+        </button>
+      </div>
+
+      <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-3 text-center">
+        {promptLabel}
       </h3>
 
       <div className="text-4xl md:text-5xl font-serif font-bold text-vintage-ink mb-10 text-center drop-shadow-[2px_2px_0_#D9AD5B]">
-        "{promptText}"
+        {promptDisplay}
       </div>
 
       {/* Target letter slots */}
@@ -151,7 +236,7 @@ export function BuildingTrainer() {
         })}
       </div>
 
-      {/* Cyrillic letter tiles pool */}
+      {/* Letter tiles pool */}
       <div className="flex gap-2 mb-10 flex-wrap justify-center max-w-md">
         {pool.map(itemTile => (
           <div
@@ -207,9 +292,9 @@ export function BuildingTrainer() {
       {status === 'success' && (
         <div className="mt-6 text-green-700 font-mono text-center bg-green-50 p-4 border border-green-300 w-full max-w-md animate-in fade-in flex flex-col items-center">
           <p className="font-bold text-lg">Correct!</p>
-          <p className="text-sm mt-1">{targetWord} = "{item.translation}" [{item.phonetic}]</p>
+          <p className="text-sm mt-1">{item.cyrillic.replace(/[-'’]/g, '').toUpperCase()} = "{item.translation}" [{item.phonetic}]</p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(targetWord.toLowerCase())}#Russian`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(item.cyrillic.replace(/[-'’]/g, '').toLowerCase())}#Russian`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

@@ -1,16 +1,171 @@
 import { useState, useEffect } from 'react';
 import { X, ArrowRight, Eye } from 'lucide-react';
 import { useParams } from 'react-router-dom';
-import type { LessonModule, ExerciseStep } from '../../data/mockLessonsData';
+import type { LessonModule, ExerciseStep, ReadingTask } from '../../data/mockLessonsData';
 import { HandWritingPad } from './HandWritingPad';
 import { READING_DATA } from './ReadingTrainer';
 import { useLanguageData } from '../../hooks/useLanguageData';
 import { useExercisesProgress } from '../../hooks/useExercisesProgress';
+import clsx from 'clsx';
+
+const CYRILLIC_ALPHABET = [
+  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
+  'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т',
+  'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь',
+  'Э', 'Ю', 'Я'
+];
 
 interface ExerciseSessionProps {
   module: LessonModule;
   onClose: () => void;
   onComplete?: () => void;
+}
+
+function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTask; onCorrect: () => void }) {
+  const targetWord = readingTask.cyrillic.replace(/[-'’]/g, '').toUpperCase();
+  const [slots, setSlots] = useState<(string | null)[]>([]);
+  const [pool, setPool] = useState<{ id: string; char: string; used: boolean }[]>([]);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    const chars = targetWord.split('');
+    const uniqueTargetChars = new Set(chars);
+    const availableDistractors = CYRILLIC_ALPHABET.filter(c => !uniqueTargetChars.has(c));
+    const shuffledDistractors = [...availableDistractors].sort(() => Math.random() - 0.5).slice(0, 4);
+
+    const allChars = [...chars, ...shuffledDistractors];
+    const shuffledPool = allChars
+      .map(char => ({ char, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((itemTile, index) => ({ id: `tile-${index}`, char: itemTile.char, used: false }));
+
+    setSlots(new Array(chars.length).fill(null));
+    setPool(shuffledPool);
+    setStatus('idle');
+  }, [readingTask]);
+
+  const handlePoolClick = (poolItem: { id: string; char: string; used: boolean }) => {
+    if (poolItem.used || status === 'success') return;
+    const firstEmptySlot = slots.findIndex(s => s === null);
+    if (firstEmptySlot !== -1) {
+      const newSlots = [...slots];
+      newSlots[firstEmptySlot] = poolItem.id;
+      setSlots(newSlots);
+      setPool(prev => prev.map(p => p.id === poolItem.id ? { ...p, used: true } : p));
+      setStatus('idle');
+    }
+  };
+
+  const handleSlotClick = (index: number) => {
+    if (status === 'success') return;
+    const poolId = slots[index];
+    if (poolId) {
+      const newSlots = [...slots];
+      newSlots[index] = null;
+      setSlots(newSlots);
+      setPool(prev => prev.map(p => p.id === poolId ? { ...p, used: false } : p));
+      setStatus('idle');
+    }
+  };
+
+  const checkAnswer = () => {
+    const constructed = slots.map(id => pool.find(p => p.id === id)?.char || '').join('');
+    if (constructed === targetWord) {
+      setStatus('success');
+      onCorrect();
+    } else {
+      setStatus('error');
+    }
+  };
+
+  const isFull = slots.length > 0 && slots.every(s => s !== null);
+
+  return (
+    <div className="flex flex-col items-center p-6 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
+      <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-2 text-center">
+        Build Cyrillic word from sound (Word Mirroring)
+      </h3>
+      <p className="font-serif text-sm italic text-vintage-ink/70 mb-6 text-center max-w-md">
+        Select letter tiles in order to construct the Cyrillic word matching the sound prompt below.
+      </p>
+
+      <div className="text-4xl md:text-5xl font-serif font-bold text-vintage-ink mb-8 text-center drop-shadow-[2px_2px_0_#D9AD5B]">
+        [{readingTask.phonetic}]
+      </div>
+
+      {/* Target slots */}
+      <div className="flex gap-2 mb-8 flex-wrap justify-center min-h-[4rem]">
+        {slots.map((poolId, i) => {
+          const char = poolId ? pool.find(p => p.id === poolId)?.char : null;
+          return (
+            <div
+              key={`slot-${i}`}
+              onClick={() => handleSlotClick(i)}
+              className={clsx(
+                "w-12 h-16 border-2 border-dashed border-vintage-ink flex items-center justify-center text-2xl font-bold font-serif cursor-pointer transition-all",
+                char ? "bg-white border-solid shadow-[2px_2px_0_0_#2C2A29]" : "bg-transparent",
+                status === 'error' && char ? "border-red-500 text-red-600 bg-red-50" : "",
+                status === 'success' && char ? "border-green-500 text-green-600 bg-green-50" : ""
+              )}
+            >
+              {char}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Tiles pool */}
+      <div className="flex gap-2 mb-8 flex-wrap justify-center max-w-md">
+        {pool.map(itemTile => (
+          <div
+            key={itemTile.id}
+            onClick={() => handlePoolClick(itemTile)}
+            className={clsx(
+              "w-12 h-16 border-2 border-vintage-ink flex items-center justify-center text-2xl font-bold font-serif transition-all select-none",
+              itemTile.used
+                ? "opacity-0 cursor-default"
+                : "bg-[#f5ebd6] shadow-[2px_2px_0_0_#2C2A29] cursor-pointer hover:-translate-y-1 hover:bg-white active:translate-y-0 active:shadow-none"
+            )}
+          >
+            {itemTile.char}
+          </div>
+        ))}
+      </div>
+
+      {/* Check Answer Button */}
+      {status !== 'success' ? (
+        <button
+          onClick={checkAnswer}
+          disabled={!isFull}
+          className={clsx(
+            "w-full max-w-xs py-3 font-serif font-bold text-lg border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] transition-all cursor-pointer",
+            !isFull ? "opacity-50 cursor-not-allowed bg-gray-200" : "bg-vintage-gold hover:bg-[#d4a849]"
+          )}
+        >
+          Check Built Word
+        </button>
+      ) : (
+        <div className="text-green-700 font-mono text-center bg-green-50 p-4 border border-green-300 w-full max-w-md flex flex-col items-center">
+          <p className="font-bold text-lg">Correct!</p>
+          <p className="text-sm mt-1">{targetWord} = "{readingTask.translation}" [{readingTask.phonetic}]</p>
+          <a 
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(targetWord.toLowerCase())}#Russian`}
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"
+          >
+            View on Wiktionary &rarr;
+          </a>
+        </div>
+      )}
+
+      {status === 'error' && (
+        <div className="mt-4 text-red-600 font-mono text-center bg-red-50 p-3 border border-red-200 w-full max-w-md text-xs">
+          Not quite right! Rearrange tiles and check again.
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function ExerciseSession({ module, onClose, onComplete }: ExerciseSessionProps) {
@@ -24,7 +179,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
   const [stepStatus, setStepStatus] = useState<'idle' | 'success'>('idle');
   const [readingRevealed, setReadingRevealed] = useState(false);
 
-  // Generate 10 exercise steps: ALWAYS EXACTLY 4 drawing tasks (2 tracing + 2 draw-opposite) and 6 reading tasks
+  // Generate 10 exercise steps: 4 drawing (2 tracing + 2 draw opposite) + 3 reading easy + 3 building mirror
   useEffect(() => {
     if (!characters.length) return;
 
@@ -34,7 +189,7 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
     );
     const charPool = moduleChars.length > 0 ? moduleChars : characters;
 
-    // 2. Scoped word pool for reading practice (must contain at least 1 module letter)
+    // 2. Scoped word pool for reading & building (simple words containing at least 1 module letter)
     const matchingReadingItems = READING_DATA.easy.filter(item => {
       const cleanWord = item.cyrillic.replace(/[-'’]/g, '').toUpperCase();
       return module.letters.some(l => cleanWord.includes(l.toUpperCase()));
@@ -70,8 +225,8 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
       });
     });
 
-    // Part B: EXACTLY 6 Reading Tasks
-    for (let i = 0; i < 6; i++) {
+    // Part B: 3 Reading Tasks (Easy Level)
+    for (let i = 0; i < 3; i++) {
       const rItem = readingPool[Math.floor(Math.random() * readingPool.length)];
       generated.push({
         id: `step-read-${i}-${Date.now()}-${Math.random()}`,
@@ -80,7 +235,17 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
       });
     }
 
-    // Shuffle the 10 tasks for a dynamic, interspersed lesson flow
+    // Part C: 3 Building Word Mirroring Tasks (Easy Level)
+    for (let i = 0; i < 3; i++) {
+      const rItem = readingPool[Math.floor(Math.random() * readingPool.length)];
+      generated.push({
+        id: `step-build-${i}-${Date.now()}-${Math.random()}`,
+        type: 'building-mirror',
+        readingTask: rItem
+      });
+    }
+
+    // Shuffle all 10 tasks for a dynamic, interspersed lesson flow
     generated.sort(() => Math.random() - 0.5);
 
     setSteps(generated);
@@ -212,6 +377,16 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
             </div>
           )}
         </div>
+      );
+    }
+
+    if (currentStep.type === 'building-mirror' && currentStep.readingTask) {
+      return (
+        <LessonBuildingStep
+          key={key}
+          readingTask={currentStep.readingTask}
+          onCorrect={handleCorrect}
+        />
       );
     }
 

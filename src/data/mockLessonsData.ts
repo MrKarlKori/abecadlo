@@ -1,4 +1,4 @@
-export type ExerciseType = 'drawing' | 'drawing-opposite' | 'reading-easy';
+export type ExerciseType = 'drawing' | 'drawing-opposite' | 'reading-easy' | 'building-mirror';
 
 export interface ReadingTask {
   id: string;
