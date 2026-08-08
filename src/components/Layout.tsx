@@ -1,17 +1,31 @@
+import { useEffect } from 'react';
 import { Outlet, NavLink, useParams, useNavigate, useLocation } from 'react-router-dom';
-import { BookA, GraduationCap, PenTool, Settings } from 'lucide-react';
+import { BookA, GraduationCap, HelpCircle, PenTool, Settings } from 'lucide-react';
 import clsx from 'clsx';
 import { useLanguageData } from '../hooks/useLanguageData';
 
 export function Layout() {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || 'be';
   const { registryEntry, registry } = useLanguageData(langId);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLang = e.target.value;
+  useEffect(() => {
+    try {
+      localStorage.setItem('abecadlo_preferred_language', langId);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [langId]);
+
+  const handleLanguageSelect = (newLang: string) => {
+    if (newLang === langId) return;
+    try {
+      localStorage.setItem('abecadlo_preferred_language', newLang);
+    } catch (e) {
+      console.error(e);
+    }
     const currentPath = location.pathname.split('/').slice(2).join('/');
     navigate(`/${newLang}/${currentPath}`);
   };
@@ -19,7 +33,7 @@ export function Layout() {
   const navItems = [
     { to: `/${langId}/alphabet`, icon: BookA, label: 'Alphabet' },
     { to: `/${langId}/lesson`, icon: GraduationCap, label: 'Lessons' },
-    { to: `/${langId}/quiz`, icon: PenTool, label: 'Quizzes' },
+    { to: `/${langId}/quiz`, icon: HelpCircle, label: 'Quizzes' },
     { to: `/${langId}/exercises`, icon: PenTool, label: 'Exercises' },
     { to: `/${langId}/settings`, icon: Settings, label: 'Settings' }
   ];
@@ -27,17 +41,28 @@ export function Layout() {
   return (
     <div className="min-h-screen bg-vintage-paper flex flex-col md:flex-row">
       <nav className="md:w-64 bg-vintage-paper border-b-2 md:border-b-0 md:border-r-2 border-vintage-ink p-4 flex md:flex-col justify-between z-10 sticky top-0 md:h-screen">
-        <div className="hidden md:block mb-8">
-          <h1 className="text-2xl mb-2 text-vintage-red">Abecadlo</h1>
-          <select 
-            value={langId} 
-            onChange={handleLanguageChange}
-            className="w-full p-2 mt-2 bg-transparent border-2 border-vintage-ink font-bold text-lg font-serif cursor-pointer focus:outline-none focus:ring-0"
-          >
-            {registry.map(r => (
-              <option key={r.id} value={r.id}>{r.name}</option>
-            ))}
-          </select>
+        <div className="mb-6">
+          <h1 className="text-2xl mb-3 text-vintage-red font-bold">Abecadlo</h1>
+          <div className="flex md:flex-col gap-2">
+            {registry.map(r => {
+              const isSelected = r.id === langId;
+              return (
+                <button
+                  key={r.id}
+                  type="button"
+                  onClick={() => handleLanguageSelect(r.id)}
+                  className={clsx(
+                    "px-3 py-1.5 md:py-2 border-2 border-vintage-ink font-serif font-bold text-xs md:text-sm transition-all flex items-center justify-between cursor-pointer text-left",
+                    isSelected
+                      ? "bg-vintage-gold text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]"
+                      : "bg-white text-vintage-ink/70 hover:bg-gray-100"
+                  )}
+                >
+                  <span>{r.name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
         
         <div className="flex md:flex-col justify-around w-full gap-2">

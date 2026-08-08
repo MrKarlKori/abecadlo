@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { Lock, Play, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { getLessonModules } from '../data/mockLessonsData';
@@ -24,20 +24,23 @@ export function LessonsPage() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
 
+  const location = useLocation();
+  const basePath = location.pathname.includes('/alphabet') ? 'alphabet' : 'lesson';
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!id || !characters.length) return;
       const currentIndex = characters.findIndex(c => c.id === id);
       if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        navigate(`/${langId}/lesson/${characters[currentIndex - 1].id}`);
+        navigate(`/${langId}/${basePath}/${characters[currentIndex - 1].id}`);
       } else if (e.key === 'ArrowRight' && currentIndex < characters.length - 1) {
-        navigate(`/${langId}/lesson/${characters[currentIndex + 1].id}`);
+        navigate(`/${langId}/${basePath}/${characters[currentIndex + 1].id}`);
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [id, characters, navigate, langId]);
+  }, [id, characters, navigate, langId, basePath]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -57,9 +60,9 @@ export function LessonsPage() {
     const currentIndex = characters.findIndex(c => c.id === id);
 
     if (isLeftSwipe && currentIndex < characters.length - 1) {
-      navigate(`/${langId}/lesson/${characters[currentIndex + 1].id}`);
+      navigate(`/${langId}/${basePath}/${characters[currentIndex + 1].id}`);
     } else if (isRightSwipe && currentIndex > 0) {
-      navigate(`/${langId}/lesson/${characters[currentIndex - 1].id}`);
+      navigate(`/${langId}/${basePath}/${characters[currentIndex - 1].id}`);
     }
   };
 
@@ -85,10 +88,10 @@ export function LessonsPage() {
       >
         <div className="flex justify-between items-center mb-6">
           <button 
-            onClick={() => navigate(`/${langId}/alphabet`)}
+            onClick={() => navigate(`/${langId}/${basePath}`)}
             className="text-vintage-ink hover:text-vintage-blue font-serif font-bold underline underline-offset-4 decoration-2 cursor-pointer"
           >
-            &larr; Back to Alphabet
+            &larr; {basePath === 'alphabet' ? 'Back to Alphabet' : 'Back to Lessons'}
           </button>
           <span className="font-mono text-sm">
             {currentIndex + 1} / {characters.length}

@@ -2,6 +2,7 @@
   "permissions": {
     "allow": [
       "command(npm test)",
+      "command(npm test -- --run)",
       "command(npx tsc -b)",
       "command(tsc -b)",
       "command(npm run lint)",

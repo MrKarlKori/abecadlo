@@ -29,27 +29,27 @@ export const getLessonModules = (langId: string): LessonModule[] => {
     return [
       {
         id: 'module-1',
-        title: 'Тоесныя літары (Identical Twins)',
+        title: 'The Identical Twins',
         description: 'А, К, М, О, Т',
         letters: ['А', 'К', 'М', 'О', 'Т']
       },
       {
         id: 'module-2',
-        title: 'Ілжывыя сябры (False Friends)',
-        description: 'В, Н, Р, С, У, Х',
-        letters: ['В', 'Н', 'Р', 'С', 'У', 'Х']
+        title: 'The False Friends',
+        description: 'В, Е, Н, Р, С, У, Х',
+        letters: ['В', 'Е', 'Н', 'Р', 'С', 'У', 'Х']
       },
       {
         id: 'module-3',
-        title: 'Грэчаскія кузіны (Greek Cousins)',
+        title: 'The Greek Cousins',
         description: 'Г, Д, Л, П, Ф',
         letters: ['Г', 'Д', 'Л', 'П', 'Ф']
       },
       {
         id: 'module-4',
-        title: 'Асаблівыя літары (New & Special)',
-        description: 'Б, Е, Ё, Ж, З, І, Й, Ў, Ц, Ч, Ш, Ы, Ь, Э, Ю, Я, ’',
-        letters: ['Б', 'Е', 'Ё', 'Ж', 'З', 'І', 'Й', 'Ў', 'Ц', 'Ч', 'Ш', 'Ы', 'Ь', 'Э', 'Ю', 'Я', '’']
+        title: 'The Completely New',
+        description: 'Б, Ё, Ж, З, І, Й, Ў, Ц, Ч, Ш, Ы, Ь, Э, Ю, Я, ’',
+        letters: ['Б', 'Ё', 'Ж', 'З', 'І', 'Й', 'Ў', 'Ц', 'Ч', 'Ш', 'Ы', 'Ь', 'Э', 'Ю', 'Я', '’']
       }
     ];
   }
@@ -64,8 +64,8 @@ export const getLessonModules = (langId: string): LessonModule[] => {
     {
       id: 'module-2',
       title: 'The False Friends',
-      description: 'В, Н, Р, С, У, Х',
-      letters: ['В', 'Н', 'Р', 'С', 'У', 'Х']
+      description: 'В, Е, Н, Р, С, У, Х',
+      letters: ['В', 'Е', 'Н', 'Р', 'С', 'У', 'Х']
     },
     {
       id: 'module-3',

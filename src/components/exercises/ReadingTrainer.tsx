@@ -728,57 +728,6 @@ export const READING_DATA: Record<string, Record<ReadingLevel, ReadingItem[]>> =
   },
   be: {
     easy: [
-      {"id":"be-e51","cyrillic":"ВОК-ЗАЛ","phonetic":"VAK-ZAL","translation":"Station"},
-      {"id":"be-e52","cyrillic":"ВА-ДА","phonetic":"VA-DA","translation":"Water"},
-      {"id":"be-e53","cyrillic":"ВА-ТА","phonetic":"VA-TA","translation":"Cotton wool"},
-      {"id":"be-e54","cyrillic":"МЫ-ЛА","phonetic":"MY-LA","translation":"Soap"},
-      {"id":"be-e55","cyrillic":"ЦУ-КАР","phonetic":"TSU-KAR","translation":"Sugar"},
-      {"id":"be-e56","cyrillic":"СОЛЬ","phonetic":"SOL'","translation":"Salt"},
-      {"id":"be-e57","cyrillic":"ЛУК","phonetic":"LUK","translation":"Onion / Bow"},
-      {"id":"be-e58","cyrillic":"ЖУК","phonetic":"ZHUK","translation":"Beetle"},
-      {"id":"be-e59","cyrillic":"РАК","phonetic":"RAK","translation":"Crayfish"},
-      {"id":"be-e60","cyrillic":"БОР","phonetic":"BOR","translation":"Pine forest"},
-      {"id":"be-e61","cyrillic":"СІ-НІ","phonetic":"SI-NI","translation":"Blue"},
-      {"id":"be-e62","cyrillic":"А-ЛЫ","phonetic":"A-LY","translation":"Scarlet"},
-      {"id":"be-e63","cyrillic":"БЕ-ЛЫ","phonetic":"BYE-LY","translation":"White"},
-      {"id":"be-e64","cyrillic":"МІР","phonetic":"MIR","translation":"Peace / World"},
-      {"id":"be-e65","cyrillic":"ШАР","phonetic":"SHAR","translation":"Ball / Sphere"},
-      {"id":"be-e66","cyrillic":"МАЙ","phonetic":"MAY","translation":"May"},
-      {"id":"be-e67","cyrillic":"ЧАЙ","phonetic":"CHAY","translation":"Tea"},
-      {"id":"be-e68","cyrillic":"ПІ-ЦЬ","phonetic":"PI-TS'","translation":"To drink"},
-      {"id":"be-e69","cyrillic":"ЕС-ЦІ","phonetic":"YES-TSI","translation":"To eat"},
-      {"id":"be-e70","cyrillic":"ІС-ЦІ","phonetic":"IS-TSI","translation":"To go / walk"},
-      {"id":"be-e71","cyrillic":"СПА-ЦЬ","phonetic":"SPA-TS'","translation":"To sleep"},
-      {"id":"be-e72","cyrillic":"ПЯ-ЦІ","phonetic":"PYA-TSI","translation":"Five"},
-      {"id":"be-e73","cyrillic":"ШЭС-ЦІ","phonetic":"SHES-TSI","translation":"Six"},
-      {"id":"be-e74","cyrillic":"СЕМ","phonetic":"SYEM","translation":"Seven"},
-      {"id":"be-e75","cyrillic":"ВО-СЕМ","phonetic":"VO-SYEM","translation":"Eight"},
-      {"id":"be-e76","cyrillic":"ДЗЕ-ВЯЦЬ","phonetic":"DZE-VYATS'","translation":"Nine"},
-      {"id":"be-e77","cyrillic":"ДЗЕ-СЯЦЬ","phonetic":"DZE-SYATS'","translation":"Ten"},
-      {"id":"be-e78","cyrillic":"А-ДЗІН","phonetic":"A-DZIN","translation":"One"},
-      {"id":"be-e79","cyrillic":"ДВА","phonetic":"DVA","translation":"Two"},
-      {"id":"be-e80","cyrillic":"ТРЫ","phonetic":"TRY","translation":"Three"},
-      {"id":"be-e81","cyrillic":"ЧА-ТЫ-РЫ","phonetic":"CHA-TY-RY","translation":"Four"},
-      {"id":"be-e82","cyrillic":"ДАР","phonetic":"DAR","translation":"Gift"},
-      {"id":"be-e83","cyrillic":"ДЫМ","phonetic":"DYM","translation":"Smoke"},
-      {"id":"be-e84","cyrillic":"ЗУБ","phonetic":"ZUB","translation":"Tooth"},
-      {"id":"be-e85","cyrillic":"КОД","phonetic":"KOD","translation":"Code"},
-      {"id":"be-e86","cyrillic":"КУТ","phonetic":"KUT","translation":"Corner"},
-      {"id":"be-e87","cyrillic":"ЛАК","phonetic":"LAK","translation":"Varnish"},
-      {"id":"be-e88","cyrillic":"ЛОБ","phonetic":"LOB","translation":"Forehead"},
-      {"id":"be-e89","cyrillic":"ЛУГ","phonetic":"LUG","translation":"Meadow"},
-      {"id":"be-e90","cyrillic":"МОХ","phonetic":"MOKH","translation":"Moss"},
-      {"id":"be-e91","cyrillic":"МУЖ","phonetic":"MUZH","translation":"Husband"},
-      {"id":"be-e92","cyrillic":"ПАН","phonetic":"PAN","translation":"Lord / Mister"},
-      {"id":"be-e93","cyrillic":"ПАР","phonetic":"PAR","translation":"Steam"},
-      {"id":"be-e94","cyrillic":"РОТ","phonetic":"ROT","translation":"Mouth"},
-      {"id":"be-e95","cyrillic":"САД","phonetic":"SAD","translation":"Garden / Orchard"},
-      {"id":"be-e96","cyrillic":"СЕРП","phonetic":"SYERP","translation":"Sickle"},
-      {"id":"be-e97","cyrillic":"СНАП","phonetic":"SNAP","translation":"Sheaf"},
-      {"id":"be-e98","cyrillic":"ТОН","phonetic":"TON","translation":"Tone"},
-      {"id":"be-e99","cyrillic":"ШАЛ","phonetic":"SHAL","translation":"Shawl"},
-      {"id":"be-e100","cyrillic":"ШАРФ","phonetic":"SHARF","translation":"Scarf"},
-
       {
             "id": "be-e1",
             "cyrillic": "ТАК",
@@ -1078,6 +1027,306 @@ export const READING_DATA: Record<string, Record<ReadingLevel, ReadingItem[]>> =
             "cyrillic": "КА-ША",
             "phonetic": "KA-SHA",
             "translation": "Porridge"
+      },
+      {
+            "id": "be-e51",
+            "cyrillic": "ВОК-ЗАЛ",
+            "phonetic": "VAK-ZAL",
+            "translation": "Station"
+      },
+      {
+            "id": "be-e52",
+            "cyrillic": "ВА-ДА",
+            "phonetic": "VA-DA",
+            "translation": "Water"
+      },
+      {
+            "id": "be-e53",
+            "cyrillic": "ВА-ТА",
+            "phonetic": "VA-TA",
+            "translation": "Cotton wool"
+      },
+      {
+            "id": "be-e54",
+            "cyrillic": "МЫ-ЛА",
+            "phonetic": "MY-LA",
+            "translation": "Soap"
+      },
+      {
+            "id": "be-e55",
+            "cyrillic": "ЦУ-КАР",
+            "phonetic": "TSU-KAR",
+            "translation": "Sugar"
+      },
+      {
+            "id": "be-e56",
+            "cyrillic": "СОЛЬ",
+            "phonetic": "SOL'",
+            "translation": "Salt"
+      },
+      {
+            "id": "be-e57",
+            "cyrillic": "ЛУК",
+            "phonetic": "LUK",
+            "translation": "Onion / Bow"
+      },
+      {
+            "id": "be-e58",
+            "cyrillic": "ЖУК",
+            "phonetic": "ZHUK",
+            "translation": "Beetle"
+      },
+      {
+            "id": "be-e59",
+            "cyrillic": "РАК",
+            "phonetic": "RAK",
+            "translation": "Crayfish"
+      },
+      {
+            "id": "be-e60",
+            "cyrillic": "БОР",
+            "phonetic": "BOR",
+            "translation": "Pine forest"
+      },
+      {
+            "id": "be-e61",
+            "cyrillic": "СІ-НІ",
+            "phonetic": "SI-NI",
+            "translation": "Blue"
+      },
+      {
+            "id": "be-e62",
+            "cyrillic": "А-ЛЫ",
+            "phonetic": "A-LY",
+            "translation": "Scarlet"
+      },
+      {
+            "id": "be-e63",
+            "cyrillic": "БЕ-ЛЫ",
+            "phonetic": "BYE-LY",
+            "translation": "White"
+      },
+      {
+            "id": "be-e64",
+            "cyrillic": "МІР",
+            "phonetic": "MIR",
+            "translation": "Peace / World"
+      },
+      {
+            "id": "be-e65",
+            "cyrillic": "ШАР",
+            "phonetic": "SHAR",
+            "translation": "Ball / Sphere"
+      },
+      {
+            "id": "be-e66",
+            "cyrillic": "МАЙ",
+            "phonetic": "MAY",
+            "translation": "May"
+      },
+      {
+            "id": "be-e67",
+            "cyrillic": "ЧАЙ",
+            "phonetic": "CHAY",
+            "translation": "Tea"
+      },
+      {
+            "id": "be-e68",
+            "cyrillic": "ПІ-ЦЬ",
+            "phonetic": "PI-TS'",
+            "translation": "To drink"
+      },
+      {
+            "id": "be-e69",
+            "cyrillic": "ЕС-ЦІ",
+            "phonetic": "YES-TSI",
+            "translation": "To eat"
+      },
+      {
+            "id": "be-e70",
+            "cyrillic": "ІС-ЦІ",
+            "phonetic": "IS-TSI",
+            "translation": "To go / walk"
+      },
+      {
+            "id": "be-e71",
+            "cyrillic": "СПА-ЦЬ",
+            "phonetic": "SPA-TS'",
+            "translation": "To sleep"
+      },
+      {
+            "id": "be-e72",
+            "cyrillic": "ПЯ-ЦІ",
+            "phonetic": "PYA-TSI",
+            "translation": "Five"
+      },
+      {
+            "id": "be-e73",
+            "cyrillic": "ШЭС-ЦІ",
+            "phonetic": "SHES-TSI",
+            "translation": "Six"
+      },
+      {
+            "id": "be-e74",
+            "cyrillic": "СЕМ",
+            "phonetic": "SYEM",
+            "translation": "Seven"
+      },
+      {
+            "id": "be-e75",
+            "cyrillic": "ВО-СЕМ",
+            "phonetic": "VO-SYEM",
+            "translation": "Eight"
+      },
+      {
+            "id": "be-e76",
+            "cyrillic": "ДЗЕ-ВЯЦЬ",
+            "phonetic": "DZE-VYATS'",
+            "translation": "Nine"
+      },
+      {
+            "id": "be-e77",
+            "cyrillic": "ДЗЕ-СЯЦЬ",
+            "phonetic": "DZE-SYATS'",
+            "translation": "Ten"
+      },
+      {
+            "id": "be-e78",
+            "cyrillic": "А-ДЗІН",
+            "phonetic": "A-DZIN",
+            "translation": "One"
+      },
+      {
+            "id": "be-e79",
+            "cyrillic": "ДВА",
+            "phonetic": "DVA",
+            "translation": "Two"
+      },
+      {
+            "id": "be-e80",
+            "cyrillic": "ТРЫ",
+            "phonetic": "TRY",
+            "translation": "Three"
+      },
+      {
+            "id": "be-e81",
+            "cyrillic": "ЧА-ТЫ-РЫ",
+            "phonetic": "CHA-TY-RY",
+            "translation": "Four"
+      },
+      {
+            "id": "be-e82",
+            "cyrillic": "ДАР",
+            "phonetic": "DAR",
+            "translation": "Gift"
+      },
+      {
+            "id": "be-e83",
+            "cyrillic": "ДЫМ",
+            "phonetic": "DYM",
+            "translation": "Smoke"
+      },
+      {
+            "id": "be-e84",
+            "cyrillic": "ЗУБ",
+            "phonetic": "ZUB",
+            "translation": "Tooth"
+      },
+      {
+            "id": "be-e85",
+            "cyrillic": "КОД",
+            "phonetic": "KOD",
+            "translation": "Code"
+      },
+      {
+            "id": "be-e86",
+            "cyrillic": "КУТ",
+            "phonetic": "KUT",
+            "translation": "Corner"
+      },
+      {
+            "id": "be-e87",
+            "cyrillic": "ЛАК",
+            "phonetic": "LAK",
+            "translation": "Varnish"
+      },
+      {
+            "id": "be-e88",
+            "cyrillic": "ЛОБ",
+            "phonetic": "LOB",
+            "translation": "Forehead"
+      },
+      {
+            "id": "be-e89",
+            "cyrillic": "ЛУГ",
+            "phonetic": "LUG",
+            "translation": "Meadow"
+      },
+      {
+            "id": "be-e90",
+            "cyrillic": "МОХ",
+            "phonetic": "MOKH",
+            "translation": "Moss"
+      },
+      {
+            "id": "be-e91",
+            "cyrillic": "МУЖ",
+            "phonetic": "MUZH",
+            "translation": "Husband"
+      },
+      {
+            "id": "be-e92",
+            "cyrillic": "ПАН",
+            "phonetic": "PAN",
+            "translation": "Lord / Mister"
+      },
+      {
+            "id": "be-e93",
+            "cyrillic": "ПАР",
+            "phonetic": "PAR",
+            "translation": "Steam"
+      },
+      {
+            "id": "be-e94",
+            "cyrillic": "РОТ",
+            "phonetic": "ROT",
+            "translation": "Mouth"
+      },
+      {
+            "id": "be-e95",
+            "cyrillic": "САД",
+            "phonetic": "SAD",
+            "translation": "Garden / Orchard"
+      },
+      {
+            "id": "be-e96",
+            "cyrillic": "СЕРП",
+            "phonetic": "SYERP",
+            "translation": "Sickle"
+      },
+      {
+            "id": "be-e97",
+            "cyrillic": "СНАП",
+            "phonetic": "SNAP",
+            "translation": "Sheaf"
+      },
+      {
+            "id": "be-e98",
+            "cyrillic": "ТОН",
+            "phonetic": "TON",
+            "translation": "Tone"
+      },
+      {
+            "id": "be-e99",
+            "cyrillic": "ШАЛ",
+            "phonetic": "SHAL",
+            "translation": "Shawl"
+      },
+      {
+            "id": "be-e100",
+            "cyrillic": "ШАРФ",
+            "phonetic": "SHARF",
+            "translation": "Scarf"
       }
 ],
     medium: [
@@ -1229,7 +1478,7 @@ export const READING_DATA: Record<string, Record<ReadingLevel, ReadingItem[]>> =
             "id": "be-m25",
             "cyrillic": "КУ-ПА-ЛІН-КА",
             "phonetic": "KU-PA-LIN-KA",
-            "translation": "Kupalinka (song/heroine)"
+            "translation": "Kupalinka"
       },
       {
             "id": "be-m26",
@@ -1380,6 +1629,306 @@ export const READING_DATA: Record<string, Record<ReadingLevel, ReadingItem[]>> =
             "cyrillic": "А-ГУ-РОК",
             "phonetic": "A-HU-ROK",
             "translation": "Cucumber"
+      },
+      {
+            "id": "be-m51",
+            "cyrillic": "ПА-МІ-ДОР",
+            "phonetic": "PA-MI-DOR",
+            "translation": "Tomato"
+      },
+      {
+            "id": "be-m52",
+            "cyrillic": "МАР-КОЎ-КА",
+            "phonetic": "MAR-KOW-KA",
+            "translation": "Carrot"
+      },
+      {
+            "id": "be-m53",
+            "cyrillic": "БАР-ШЧ",
+            "phonetic": "BARSHCH",
+            "translation": "Borscht"
+      },
+      {
+            "id": "be-m54",
+            "cyrillic": "ДРА-НІ-КІ",
+            "phonetic": "DRA-NI-KI",
+            "translation": "Potato pancakes (Draniki)"
+      },
+      {
+            "id": "be-m55",
+            "cyrillic": "КАР-ТОФ-ЛЯ",
+            "phonetic": "KAR-TOF-LYA",
+            "translation": "Potato"
+      },
+      {
+            "id": "be-m56",
+            "cyrillic": "КА-ПУ-СТА",
+            "phonetic": "KA-PU-STA",
+            "translation": "Cabbage"
+      },
+      {
+            "id": "be-m57",
+            "cyrillic": "ЧАС-НОК",
+            "phonetic": "CHAS-NOK",
+            "translation": "Garlic"
+      },
+      {
+            "id": "be-m58",
+            "cyrillic": "КА-ВУН",
+            "phonetic": "KA-VUN",
+            "translation": "Watermelon"
+      },
+      {
+            "id": "be-m59",
+            "cyrillic": "ДЫ-НЯ",
+            "phonetic": "DY-NYA",
+            "translation": "Melon"
+      },
+      {
+            "id": "be-m60",
+            "cyrillic": "ЛІ-МОН",
+            "phonetic": "LI-MON",
+            "translation": "Lemon"
+      },
+      {
+            "id": "be-m61",
+            "cyrillic": "А-ПЕЛЬ-СІН",
+            "phonetic": "A-PYEL'-SIN",
+            "translation": "Orange"
+      },
+      {
+            "id": "be-m62",
+            "cyrillic": "МАН-ДА-РЫН",
+            "phonetic": "MAN-DA-RYN",
+            "translation": "Mandarin"
+      },
+      {
+            "id": "be-m63",
+            "cyrillic": "ПЕР-СІК",
+            "phonetic": "PYER-SIK",
+            "translation": "Peach"
+      },
+      {
+            "id": "be-m64",
+            "cyrillic": "СЛІ-ВА",
+            "phonetic": "SLI-VA",
+            "translation": "Plum"
+      },
+      {
+            "id": "be-m65",
+            "cyrillic": "ВІШ-НЯ",
+            "phonetic": "VISH-NYA",
+            "translation": "Cherry"
+      },
+      {
+            "id": "be-m66",
+            "cyrillic": "ЧА-РЭШ-НЯ",
+            "phonetic": "CHA-RESH-NYA",
+            "translation": "Sweet cherry"
+      },
+      {
+            "id": "be-m67",
+            "cyrillic": "ПЕ-ЧЫ-ВА",
+            "phonetic": "PYE-CHY-VA",
+            "translation": "Cookies / Biscuits"
+      },
+      {
+            "id": "be-m68",
+            "cyrillic": "ЦУ-КЕР-КА",
+            "phonetic": "TSU-KYER-KA",
+            "translation": "Candy"
+      },
+      {
+            "id": "be-m69",
+            "cyrillic": "ПІ-РОГ",
+            "phonetic": "PI-ROH",
+            "translation": "Pie"
+      },
+      {
+            "id": "be-m70",
+            "cyrillic": "БЛІ-НЫ",
+            "phonetic": "BLI-NY",
+            "translation": "Pancakes"
+      },
+      {
+            "id": "be-m71",
+            "cyrillic": "ВА-РЭ-НІ-КІ",
+            "phonetic": "VA-RE-NI-KI",
+            "translation": "Dumplings (Vareniki)"
+      },
+      {
+            "id": "be-m72",
+            "cyrillic": "СМЯ-ТА-НА",
+            "phonetic": "SMYA-TA-NA",
+            "translation": "Sour cream"
+      },
+      {
+            "id": "be-m73",
+            "cyrillic": "МА-СЛА",
+            "phonetic": "MA-SLA",
+            "translation": "Butter"
+      },
+      {
+            "id": "be-m74",
+            "cyrillic": "МА-ЛА-КО",
+            "phonetic": "MA-LA-KO",
+            "translation": "Milk"
+      },
+      {
+            "id": "be-m75",
+            "cyrillic": "ТВА-РОГ",
+            "phonetic": "TVA-ROH",
+            "translation": "Cottage cheese"
+      },
+      {
+            "id": "be-m76",
+            "cyrillic": "КА-ВА",
+            "phonetic": "KA-VA",
+            "translation": "Coffee"
+      },
+      {
+            "id": "be-m77",
+            "cyrillic": "КІ-СЕЛЬ",
+            "phonetic": "KI-SYEL'",
+            "translation": "Kissel"
+      },
+      {
+            "id": "be-m78",
+            "cyrillic": "КАМ-ПОТ",
+            "phonetic": "KAM-POT",
+            "translation": "Compote"
+      },
+      {
+            "id": "be-m79",
+            "cyrillic": "КРЫ-НІ-ЦА",
+            "phonetic": "KRY-NI-TSA",
+            "translation": "Spring / Fountain"
+      },
+      {
+            "id": "be-m80",
+            "cyrillic": "А-ЗЕ-РА",
+            "phonetic": "A-ZE-RA",
+            "translation": "Lake"
+      },
+      {
+            "id": "be-m81",
+            "cyrillic": "КРА-Я-ВІД",
+            "phonetic": "KRA-YA-VID",
+            "translation": "Landscape / View"
+      },
+      {
+            "id": "be-m82",
+            "cyrillic": "ПРЫ-ГА-ЖОСЦЬ",
+            "phonetic": "PRY-HA-ZHOSTS'",
+            "translation": "Beauty"
+      },
+      {
+            "id": "be-m83",
+            "cyrillic": "ДА-БРА-ТЫ-НЯ",
+            "phonetic": "DA-BRA-TY-NYA",
+            "translation": "Kindness"
+      },
+      {
+            "id": "be-m84",
+            "cyrillic": "ШЧАС-ЦЕ",
+            "phonetic": "SHCHAS-TSE",
+            "translation": "Happiness"
+      },
+      {
+            "id": "be-m85",
+            "cyrillic": "РА-ДАСЦЬ",
+            "phonetic": "RA-DASTS'",
+            "translation": "Joy"
+      },
+      {
+            "id": "be-m86",
+            "cyrillic": "СУ-МЕЧ-НАСЦЬ",
+            "phonetic": "SU-MYECH-NASTS'",
+            "translation": "Conscience"
+      },
+      {
+            "id": "be-m87",
+            "cyrillic": "ЧЭС-НАСЦЬ",
+            "phonetic": "CHES-NASTS'",
+            "translation": "Honesty"
+      },
+      {
+            "id": "be-m88",
+            "cyrillic": "СМЕ-ЛАСЦЬ",
+            "phonetic": "SMYE-LASTS'",
+            "translation": "Courage"
+      },
+      {
+            "id": "be-m89",
+            "cyrillic": "СІ-ЛА",
+            "phonetic": "SI-LA",
+            "translation": "Strength / Power"
+      },
+      {
+            "id": "be-m90",
+            "cyrillic": "РО-ЗУМ",
+            "phonetic": "RO-ZUM",
+            "translation": "Mind / Wisdom"
+      },
+      {
+            "id": "be-m91",
+            "cyrillic": "ПА-ВА-ГА",
+            "phonetic": "PA-VA-HA",
+            "translation": "Respect"
+      },
+      {
+            "id": "be-m92",
+            "cyrillic": "ЛА-СКА",
+            "phonetic": "LA-SKA",
+            "translation": "Tenderness / Grace"
+      },
+      {
+            "id": "be-m93",
+            "cyrillic": "ЦЯП-ЛО",
+            "phonetic": "TSYAP-LO",
+            "translation": "Warmth"
+      },
+      {
+            "id": "be-m94",
+            "cyrillic": "СВЯТ-ЛО",
+            "phonetic": "SVYAT-LO",
+            "translation": "Light"
+      },
+      {
+            "id": "be-m95",
+            "cyrillic": "ЦІ-ШЫ-НЯ",
+            "phonetic": "TSI-SHY-NYA",
+            "translation": "Silence"
+      },
+      {
+            "id": "be-m96",
+            "cyrillic": "СПО-КАЙ",
+            "phonetic": "SPO-KAY",
+            "translation": "Peace / Calm"
+      },
+      {
+            "id": "be-m97",
+            "cyrillic": "НА-ДЗЕ-Я",
+            "phonetic": "NA-DZE-YA",
+            "translation": "Hope"
+      },
+      {
+            "id": "be-m98",
+            "cyrillic": "ВЕ-РА",
+            "phonetic": "VYE-RA",
+            "translation": "Faith"
+      },
+      {
+            "id": "be-m99",
+            "cyrillic": "ЛЮ-БОЎ",
+            "phonetic": "LYU-BOW",
+            "translation": "Love"
+      },
+      {
+            "id": "be-m100",
+            "cyrillic": "ЖЫЦ-ЦЁ",
+            "phonetic": "ZHYT-TSYO",
+            "translation": "Life"
       }
 ],
     hard: [

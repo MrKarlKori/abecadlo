@@ -2208,9 +2208,13 @@ export const POETRY_DATA: Record<string, PoetryItem[]> = {
 
 import { useParams } from 'react-router-dom';
 
-export function PoetryTrainer() {
+interface PoetryTrainerProps {
+  langId?: string;
+}
+
+export function PoetryTrainer({ langId: langIdProp }: PoetryTrainerProps = {}) {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = langIdProp || lang || 'ru';
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);

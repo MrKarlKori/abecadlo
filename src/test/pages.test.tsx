@@ -22,7 +22,7 @@ describe('Application Pages Suite', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/The Alphabet/i)).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Alphabet/i })).toBeInTheDocument();
     });
   });
 

@@ -45,7 +45,7 @@ const getInitialProgress = (langId: string): LessonModulesProgress => {
   return { unlockedModules: ['module-1'], moduleSessions: {} };
 };
 
-export function useExercisesProgress(langId: string) {
+export function useExercisesProgress(langId: string = 'ru') {
   const STORAGE_KEY = `abecadlo_exercises_progress_${langId}`;
   const [progress, setProgress] = useState<LessonModulesProgress>(() => getInitialProgress(langId));
 

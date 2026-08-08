@@ -5,18 +5,33 @@ import { useProgress } from '../hooks/useProgress';
 export function AlphabetPage() {
   const { lang } = useParams();
   const langId = lang || 'ru';
-  const { characters, loading, error } = useLanguageData(langId);
+  const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress } = useProgress(langId);
   const navigate = useNavigate();
 
   if (loading) return <div className="text-center font-serif text-2xl mt-12 animate-pulse">Loading Archive...</div>;
   if (error) return <div className="text-center font-serif text-vintage-red text-xl mt-12">{error}</div>;
 
+  const langName = registryEntry?.name || (langId === 'be' ? 'Belarusian' : 'Russian');
+  const wikiUrl = langId === 'be'
+    ? 'https://en.wikipedia.org/wiki/Belarusian_alphabet'
+    : 'https://en.wikipedia.org/wiki/Russian_alphabet';
+
   return (
     <div>
-      <h1 className="text-4xl md:text-5xl text-center mb-8 uppercase tracking-widest border-b-2 border-vintage-ink pb-4">
-        The Alphabet
-      </h1>
+      <div className="flex flex-col items-center mb-8 border-b-2 border-vintage-ink pb-4">
+        <h1 className="text-4xl md:text-5xl text-center uppercase tracking-widest">
+          The {langName} Alphabet
+        </h1>
+        <a
+          href={wikiUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm md:text-base cursor-pointer transition-colors"
+        >
+          View {langName} Alphabet on Wikipedia &rarr;
+        </a>
+      </div>
       
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-11 gap-4">
         {characters.map(char => {
@@ -25,7 +40,7 @@ export function AlphabetPage() {
           return (
             <button
               key={char.id}
-              onClick={() => navigate(`/${langId}/lesson/${char.id}`)}
+              onClick={() => navigate(`/${langId}/alphabet/${char.id}`)}
               className="bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] p-4 relative flex flex-col items-center justify-center min-h-24 md:min-h-32 group hover:bg-[#eae6d5] cursor-pointer"
             >
               <div className="text-3xl md:text-4xl font-serif font-bold text-vintage-ink mb-1 group-hover:scale-110 transition-transform">

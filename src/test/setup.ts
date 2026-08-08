@@ -4,6 +4,12 @@ import { afterEach, vi } from 'vitest';
 
 const mockRegistry = [
   {
+    id: 'be',
+    name: 'Belarusian',
+    theme: 'soviet-vintage',
+    dataFile: '/data/belarusian.json'
+  },
+  {
     id: 'ru',
     name: 'Russian',
     theme: 'soviet-vintage',

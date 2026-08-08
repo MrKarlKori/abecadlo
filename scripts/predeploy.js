@@ -2,6 +2,16 @@ import { execSync } from 'child_process';
 import { rmSync, existsSync } from 'fs';
 import { join } from 'path';
 
+// 1. Run test suite as the first step - abort deployment if tests fail
+console.log('Running test suite before deployment...');
+try {
+  execSync('npm test -- --run', { stdio: 'inherit' });
+  console.log('Test suite passed successfully.');
+} catch (error) {
+  console.error('Deployment aborted: Test suite failed.');
+  process.exit(1);
+}
+
 // Define the path to the gh-pages cache
 const cachePath = join(process.cwd(), 'node_modules', '.cache', 'gh-pages');
 
