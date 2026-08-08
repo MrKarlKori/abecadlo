@@ -49,16 +49,16 @@ describe('BuildingTrainer Component', () => {
 
     expect(screen.getByText(/Mirror Letters/i)).toBeInTheDocument();
     expect(screen.getByText(/English Trans\./i)).toBeInTheDocument();
-    expect(screen.getByText(/Russian Trans\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Belarusian Trans\./i)).toBeInTheDocument();
   });
 
-  it('switches to Russian Trans. mode and updates prompt label', () => {
+  it('switches to Belarusian Trans. mode and updates prompt label', () => {
     render(<BuildingTrainer />);
 
-    const ruTransBtn = screen.getByText(/Russian Trans\./i);
-    fireEvent.click(ruTransBtn);
+    const beTransBtn = screen.getByText(/Belarusian Trans\./i);
+    fireEvent.click(beTransBtn);
 
-    expect(screen.getByText(/Build English translation for Russian prompt/i)).toBeInTheDocument();
+    expect(screen.getByText(/Build English translation for Belarusian prompt/i)).toBeInTheDocument();
   });
 });
 

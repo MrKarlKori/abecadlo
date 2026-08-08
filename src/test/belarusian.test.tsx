@@ -149,7 +149,7 @@ describe('Belarusian UI Components & Pages Suite', () => {
       </MemoryRouter>
     );
 
-    const ruTransBtn = screen.getByText(/Russian Trans\./i);
+    const ruTransBtn = screen.getByText(/Belarusian Trans\./i);
     fireEvent.click(ruTransBtn);
 
     expect(screen.getByText(/Build English translation for Belarusian prompt/i)).toBeInTheDocument();

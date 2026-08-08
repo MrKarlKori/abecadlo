@@ -4,6 +4,8 @@ import { ArrowRight, RotateCcw } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { READING_DATA } from './ReadingTrainer';
 import type { ReadingLevel } from './ReadingTrainer';
+import { getLanguageName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 
 interface TypingTrainerProps {
   langId?: string;
@@ -11,14 +13,14 @@ interface TypingTrainerProps {
 
 export function TypingTrainer({ langId: langIdProp }: TypingTrainerProps = {}) {
   const { lang } = useParams();
-  const langId = langIdProp || lang || 'ru';
+  const langId = langIdProp || lang || LanguageId.BELARUSIAN;
 
   const [level, setLevel] = useState<ReadingLevel>('easy');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [input, setInput] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const currentList = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
+  const currentList = READING_DATA[langId]?.[level] || READING_DATA[LanguageId.BELARUSIAN][level];
   const item = currentList[currentIndex] || currentList[0];
 
   const displayWord = item.cyrillic.replace(/[-'’ ]/g, '');
@@ -32,7 +34,7 @@ export function TypingTrainer({ langId: langIdProp }: TypingTrainerProps = {}) {
 
   // Pick random index when level changes or component mounts
   useEffect(() => {
-    const list = READING_DATA[langId]?.[level] || READING_DATA['ru'][level];
+    const list = READING_DATA[langId]?.[level] || READING_DATA[LanguageId.BELARUSIAN][level];
     const randomIdx = Math.floor(Math.random() * list.length);
     setCurrentIndex(randomIdx);
     setInput('');
@@ -156,7 +158,7 @@ export function TypingTrainer({ langId: langIdProp }: TypingTrainerProps = {}) {
             Translation: "{item.translation}" [{item.phonetic}]
           </p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#${langId === 'be' ? 'Belarusian' : 'Russian'}`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#${getLanguageName(langId)}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"
@@ -171,7 +173,7 @@ export function TypingTrainer({ langId: langIdProp }: TypingTrainerProps = {}) {
           <p className="font-bold text-lg">Correct!</p>
           <p className="text-sm mt-1">{item.cyrillic} = "{item.translation}" [{item.phonetic}]</p>
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#${langId === 'be' ? 'Belarusian' : 'Russian'}`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(displayWord.toLowerCase())}#${getLanguageName(langId)}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="mt-2 text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

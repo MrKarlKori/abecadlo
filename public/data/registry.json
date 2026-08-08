@@ -10,5 +10,11 @@
     "name": "Russian",
     "theme": "soviet-vintage",
     "dataFile": "/data/russian.json"
+  },
+  {
+    "id": "el",
+    "name": "Greek",
+    "theme": "soviet-vintage",
+    "dataFile": "/data/greek.json"
   }
 ]

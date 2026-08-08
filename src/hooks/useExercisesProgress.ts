@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { LanguageId } from '../types';
 
 export interface LessonModulesProgress {
   unlockedModules: string[];
@@ -11,7 +12,7 @@ const getInitialProgress = (langId: string): LessonModulesProgress => {
   const STORAGE_KEY = `abecadlo_exercises_progress_${langId}`;
   
   // Migration for legacy progress (which was saved globally without langId)
-  if (langId === 'ru') {
+  if (langId === LanguageId.RUSSIAN) {
     const legacySaved = localStorage.getItem('abecadlo_exercises_progress');
     if (legacySaved && !localStorage.getItem(STORAGE_KEY)) {
       localStorage.setItem(STORAGE_KEY, legacySaved);
@@ -45,7 +46,7 @@ const getInitialProgress = (langId: string): LessonModulesProgress => {
   return { unlockedModules: ['module-1'], moduleSessions: {} };
 };
 
-export function useExercisesProgress(langId: string = 'ru') {
+export function useExercisesProgress(langId: string = LanguageId.BELARUSIAN) {
   const STORAGE_KEY = `abecadlo_exercises_progress_${langId}`;
   const [progress, setProgress] = useState<LessonModulesProgress>(() => getInitialProgress(langId));
 

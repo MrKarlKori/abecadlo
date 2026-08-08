@@ -1,10 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
+import { getLanguageName } from '../utils/languageMap';
+import { LanguageId } from '../types';
 
 export function AlphabetPage() {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
   const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress } = useProgress(langId);
   const navigate = useNavigate();
@@ -12,9 +14,11 @@ export function AlphabetPage() {
   if (loading) return <div className="text-center font-serif text-2xl mt-12 animate-pulse">Loading Archive...</div>;
   if (error) return <div className="text-center font-serif text-vintage-red text-xl mt-12">{error}</div>;
 
-  const langName = registryEntry?.name || (langId === 'be' ? 'Belarusian' : 'Russian');
-  const wikiUrl = langId === 'be'
+  const langName = registryEntry?.name || getLanguageName(langId);
+  const wikiUrl = langId === LanguageId.BELARUSIAN
     ? 'https://en.wikipedia.org/wiki/Belarusian_alphabet'
+    : langId === LanguageId.GREEK
+    ? 'https://en.wikipedia.org/wiki/Greek_alphabet'
     : 'https://en.wikipedia.org/wiki/Russian_alphabet';
 
   return (

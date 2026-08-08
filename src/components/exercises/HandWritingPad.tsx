@@ -1,4 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getLanguageName } from '../../utils/languageMap';
+import { LanguageId } from '../../types';
 
 interface HandWritingPadProps {
   target: string; // Background outline guide (if any) or answer to reveal
@@ -7,6 +10,8 @@ interface HandWritingPadProps {
   promptDisplay?: string; // Optional prompt character to show prominently (e.g. English letter)
   directionHint?: string; // Optional direction hint badge (e.g. "English → Cyrillic")
   showGuideOutline?: boolean; // Whether to show faded guide outline before reveal
+  showSelfAssess?: boolean; // Whether to show "Needs Practice" / "I got it!" self-assess buttons
+  langId?: string;
   onSelfAssess: (success: boolean) => void;
 }
 
@@ -17,8 +22,13 @@ export function HandWritingPad({
   promptDisplay,
   directionHint,
   showGuideOutline = true,
+  showSelfAssess = false,
+  langId: langIdProp,
   onSelfAssess
 }: HandWritingPadProps) {
+  const { lang } = useParams();
+  const langId = langIdProp || lang || LanguageId.BELARUSIAN;
+  const wiktionaryLang = getLanguageName(langId);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -167,7 +177,12 @@ export function HandWritingPad({
             Clear
           </button>
           <button
-            onClick={() => setShowAnswer(true)}
+            onClick={() => {
+              setShowAnswer(true);
+              if (!showSelfAssess) {
+                onSelfAssess(true);
+              }
+            }}
             className="flex-1 py-3 font-serif font-bold text-lg border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] bg-vintage-gold hover:bg-[#d4a849] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-none cursor-pointer"
           >
             Reveal Answer
@@ -175,23 +190,36 @@ export function HandWritingPad({
         </div>
       ) : (
         <div className="w-full max-w-md text-center">
-          <h4 className="text-center font-serif text-xl mb-4">How did you do?</h4>
-          <div className="flex gap-4 mb-4">
-            <button
-              onClick={() => onSelfAssess(false)}
-              className="flex-1 py-3 font-serif font-bold text-lg border-2 border-red-800 bg-red-100 text-red-900 hover:bg-red-200 transition-colors cursor-pointer"
-            >
-              Needs Practice
-            </button>
-            <button
-              onClick={() => onSelfAssess(true)}
-              className="flex-1 py-3 font-serif font-bold text-lg border-2 border-green-800 bg-green-100 text-green-900 hover:bg-green-200 transition-colors shadow-[2px_2px_0_0_#166534] cursor-pointer"
-            >
-              I got it!
-            </button>
-          </div>
+          {showSelfAssess ? (
+            <>
+              <h4 className="text-center font-serif text-xl mb-4">How did you do?</h4>
+              <div className="flex gap-4 mb-4">
+                <button
+                  onClick={() => onSelfAssess(false)}
+                  className="flex-1 py-3 font-serif font-bold text-lg border-2 border-red-800 bg-red-100 text-red-900 hover:bg-red-200 transition-colors cursor-pointer"
+                >
+                  Needs Practice
+                </button>
+                <button
+                  onClick={() => onSelfAssess(true)}
+                  className="flex-1 py-3 font-serif font-bold text-lg border-2 border-green-800 bg-green-100 text-green-900 hover:bg-green-200 transition-colors shadow-[2px_2px_0_0_#166534] cursor-pointer"
+                >
+                  I got it!
+                </button>
+              </div>
+            </>
+          ) : (
+             <div className="w-full max-w-md flex gap-4 mb-4">
+                <button
+                  onClick={handleClear}
+                  className="flex-1 py-3 font-serif font-bold text-lg border-2 border-vintage-ink bg-white hover:bg-gray-100 transition-colors cursor-pointer"
+                >
+                  Clear
+                </button>
+             </div>
+          )}
           <a 
-            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(finalAnswer.toLowerCase())}#Russian`}
+            href={`https://en.wiktionary.org/wiki/${encodeURIComponent(finalAnswer.toLowerCase())}#${wiktionaryLang}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-block text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-sm cursor-pointer"

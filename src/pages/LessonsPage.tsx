@@ -7,10 +7,12 @@ import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { ExerciseSession } from '../components/exercises/ExerciseSession';
+import { getLanguageName } from '../utils/languageMap';
+import { LanguageId } from '../types';
 
 export function LessonsPage() {
   const { lang, id } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
   const modules = getLessonModules(langId);
   const { characters, loading, error, registryEntry } = useLanguageData(langId);
   const { progress: letterProgress, toggleCompleted } = useProgress(langId);
@@ -18,6 +20,10 @@ export function LessonsPage() {
   const navigate = useNavigate();
 
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setActiveModuleId(null);
+  }, [langId]);
 
   // Touch swipe state for letter detail view
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -146,7 +152,7 @@ export function LessonsPage() {
               {isCompleted ? "Mastered" : "Mark Mastered"}
             </button>
             <a 
-              href={`https://en.wiktionary.org/wiki/${encodeURIComponent(char.characterLower)}#${registryEntry?.name || 'Russian'}`}
+              href={`https://en.wiktionary.org/wiki/${encodeURIComponent(char.characterLower)}#${registryEntry?.name || getLanguageName(langId)}`}
               target="_blank" 
               rel="noopener noreferrer"
               className="text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-lg cursor-pointer"

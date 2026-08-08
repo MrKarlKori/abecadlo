@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getLanguageMeta, getQuestionDirectionHint } from '../utils/languageMap';
+import { LATIN_ALPHABET } from '../utils/alphabets';
 
 describe('Language Utilities', () => {
   it('returns valid metadata for Russian (ru)', () => {
@@ -21,5 +22,11 @@ describe('Language Utilities', () => {
 
     const engToTarget = getQuestionDirectionHint('ru', 'english-to-target');
     expect(engToTarget).toBe('English Latin → Russian Cyrillic');
+  });
+
+  it('exports LATIN_ALPHABET containing 26 uppercase A-Z letters', () => {
+    expect(LATIN_ALPHABET).toHaveLength(26);
+    expect(LATIN_ALPHABET[0]).toBe('A');
+    expect(LATIN_ALPHABET[25]).toBe('Z');
   });
 });

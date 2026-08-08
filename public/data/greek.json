@@ -1,0 +1,314 @@
+[
+  {
+    "id": "ALPHA",
+    "character": "Α",
+    "characterLower": "α",
+    "phonetic": "A",
+    "soundsLike": "a as in father",
+    "example": {
+      "native": "Αέρας",
+      "translation": "Wind",
+      "transliteration": "Aeras"
+    },
+    "asset": "cloud"
+  },
+  {
+    "id": "BETA",
+    "character": "Β",
+    "characterLower": "β",
+    "phonetic": "V",
+    "soundsLike": "v as in vet",
+    "example": {
+      "native": "Βιβλίο",
+      "translation": "Book",
+      "transliteration": "Vivlio"
+    },
+    "asset": "book"
+  },
+  {
+    "id": "GAMMA",
+    "character": "Γ",
+    "characterLower": "γ",
+    "phonetic": "GH / Y",
+    "soundsLike": "g as in go / y as in yes",
+    "example": {
+      "native": "Γάτα",
+      "translation": "Cat",
+      "transliteration": "Gata"
+    },
+    "asset": "animal"
+  },
+  {
+    "id": "DELTA",
+    "character": "Δ",
+    "characterLower": "δ",
+    "phonetic": "TH",
+    "soundsLike": "th as in then",
+    "example": {
+      "native": "Δέντρο",
+      "translation": "Tree",
+      "transliteration": "Dentro"
+    },
+    "asset": "plant"
+  },
+  {
+    "id": "EPSILON",
+    "character": "Ε",
+    "characterLower": "ε",
+    "phonetic": "E",
+    "soundsLike": "e as in pet",
+    "example": {
+      "native": "Ελέφαντας",
+      "translation": "Elephant",
+      "transliteration": "Elefantas"
+    },
+    "asset": "animal"
+  },
+  {
+    "id": "ZETA",
+    "character": "Ζ",
+    "characterLower": "ζ",
+    "phonetic": "Z",
+    "soundsLike": "z as in zoo",
+    "example": {
+      "native": "Ζώο",
+      "translation": "Animal",
+      "transliteration": "Zoo"
+    },
+    "asset": "animal"
+  },
+  {
+    "id": "ETA",
+    "character": "Η",
+    "characterLower": "η",
+    "phonetic": "I",
+    "soundsLike": "ee as in see",
+    "example": {
+      "native": "Ήλιος",
+      "translation": "Sun",
+      "transliteration": "Ilios"
+    },
+    "asset": "sun"
+  },
+  {
+    "id": "THETA",
+    "character": "Θ",
+    "characterLower": "θ",
+    "phonetic": "TH",
+    "soundsLike": "th as in think",
+    "example": {
+      "native": "Θάλασσα",
+      "translation": "Sea",
+      "transliteration": "Thalassa"
+    },
+    "asset": "water"
+  },
+  {
+    "id": "IOTA",
+    "character": "Ι",
+    "characterLower": "ι",
+    "phonetic": "I",
+    "soundsLike": "ee as in see",
+    "example": {
+      "native": "Ιστορία",
+      "translation": "History",
+      "transliteration": "Istoria"
+    },
+    "asset": "book"
+  },
+  {
+    "id": "KAPPA",
+    "character": "Κ",
+    "characterLower": "κ",
+    "phonetic": "K",
+    "soundsLike": "k as in kite",
+    "example": {
+      "native": "Καρέκλα",
+      "translation": "Chair",
+      "transliteration": "Karekla"
+    },
+    "asset": "furniture"
+  },
+  {
+    "id": "LAMBDA",
+    "character": "Λ",
+    "characterLower": "λ",
+    "phonetic": "L",
+    "soundsLike": "l as in lion",
+    "example": {
+      "native": "Λουλούδι",
+      "translation": "Flower",
+      "transliteration": "Louloudi"
+    },
+    "asset": "flower"
+  },
+  {
+    "id": "MU",
+    "character": "Μ",
+    "characterLower": "μ",
+    "phonetic": "M",
+    "soundsLike": "m as in moon",
+    "example": {
+      "native": "Μήλο",
+      "translation": "Apple",
+      "transliteration": "Milo"
+    },
+    "asset": "food"
+  },
+  {
+    "id": "NU",
+    "character": "Ν",
+    "characterLower": "ν",
+    "phonetic": "N",
+    "soundsLike": "n as in net",
+    "example": {
+      "native": "Νερό",
+      "translation": "Water",
+      "transliteration": "Nero"
+    },
+    "asset": "water"
+  },
+  {
+    "id": "XI",
+    "character": "Ξ",
+    "characterLower": "ξ",
+    "phonetic": "KS",
+    "soundsLike": "x as in box",
+    "example": {
+      "native": "Ξύλο",
+      "translation": "Wood",
+      "transliteration": "Xylo"
+    },
+    "asset": "tree"
+  },
+  {
+    "id": "OMICRON",
+    "character": "Ο",
+    "characterLower": "ο",
+    "phonetic": "O",
+    "soundsLike": "o as in dog",
+    "example": {
+      "native": "Ομπρέλα",
+      "translation": "Umbrella",
+      "transliteration": "Omprela"
+    },
+    "asset": "umbrella"
+  },
+  {
+    "id": "PI",
+    "character": "Π",
+    "characterLower": "π",
+    "phonetic": "P",
+    "soundsLike": "p as in pen",
+    "example": {
+      "native": "Πόρτα",
+      "translation": "Door",
+      "transliteration": "Porta"
+    },
+    "asset": "door"
+  },
+  {
+    "id": "RHO",
+    "character": "Ρ",
+    "characterLower": "ρ",
+    "phonetic": "R",
+    "soundsLike": "r as in red (rolled)",
+    "example": {
+      "native": "Ρολόι",
+      "translation": "Clock",
+      "transliteration": "Roloi"
+    },
+    "asset": "clock"
+  },
+  {
+    "id": "SIGMA",
+    "character": "Σ",
+    "characterLower": "σ, ς",
+    "phonetic": "S",
+    "soundsLike": "s as in sun",
+    "example": {
+      "native": "Σπίτι",
+      "translation": "House",
+      "transliteration": "Spiti"
+    },
+    "asset": "home"
+  },
+  {
+    "id": "TAU",
+    "character": "Τ",
+    "characterLower": "τ",
+    "phonetic": "T",
+    "soundsLike": "t as in top",
+    "example": {
+      "native": "Τραπέζι",
+      "translation": "Table",
+      "transliteration": "Trapezi"
+    },
+    "asset": "table"
+  },
+  {
+    "id": "UPSILON",
+    "character": "Υ",
+    "characterLower": "υ",
+    "phonetic": "I",
+    "soundsLike": "ee as in see",
+    "example": {
+      "native": "Υπολογιστής",
+      "translation": "Computer",
+      "transliteration": "Ypologistis"
+    },
+    "asset": "computer"
+  },
+  {
+    "id": "PHI",
+    "character": "Φ",
+    "characterLower": "φ",
+    "phonetic": "F",
+    "soundsLike": "f as in fish",
+    "example": {
+      "native": "Φως",
+      "translation": "Light",
+      "transliteration": "Fos"
+    },
+    "asset": "light"
+  },
+  {
+    "id": "CHI",
+    "character": "Χ",
+    "characterLower": "χ",
+    "phonetic": "CH",
+    "soundsLike": "ch as in Bach",
+    "example": {
+      "native": "Χάρτης",
+      "translation": "Map",
+      "transliteration": "Chartis"
+    },
+    "asset": "map"
+  },
+  {
+    "id": "PSI",
+    "character": "Ψ",
+    "characterLower": "ψ",
+    "phonetic": "PS",
+    "soundsLike": "ps as in lips",
+    "example": {
+      "native": "Ψάρι",
+      "translation": "Fish",
+      "transliteration": "Psari"
+    },
+    "asset": "animal"
+  },
+  {
+    "id": "OMEGA",
+    "character": "Ω",
+    "characterLower": "ω",
+    "phonetic": "O",
+    "soundsLike": "o as in dog",
+    "example": {
+      "native": "Ωκεανός",
+      "translation": "Ocean",
+      "transliteration": "Okeanos"
+    },
+    "asset": "water"
+  }
+]

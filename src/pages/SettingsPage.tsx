@@ -3,12 +3,13 @@ import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { getLessonModules } from '../data/mockLessonsData';
-import { Lock, Unlock, Plus, Minus, Check } from 'lucide-react';
+import { Lock, Unlock, Plus, Minus, Check, Code } from 'lucide-react';
 import clsx from 'clsx';
+import { LanguageId } from '../types';
 
 export function SettingsPage() {
   const { lang } = useParams();
-  const langId = lang || 'ru';
+  const langId = lang || LanguageId.BELARUSIAN;
   const modules = getLessonModules(langId);
   const { characters } = useLanguageData(langId);
   const { progress, toggleCompleted, completeAll, clearAllData } = useProgress(langId);
@@ -28,9 +29,20 @@ export function SettingsPage() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-8">
-      <h1 className="text-4xl border-b-2 border-vintage-ink pb-4 mb-8">Settings & Progress</h1>
+      <div className="flex flex-wrap items-center justify-between border-b-2 border-vintage-ink pb-4 mb-8 gap-4">
+        <h1 className="text-3xl sm:text-4xl">Settings & Progress</h1>
+        <a 
+          href="https://github.com/MrKarlKori/abecadlo" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="p-2 border-2 border-vintage-ink bg-vintage-paper hover:bg-gray-100 shadow-[2px_2px_0_0_#2C2A29] transition-all cursor-pointer text-vintage-ink"
+          title="View Source Code on GitHub"
+        >
+          <Code size={24} />
+        </a>
+      </div>
       
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <button onClick={handleCompleteAll} className="vintage-button">
           Complete All Progress
         </button>
@@ -158,6 +170,19 @@ export function SettingsPage() {
             );
           })}
         </div>
+      </div>
+
+      {/* About Section */}
+      <div className="bg-[#eae6d5] p-6 border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] flex flex-col items-center justify-center gap-2">
+        <h2 className="text-xl font-serif font-bold text-vintage-ink text-center">About Abecadło</h2>
+        <a 
+          href="https://github.com/MrKarlKori/abecadlo" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 font-mono font-bold text-sm px-4 py-2 border-2 border-vintage-ink bg-vintage-paper hover:bg-[#f4f1ea] shadow-[2px_2px_0_0_#2C2A29] transition-all cursor-pointer text-vintage-ink w-full sm:w-auto text-center"
+        >
+          <Code size={18} /> View Source Code on GitHub
+        </a>
       </div>
     </div>
   );
