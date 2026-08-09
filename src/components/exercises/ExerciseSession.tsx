@@ -9,12 +9,89 @@ import { useExercisesProgress } from '../../hooks/useExercisesProgress';
 import { getAlphabetForLang } from '../../utils/alphabets';
 import { getLanguageName, getScriptName } from '../../utils/languageMap';
 import { LanguageId } from '../../types';
+import { GREEK_COMBINATIONS } from '../../data/greekCombinations';
 import clsx from 'clsx';
 
 interface ExerciseSessionProps {
   module: LessonModule;
   onClose: () => void;
   onComplete?: () => void;
+}
+
+function CombinationQuizStep({ combination, phonetic, onCorrect }: { combination: string, phonetic: string, onCorrect: () => void }) {
+  const [options, setOptions] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fakePool = [
+      'ts', 'dz', 'p', 'b', 'v', 'f', 'g', 'gh', 'k', 'ch', 'm', 'n', 'l', 'r', 's', 'z', 'th', 'dh',
+      'a', 'e', 'i', 'o', 'u', 'ou', 'av/af', 'ev/ef', 'ai', 'oi', 'ei', 'ng'
+    ].filter(s => s !== phonetic);
+    const fakes = fakePool.sort(() => 0.5 - Math.random()).slice(0, 3);
+    setOptions([phonetic, ...fakes].sort(() => 0.5 - Math.random()));
+  }, [phonetic]);
+
+  const handleSelect = (opt: string) => {
+    if (selected) return;
+    setSelected(opt);
+    if (opt === phonetic) {
+      onCorrect();
+    } else {
+      // Just mark incorrect, allow them to proceed after seeing correct answer
+      onCorrect(); 
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative w-full max-w-md mx-auto">
+      <h3 className="font-bold text-vintage-blue uppercase tracking-widest text-sm mb-2 text-center">
+        Combination Sound Quiz
+      </h3>
+      <p className="font-serif text-sm italic text-vintage-ink/70 mb-8 text-center">
+        Select the correct phonetic sound for the Greek combination below.
+      </p>
+
+      <div className="w-full bg-white border-2 border-vintage-ink p-8 flex flex-col items-center justify-center mb-8 shadow-[4px_4px_0_0_#2C2A29]">
+        <div className="text-6xl md:text-7xl font-serif font-bold text-vintage-ink tracking-widest text-center">
+          {combination}
+        </div>
+      </div>
+
+      <div className="w-full grid grid-cols-2 gap-4 mb-8">
+        {options.map((opt, i) => {
+          const isCorrectChoice = opt === phonetic;
+          return (
+            <button
+              key={i}
+              onClick={() => handleSelect(opt)}
+              disabled={selected !== null}
+              className={clsx(
+                "py-4 font-mono font-bold text-xl border-2 border-vintage-ink transition-all",
+                !selected ? "bg-white hover:bg-gray-100 cursor-pointer shadow-[2px_2px_0_0_#2C2A29] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none" : "",
+                selected === opt && isCorrectChoice ? "bg-green-200 text-green-900 border-green-700" : "",
+                selected === opt && !isCorrectChoice ? "bg-red-200 text-red-900 border-red-700" : "",
+                selected && isCorrectChoice && selected !== opt ? "bg-green-100 text-green-800 border-green-600 border-dashed" : "",
+                selected && opt !== selected && !isCorrectChoice ? "bg-gray-100 text-gray-400 border-gray-300" : ""
+              )}
+            >
+              [{opt}]
+            </button>
+          );
+        })}
+      </div>
+      
+      {selected && selected !== phonetic && (
+        <div className="p-4 w-full border-2 font-serif text-center font-bold bg-red-100 border-red-700 text-red-900">
+          Incorrect! The right sound is [{phonetic}].
+        </div>
+      )}
+      {selected && selected === phonetic && (
+        <div className="p-4 w-full border-2 font-serif text-center font-bold bg-green-100 border-green-700 text-green-900">
+          Correct!
+        </div>
+      )}
+    </div>
+  );
 }
 
 function LessonBuildingStep({ readingTask, onCorrect }: { readingTask: ReadingTask; onCorrect: () => void }) {
@@ -186,9 +263,61 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
 
   // Generate 10 exercise steps: 4 drawing (2 tracing + 2 draw opposite) + 3 reading easy + 3 building mirror
   useEffect(() => {
-    if (!characters.length) return;
+    if (!module || !characters.length) return;
 
-    // 1. Scoped character pool for module letters
+    // Special generation for Greek combination module (module-4)
+    if (langId === LanguageId.GREEK && module.id === 'module-4') {
+      const generated: ExerciseStep[] = [];
+      const combos = ['μπ', 'ντ', 'γκ', 'γγ', 'τσ', 'τζ', 'αι', 'ει', 'οι', 'ου', 'αυ', 'ευ'];
+      const comboWords = READING_DATA['el']?.['combinations'] || [];
+      
+      // 3 Combination Quizzes
+      for (let i = 0; i < 3; i++) {
+        const randomComboStr = combos[Math.floor(Math.random() * combos.length)];
+        const comboObj = GREEK_COMBINATIONS.find(c => c.combination === randomComboStr);
+        if (comboObj) {
+          generated.push({
+            id: `step-combo-quiz-${i}-${Date.now()}-${Math.random()}`,
+            type: 'combination-quiz',
+            character: comboObj.combination,
+            phonetic: comboObj.phonetic
+          });
+        }
+      }
+
+      // 4 Combination Reading Practice
+      for (let i = 0; i < 4; i++) {
+        const rItem = comboWords[Math.floor(Math.random() * comboWords.length)];
+        if (rItem) {
+          generated.push({
+            id: `step-read-combo-${i}-${Date.now()}-${Math.random()}`,
+            type: 'reading-easy',
+            readingTask: rItem
+          });
+        }
+      }
+
+      // 3 Building Word Combinations
+      for (let i = 0; i < 3; i++) {
+        const rItem = comboWords[Math.floor(Math.random() * comboWords.length)];
+        if (rItem) {
+          generated.push({
+            id: `step-build-combo-${i}-${Date.now()}-${Math.random()}`,
+            type: 'building-mirror',
+            readingTask: rItem
+          });
+        }
+      }
+      
+      generated.sort(() => Math.random() - 0.5);
+      setSteps(generated);
+      setCurrentStepIndex(0);
+      setStepStatus('idle');
+      setReadingRevealed(false);
+      return;
+    }
+
+    // Normal module generation
     const moduleChars = characters.filter(c => 
       module.letters.some(l => l.toUpperCase() === c.character.toUpperCase())
     );
@@ -404,6 +533,17 @@ export function ExerciseSession({ module, onClose, onComplete }: ExerciseSession
         <LessonBuildingStep
           key={key}
           readingTask={currentStep.readingTask}
+          onCorrect={handleCorrect}
+        />
+      );
+    }
+
+    if (currentStep.type === 'combination-quiz' && currentStep.character && currentStep.phonetic) {
+      return (
+        <CombinationQuizStep
+          key={key}
+          combination={currentStep.character}
+          phonetic={currentStep.phonetic}
           onCorrect={handleCorrect}
         />
       );

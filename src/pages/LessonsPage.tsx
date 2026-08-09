@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { Lock, Play, RotateCcw, ChevronLeft, ChevronRight, Check } from 'lucide-react';
@@ -7,14 +7,36 @@ import { useExercisesProgress } from '../hooks/useExercisesProgress';
 import { useLanguageData } from '../hooks/useLanguageData';
 import { useProgress } from '../hooks/useProgress';
 import { ExerciseSession } from '../components/exercises/ExerciseSession';
-import { getLanguageName } from '../utils/languageMap';
+import { getLanguageName, getPassedStampText } from '../utils/languageMap';
 import { LanguageId } from '../types';
+import { GREEK_COMBINATIONS } from '../data/greekCombinations';
 
 export function LessonsPage() {
   const { lang, id } = useParams();
   const langId = lang || LanguageId.BELARUSIAN;
   const modules = getLessonModules(langId);
-  const { characters, loading, error, registryEntry } = useLanguageData(langId);
+  const { characters: rawCharacters, loading, error, registryEntry } = useLanguageData(langId);
+  
+  const characters = useMemo(() => {
+    if (langId === LanguageId.GREEK) {
+      const combos = GREEK_COMBINATIONS.map(c => ({
+        id: c.id,
+        character: c.combination,
+        characterLower: '',
+        phonetic: c.phonetic,
+        soundsLike: `Combination of ${c.parts}`,
+        example: {
+           native: c.examples[0]?.native || '',
+           translation: c.examples[0]?.translation || '',
+           transliteration: c.examples[0]?.transliteration || ''
+        },
+        isCombo: true,
+        allExamples: c.examples
+      }));
+      return [...rawCharacters, ...combos] as any[];
+    }
+    return rawCharacters as any[];
+  }, [rawCharacters, langId]);
   const { progress: letterProgress, toggleCompleted } = useProgress(langId);
   const { progress: moduleProgressData, recordCompletedSession } = useExercisesProgress(langId);
   const navigate = useNavigate();
@@ -107,7 +129,7 @@ export function LessonsPage() {
         <div className="bg-[#F9F6EE] border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] flex-1 flex flex-col p-8 md:p-12 relative">
           {isCompleted && (
             <div className="vintage-stamp text-xl md:text-2xl py-2 px-6 border-4 right-4 top-4 z-10 pointer-events-none shadow-sm">
-              ПРОЙДЕНО
+              {getPassedStampText(langId)}
             </div>
           )}
           
@@ -128,11 +150,29 @@ export function LessonsPage() {
               </div>
               
               <div className="bg-vintage-paper border-2 border-vintage-ink p-4 shadow-[4px_4px_0_0_#C84B31]">
-                <h3 className="font-bold text-vintage-red uppercase tracking-widest text-sm mb-1">Example</h3>
-                <p className="font-serif text-3xl font-bold mb-1">{char.example.native}</p>
-                <p className="font-mono text-lg">{char.example.translation}</p>
-                {char.example.transliteration && (
-                  <p className="font-mono text-sm text-vintage-ink/70">({char.example.transliteration})</p>
+                <h3 className="font-bold text-vintage-red uppercase tracking-widest text-sm mb-1">
+                  {char.isCombo ? 'Examples' : 'Example'}
+                </h3>
+                {char.isCombo ? (
+                  <div className="space-y-4 mt-2">
+                    {char.allExamples.map((ex: any, i: number) => (
+                      <div key={i} className="border-l-2 border-vintage-ink/20 pl-3">
+                        <p className="font-serif text-2xl font-bold mb-1">{ex.native}</p>
+                        <p className="font-mono text-base">{ex.translation}</p>
+                        {ex.transliteration && (
+                          <p className="font-mono text-sm text-vintage-ink/70">({ex.transliteration})</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <>
+                    <p className="font-serif text-3xl font-bold mb-1">{char.example.native}</p>
+                    <p className="font-mono text-lg">{char.example.translation}</p>
+                    {char.example.transliteration && (
+                      <p className="font-mono text-sm text-vintage-ink/70">({char.example.transliteration})</p>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -151,28 +191,30 @@ export function LessonsPage() {
               <Check size={20} />
               {isCompleted ? "Mastered" : "Mark Mastered"}
             </button>
-            <a 
-              href={`https://en.wiktionary.org/wiki/${encodeURIComponent(char.characterLower)}#${registryEntry?.name || getLanguageName(langId)}`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-lg cursor-pointer"
-            >
-              View on Wiktionary &rarr;
-            </a>
+            {!char.isCombo && (
+              <a 
+                href={`https://en.wiktionary.org/wiki/${encodeURIComponent(char.characterLower)}#${registryEntry?.name || getLanguageName(langId)}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-vintage-blue hover:text-vintage-red underline font-serif font-bold text-lg cursor-pointer"
+              >
+                View on Wiktionary &rarr;
+              </a>
+            )}
           </div>
         </div>
 
         <div className="flex justify-between mt-8">
           <button
             disabled={currentIndex === 0}
-            onClick={() => navigate(`/${langId}/lesson/${characters[currentIndex - 1].id}`)}
+            onClick={() => navigate(`/${langId}/${basePath}/${characters[currentIndex - 1].id}`)}
             className="vintage-button flex items-center gap-2"
           >
             <ChevronLeft size={20} /> Previous
           </button>
           <button
             disabled={currentIndex === characters.length - 1}
-            onClick={() => navigate(`/${langId}/lesson/${characters[currentIndex + 1].id}`)}
+            onClick={() => navigate(`/${langId}/${basePath}/${characters[currentIndex + 1].id}`)}
             className="vintage-button flex items-center gap-2"
           >
             Next <ChevronRight size={20} />

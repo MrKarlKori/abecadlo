@@ -74,3 +74,15 @@ export function getScriptName(langId: string): string {
       return 'Cyrillic';
   }
 }
+
+export function getPassedStampText(langId: string): string {
+  switch (langId) {
+    case LanguageId.BELARUSIAN:
+      return 'ВЫВУЧАНА';
+    case LanguageId.GREEK:
+      return 'ΕΜΑΘΑ';
+    case LanguageId.RUSSIAN:
+    default:
+      return 'ПРОЙДЕНО';
+  }
+}

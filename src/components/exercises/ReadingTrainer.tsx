@@ -53,8 +53,8 @@ export function ReadingTrainer({ langId: langIdProp }: ReadingTrainerProps = {})
     <div className="flex flex-col items-center p-8 bg-vintage-paper border-2 border-vintage-ink shadow-[4px_4px_0_0_#2C2A29] relative">
       {/* Level selector tabs */}
       <div className="flex gap-2 mb-8 w-full max-w-md">
-        {(['easy', 'medium', 'hard'] as ReadingLevel[]).map((lvl) => {
-          const count = (READING_DATA[langId]?.[lvl] || READING_DATA[LanguageId.BELARUSIAN][lvl]).length;
+        {(['easy', 'medium', 'hard', ...(langId === LanguageId.GREEK ? ['combinations'] : [])] as ReadingLevel[]).map((lvl) => {
+          const count = (READING_DATA[langId]?.[lvl] || READING_DATA[LanguageId.BELARUSIAN][lvl] || []).length;
           return (
             <button
               key={lvl}
@@ -66,7 +66,7 @@ export function ReadingTrainer({ langId: langIdProp }: ReadingTrainerProps = {})
                   : "bg-white text-vintage-ink/70 hover:bg-gray-100"
               )}
             >
-              {lvl === 'easy' ? `Easy (${count})` : lvl === 'medium' ? `Medium (${count})` : `Hard (${count})`}
+              {lvl === 'easy' ? `Easy (${count})` : lvl === 'medium' ? `Medium (${count})` : lvl === 'hard' ? `Hard (${count})` : `Combos (${count})`}
             </button>
           );
         })}

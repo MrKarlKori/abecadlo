@@ -16,6 +16,9 @@ import { QuizPage } from '../pages/QuizPage';
 import { SettingsPage } from '../pages/SettingsPage';
 import registryData from '../../public/data/registry.json';
 import greekData from '../../public/data/greek.json';
+import { GREEK_COMBINATIONS } from '../data/greekCombinations';
+import { CombinationReadingTrainer } from '../components/exercises/CombinationReadingTrainer';
+import { CombinationQuizTrainer } from '../components/exercises/CombinationQuizTrainer';
 
 describe('Greek Support', () => {
   it('returns Greek alphabet for el', () => {
@@ -221,5 +224,40 @@ describe('Greek UI Components & Pages Suite', () => {
     });
 
     expect(screen.getAllByText(/The Familiar Faces/i).length).toBeGreaterThan(0);
+  });
+
+  it('contains 12 Greek combinations and 240 combination reading items in READING_DATA', () => {
+    expect(GREEK_COMBINATIONS.length).toBe(12);
+    expect(READING_DATA['el']?.['combinations']?.length).toBe(240);
+  });
+
+  it('includes module-4 Letter Combinations in Greek lesson modules', () => {
+    const elModules = getLessonModules('el');
+    expect(elModules.length).toBe(4);
+    expect(elModules[3].title).toBe('Letter Combinations');
+  });
+
+  it('renders CombinationReadingTrainer correctly for Greek', () => {
+    render(
+      <MemoryRouter initialEntries={['/el/exercises']}>
+        <Routes>
+          <Route path="/:lang/exercises" element={<CombinationReadingTrainer langId="el" />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('μπ')).toBeInTheDocument();
+  });
+
+  it('renders CombinationQuizTrainer correctly for Greek', () => {
+    render(
+      <MemoryRouter initialEntries={['/el/exercises']}>
+        <Routes>
+          <Route path="/:lang/exercises" element={<CombinationQuizTrainer />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(/Combination Sound Quiz/i)).toBeInTheDocument();
   });
 });
