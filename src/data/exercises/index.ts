@@ -27,7 +27,7 @@ export interface LessonModule {
   letters: string[];
 }
 
-export const READING_DATA = readingDataJson as Record<string, Record<ReadingLevel, ReadingItem[]>>;
+export const READING_DATA = readingDataJson as unknown as Record<string, Record<ReadingLevel, ReadingItem[]>>;
 
 const comboItems: ReadingItem[] = Object.values(greekCombinationWordsJson)
   .flat()
