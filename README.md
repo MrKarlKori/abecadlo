@@ -30,3 +30,13 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Progressive Web App (PWA) Support
+
+This project includes PWA support powered by [`vite-plugin-pwa`](https://vite-pwa-org.netlify.app/). 
+
+- **Automatic Updates**: The service worker is configured to automatically update.
+- **Offline Support**: The app generates a service worker to cache essential assets on build, enabling offline capability.
+- **Installable**: Users can install this web app on their devices (desktop or mobile) directly from the browser.
+
+To verify PWA features during development, the Vite PWA dev options are enabled. The manifest and service worker are automatically generated when running `npm run build`.
