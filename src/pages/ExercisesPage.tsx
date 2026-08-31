@@ -9,6 +9,8 @@ import { BuildingTrainer } from '../components/exercises/BuildingTrainer';
 import { PoetryTrainer } from '../components/exercises/PoetryTrainer';
 import { getScriptName } from '../utils/languageMap';
 import { LanguageId, ExerciseMode } from '../types';
+import { CombinationReadingTrainer } from '../components/exercises/CombinationReadingTrainer';
+import { CombinationQuizTrainer } from '../components/exercises/CombinationQuizTrainer';
 
 export function ExercisesPage() {
   const { lang } = useParams();
@@ -91,6 +93,8 @@ export function ExercisesPage() {
             {activeMode === ExerciseMode.TYPING && 'Typing Word'}
             {activeMode === ExerciseMode.BUILDING && 'Building Word'}
             {activeMode === ExerciseMode.POETRY && 'Rhymes & Sentences'}
+            {activeMode === ExerciseMode.COMBINATION_READING && 'Combination Reading'}
+            {activeMode === ExerciseMode.COMBINATION_QUIZ && 'Combination Quiz'}
           </span>
         </div>
 
@@ -176,6 +180,20 @@ export function ExercisesPage() {
         {activeMode === ExerciseMode.POETRY && (
           <div className="flex-1 flex flex-col justify-center">
             <PoetryTrainer langId={langId} />
+          </div>
+        )}
+
+        {/* Practice Mode 7: Combination Reading (Greek only) */}
+        {activeMode === ExerciseMode.COMBINATION_READING && (
+          <div className="flex-1 flex flex-col justify-center">
+            <CombinationReadingTrainer langId={langId} />
+          </div>
+        )}
+
+        {/* Practice Mode 8: Combination Quiz (Greek only) */}
+        {activeMode === ExerciseMode.COMBINATION_QUIZ && (
+          <div className="flex-1 flex flex-col justify-center">
+            <CombinationQuizTrainer />
           </div>
         )}
       </div>
@@ -314,6 +332,50 @@ export function ExercisesPage() {
             Start Rhymes
           </div>
         </button>
+
+        {/* Exercise 7: Combination Reading (Greek only) */}
+        {langId === LanguageId.GREEK && (
+          <button
+            onClick={() => startMode(ExerciseMode.COMBINATION_READING)}
+            className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+          >
+            <div className="w-12 h-12 bg-[#8B5CF6] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+              <BookOpen size={24} />
+            </div>
+            <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 7</span>
+            <h2 className="text-xl font-bold uppercase tracking-wide text-vintage-ink mb-2">
+              Combination Reading
+            </h2>
+            <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
+              Practice reading words that feature Greek vowel and consonant combinations.
+            </p>
+            <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
+              Start Reading
+            </div>
+          </button>
+        )}
+
+        {/* Exercise 8: Combination Quiz (Greek only) */}
+        {langId === LanguageId.GREEK && (
+          <button
+            onClick={() => startMode(ExerciseMode.COMBINATION_QUIZ)}
+            className="bg-vintage-paper border-2 border-vintage-ink p-6 flex flex-col shadow-[6px_6px_0_0_#2C2A29] hover:bg-[#eae6d5] transition-all cursor-pointer text-left group"
+          >
+            <div className="w-12 h-12 bg-[#10B981] text-white border-2 border-vintage-ink flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+              <RotateCcw size={24} />
+            </div>
+            <span className="font-mono text-xs font-bold text-vintage-ink/60 mb-1">PRACTICE 8</span>
+            <h2 className="text-xl font-bold uppercase tracking-wide text-vintage-ink mb-2">
+              Combination Quiz
+            </h2>
+            <p className="font-serif text-sm text-vintage-ink/80 mb-6 flex-1">
+              Test your knowledge by identifying the correct phonetic sound for Greek letter combinations.
+            </p>
+            <div className="w-full py-3 bg-vintage-gold group-hover:bg-[#d4a849] font-serif font-bold text-base border-2 border-vintage-ink shadow-[2px_2px_0_0_#2C2A29] text-center">
+              Start Quiz
+            </div>
+          </button>
+        )}
       </div>
     </div>
   );

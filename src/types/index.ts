@@ -11,6 +11,8 @@ export enum ExerciseMode {
   TYPING = 'typing',
   BUILDING = 'building',
   POETRY = 'poetry',
+  COMBINATION_READING = 'combination-reading',
+  COMBINATION_QUIZ = 'combination-quiz',
 }
 
 export interface Example {

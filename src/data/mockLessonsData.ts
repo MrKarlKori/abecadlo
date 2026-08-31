@@ -1,7 +1,7 @@
 import { LESSON_MODULES_DATA } from './exercises';
 import { LanguageId } from '../types';
 
-export type ExerciseType = 'drawing' | 'drawing-opposite' | 'reading-easy' | 'building-mirror';
+export type ExerciseType = 'drawing' | 'drawing-opposite' | 'reading-easy' | 'building-mirror' | 'combination-quiz';
 
 export interface ReadingTask {
   id: string;

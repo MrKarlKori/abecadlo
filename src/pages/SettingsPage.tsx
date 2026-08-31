@@ -6,6 +6,7 @@ import { getLessonModules } from '../data/mockLessonsData';
 import { Lock, Unlock, Plus, Minus, Check, Code } from 'lucide-react';
 import clsx from 'clsx';
 import { LanguageId } from '../types';
+import { GREEK_COMBINATIONS } from '../data/greekCombinations';
 
 export function SettingsPage() {
   const { lang } = useParams();
@@ -23,7 +24,8 @@ export function SettingsPage() {
   };
 
   const handleCompleteAll = () => {
-    completeAll(characters.map(c => c.id));
+    const comboIds = langId === LanguageId.GREEK ? GREEK_COMBINATIONS.map(c => c.id) : [];
+    completeAll([...characters.map(c => c.id), ...comboIds]);
     modules.forEach(m => setModuleSessions(m.id, 10));
   };
 
@@ -95,9 +97,9 @@ export function SettingsPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full md:w-auto justify-between md:justify-end">
                   {/* Sessions Stepper */}
-                  <div className="flex items-center border-2 border-vintage-ink bg-white">
+                  <div className="flex items-center border-2 border-vintage-ink bg-white shrink-0">
                     <button
                       onClick={() => setModuleSessions(module.id, completedSessions - 1)}
                       disabled={completedSessions <= 0}
@@ -106,7 +108,7 @@ export function SettingsPage() {
                     >
                       <Minus size={16} />
                     </button>
-                    <span className="font-mono font-bold text-sm px-4 min-w-[5rem] text-center">
+                    <span className="font-mono font-bold text-sm px-2 sm:px-4 min-w-[4.5rem] sm:min-w-[5rem] text-center">
                       {completedSessions} / 10
                     </span>
                     <button
@@ -119,27 +121,29 @@ export function SettingsPage() {
                     </button>
                   </div>
 
-                  <button
-                    onClick={() => setModuleSessions(module.id, 10)}
-                    disabled={isCompleted}
-                    className={clsx(
-                      "px-3 py-2 font-mono text-xs font-bold border-2 border-vintage-ink transition-all cursor-pointer flex items-center gap-1",
-                      isCompleted 
-                        ? "bg-gray-200 opacity-50 cursor-not-allowed" 
-                        : "bg-vintage-gold hover:bg-[#d4a849] text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]"
-                    )}
-                  >
-                    <Check size={14} /> Master (10/10)
-                  </button>
-
-                  {!isUnlocked && (
+                  <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap shrink-0">
                     <button
-                      onClick={() => unlockModule(module.id)}
-                      className="px-3 py-2 font-mono text-xs font-bold border-2 border-vintage-ink bg-vintage-blue text-white hover:bg-blue-800 shadow-[2px_2px_0_0_#2C2A29] cursor-pointer"
+                      onClick={() => setModuleSessions(module.id, 10)}
+                      disabled={isCompleted}
+                      className={clsx(
+                        "px-3 py-2 font-mono text-xs font-bold border-2 border-vintage-ink transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap",
+                        isCompleted 
+                          ? "bg-gray-200 opacity-50 cursor-not-allowed" 
+                          : "bg-vintage-gold hover:bg-[#d4a849] text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]"
+                      )}
                     >
-                      Unlock
+                      <Check size={14} /> Master (10/10)
                     </button>
-                  )}
+
+                    {!isUnlocked && (
+                      <button
+                        onClick={() => unlockModule(module.id)}
+                        className="px-3 py-2 font-mono text-xs font-bold border-2 border-vintage-ink bg-vintage-blue text-white hover:bg-blue-800 shadow-[2px_2px_0_0_#2C2A29] cursor-pointer whitespace-nowrap"
+                      >
+                        Unlock
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             );
@@ -170,6 +174,30 @@ export function SettingsPage() {
             );
           })}
         </div>
+
+        {langId === LanguageId.GREEK && (
+          <>
+            <h3 className="text-xl mb-3 font-serif font-bold pt-6 mt-6 border-t-2 border-vintage-ink border-dashed">
+              Greek Letter Combinations Override
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {GREEK_COMBINATIONS.map(combo => {
+                const isCompleted = progress.completedLetters.includes(combo.id);
+                return (
+                  <button
+                    key={combo.id}
+                    onClick={() => toggleCompleted(combo.id)}
+                    className={`px-3 py-2 flex items-center justify-center font-serif text-xl border-2 border-vintage-ink font-bold transition-all cursor-pointer ${
+                      isCompleted ? 'bg-vintage-gold text-vintage-ink shadow-[2px_2px_0_0_#2C2A29]' : 'bg-vintage-paper hover:bg-gray-100'
+                    }`}
+                  >
+                    {combo.combination}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
 
       {/* About Section */}
