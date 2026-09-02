@@ -1,42 +1,55 @@
-# React + TypeScript + Vite
+# Abecadlo
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Abecadlo is an interactive, vintage-themed language learning application focused on mastering the alphabet. 
 
-Currently, two official plugins are available:
+## Live Application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application is deployed and available at: **[https://mrkarlkori.github.io/abecadlo](https://mrkarlkori.github.io/abecadlo)**
 
-## React Compiler
+## Capabilities & Usage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The app provides a structured and engaging way to learn. Key capabilities include:
 
-## Expanding the Oxlint configuration
+- **Learn the Alphabet**: Browse and study the characters with interactive displays.
+- **Structured Lessons**: Take step-by-step lessons to master new letters.
+- **Practice Exercises**: Hone your skills with guided exercises.
+- **Quizzes**: Test your knowledge and reinforce what you've learned.
+- **Offline PWA Support**: Install the app on your mobile or desktop device to learn on the go, even without an internet connection. The app uses automatic updates to ensure you always have the latest version.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### How and Why to Use It
+Whether you are starting from scratch or looking to practice, Abecadlo provides a clean, distraction-free interface to master the alphabet. Simply open the app, navigate to the lessons or exercises, and start learning! 
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+Since it's built as a Progressive Web App (PWA), you can add it to your phone's home screen for a seamless, native-like fullscreen experience.
+
+## Local Development (Run, Test, and Deploy)
+
+To get started locally, make sure you have Node.js installed, then clone the repository and install the dependencies:
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Running Locally
+To start the development server with Hot Module Replacement (HMR):
+```bash
+npm run dev
+```
 
-## Progressive Web App (PWA) Support
+### Testing
+To run the Vitest test suite:
+```bash
+npm run test
+```
 
-This project includes PWA support powered by [`vite-plugin-pwa`](https://vite-pwa-org.netlify.app/). 
+### Building & Deploying
+To create a production build and deploy it to GitHub Pages:
+```bash
+# Verify the build locally
+npm run build
 
-- **Automatic Updates**: The service worker is configured to automatically update.
-- **Offline Support**: The app generates a service worker to cache essential assets on build, enabling offline capability.
-- **Installable**: Users can install this web app on their devices (desktop or mobile) directly from the browser.
+# Preview the built application
+npm run preview
 
-To verify PWA features during development, the Vite PWA dev options are enabled. The manifest and service worker are automatically generated when running `npm run build`.
+# Deploy directly to the gh-pages branch
+npm run deploy
+```
