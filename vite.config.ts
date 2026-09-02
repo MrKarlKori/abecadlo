@@ -19,7 +19,9 @@ export default defineConfig({
         name: 'Abecadlo',
         short_name: 'Abecadlo',
         description: 'Abecadlo PWA',
-        theme_color: '#ffffff',
+        theme_color: '#F3EFE0',
+        background_color: '#F3EFE0',
+        display: 'standalone',
         icons: [
           {
             src: 'favicon.svg',
@@ -32,6 +34,10 @@ export default defineConfig({
             type: 'image/svg+xml'
           }
         ]
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+        cleanupOutdatedCaches: true
       }
     })
   ],
